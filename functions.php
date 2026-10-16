@@ -1,4 +1,5 @@
 <?php
+require get_template_directory() . '/inc/setup.php';
 function cptui_register_my_cpts_instructors() {
 
 	/**
