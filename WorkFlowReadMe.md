@@ -37,7 +37,7 @@ This repo holds the **custom WordPress theme** for the new Cheremosh site. Every
 ## Our environments
 
 - **Local (each of us):** your own WordPress install on your computer using Local (or MAMP). Use it to build and test your task. Only add enough sample content to test your feature (e.g. 2–3 sample programs, not the whole program list).
-- **Dev / staging site:** the "source of truth" for the build. Full content, plugins and settings live here, and it's what the client and instructor review. Temporary dev site: `cheremosh.michaelsych.dev` (pending instructor approval). Final staging: the client's Bluehost. **Never copy your local database up to it, or its database down to you.**
+- **Staging site (client's Bluehost):** the "source of truth" for the build. Full content, plugins and settings live here, and it's what the client and instructor review. Being set up by the client. **Never copy your local database up to it, or its database down to you.**
 - **Live site (cheremosh.ca):** hands off. Nobody changes the live site until the client and instructor approve launch.
 - **GitHub (this repo):** where the theme code is shared, reviewed and merged.
 
