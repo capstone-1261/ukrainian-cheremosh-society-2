@@ -1,5 +1,9 @@
 <?php
-add_action( 'acf/include_fields', function() {
+require get_template_directory() . '/inc/setup.php';
+
+/* ACF Field Groups */
+
+function cheremosh_register_acf_field_groups() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
@@ -134,11 +138,31 @@ add_action( 'acf/include_fields', function() {
 	'fields' => array(
 		array(
 			'key' => 'field_6ad284ea87857',
-			'label' => 'Season Dates',
-			'name' => 'season_dates',
+			'label' => 'Date of Season Start',
+			'name' => 'date_of_season_start',
 			'aria-label' => '',
 			'type' => 'date_picker',
-			'instructions' => 'Input Season Dates here',
+			'instructions' => 'Input the date of the start of the season here',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'display_format' => 'F j, Y',
+			'return_format' => 'F j, Y',
+			'first_day' => 1,
+			'default_to_current_date' => 0,
+			'allow_in_bindings' => 0,
+		),
+		array(
+			'key' => 'field_6ad426546d046',
+			'label' => 'Date of Season End',
+			'name' => 'date_of_season_end',
+			'aria-label' => '',
+			'type' => 'date_picker',
+			'instructions' => 'Input the date of the end of the season here',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -158,7 +182,7 @@ add_action( 'acf/include_fields', function() {
 			'name' => 'start_time',
 			'aria-label' => '',
 			'type' => 'time_picker',
-			'instructions' => '',
+			'instructions' => 'Input the starting time here',
 			'required' => 1,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -176,7 +200,7 @@ add_action( 'acf/include_fields', function() {
 			'name' => 'end_time',
 			'aria-label' => '',
 			'type' => 'time_picker',
-			'instructions' => '',
+			'instructions' => 'Input the ending time here',
 			'required' => 1,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -190,11 +214,11 @@ add_action( 'acf/include_fields', function() {
 		),
 		array(
 			'key' => 'field_6ad2862287858',
-			'label' => 'Day',
-			'name' => 'day',
+			'label' => 'Day of the Week',
+			'name' => 'day_of_the_week',
 			'aria-label' => '',
-			'type' => 'date_picker',
-			'instructions' => '',
+			'type' => 'checkbox',
+			'instructions' => 'Click on the checkboxes for the day of the week here',
 			'required' => 1,
 			'conditional_logic' => 0,
 			'wrapper' => array(
@@ -202,11 +226,24 @@ add_action( 'acf/include_fields', function() {
 				'class' => '',
 				'id' => '',
 			),
-			'display_format' => 'F j, Y',
-			'return_format' => 'F j, Y',
-			'first_day' => 1,
-			'default_to_current_date' => 0,
+			'choices' => array(
+				'monday' => 'Monday',
+				'tuesday' => 'Tuesday',
+				'wednesday' => 'Wednesday',
+				'thursday' => 'Thursday',
+				'friday' => 'Friday',
+				'saturday' => 'Saturday',
+				'sunday' => 'Sunday',
+			),
+			'default_value' => array(
+			),
+			'return_format' => 'label',
+			'allow_custom' => 0,
 			'allow_in_bindings' => 0,
+			'layout' => 'vertical',
+			'toggle' => 0,
+			'save_custom' => 0,
+			'custom_choice_button_text' => 'Add new choice',
 		),
 	),
 	'location' => array(
@@ -215,13 +252,6 @@ add_action( 'acf/include_fields', function() {
 				'param' => 'post_type',
 				'operator' => '==',
 				'value' => 'programs',
-			),
-		),
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'events',
 			),
 		),
 	),
@@ -238,9 +268,12 @@ add_action( 'acf/include_fields', function() {
 	'allow_ai_access' => false,
 	'ai_description' => '',
 ) );
-} );
+} 
+add_action( 'acf/include_fields', 'cheremosh_register_acf_field_groups' );
 
-add_action( 'init', function() {
+/* Taxonomies */
+
+function cheremosh_register_taxonomies() {
 	register_taxonomy( 'age_range', array(
 	0 => 'programs',
 ), array(
@@ -276,79 +309,28 @@ add_action( 'init', function() {
 	'show_tagcloud' => false,
 	'show_in_quick_edit' => false,
 ) );
-} );
+}
+add_action( 'init', 'cheremosh_register_taxonomies' );
 
-add_action( 'init', function() {
-	register_post_type( 'events', array(
-	'labels' => array(
-		'name' => 'Events',
-		'singular_name' => 'Event',
-		'menu_name' => 'My Events',
-		'all_items' => 'All Events',
-		'add_new' => 'Add New',
-		'add_new_item' => 'Add new Event',
-		'edit_item' => 'Edit Event',
-		'new_item' => 'New Event',
-		'view_item' => 'View Event',
-		'view_items' => 'View Events',
-		'search_items' => 'Search Events',
-		'not_found' => 'No Events found',
-		'not_found_in_trash' => 'No Events found in trash',
-		'parent_item_colon' => 'Parent Event:',
-		'archives' => 'Event archives',
-		'attributes' => 'Events attributes',
-		'featured_image' => 'Featured image for this Event',
-		'set_featured_image' => 'Set featured image for this Event',
-		'remove_featured_image' => 'Remove featured image for this Event',
-		'use_featured_image' => 'Use as featured image for this Event',
-		'insert_into_item' => 'Insert into Event',
-		'uploaded_to_this_item' => 'Upload to this Event',
-		'filter_items_list' => 'Filter Events list',
-		'filter_by_date' => 'Filter Events by date',
-		'items_list_navigation' => 'Events list navigation',
-		'items_list' => 'Events list',
-		'item_published' => 'Event published',
-		'item_published_privately' => 'Event published privately.',
-		'item_reverted_to_draft' => 'Event reverted to draft.',
-		'item_scheduled' => 'Event scheduled',
-		'item_updated' => 'Event updated.',
-		'parent' => 'Parent Event:',
-		'name_admin_bar' => 'Event',
-		'item_trashed' => 'Event trashed.',
-		'template_name' => 'Single Event: Event',
-	),
-	'public' => true,
-	'show_in_rest' => true,
-	'menu_icon' => 'dashicons-megaphone',
-	'supports' => array(
-		0 => 'title',
-		1 => 'editor',
-		2 => 'thumbnail',
-		3 => 'excerpt',
-		4 => 'custom-fields',
-		5 => 'author',
-		6 => 'page-attributes',
-	),
-	'can_export' => true,
-	'delete_with_user' => false,
-) );
+/* Post Types */
 
+function cheremosh_register_post_types() {
 	register_post_type( 'instructors', array(
 	'labels' => array(
 		'name' => 'Instructors',
 		'singular_name' => 'Instructor',
-		'menu_name' => 'Instructor Posts',
+		'menu_name' => 'Instructors',
 		'all_items' => 'All Instructors',
-		'add_new' => 'Add New',
-		'add_new_item' => 'Add New Instructor Post',
 		'edit_item' => 'Edit Instructor Post',
-		'new_item' => 'New Instructor Post',
 		'view_item' => 'View Instructor Post',
 		'view_items' => 'View Instructor Posts',
+		'add_new_item' => 'Add New Instructor Post',
+		'add_new' => 'Add New',
+		'new_item' => 'New Instructor Post',
+		'parent_item_colon' => 'Parent Instructor Post:',
 		'search_items' => 'Search Instructor Posts',
 		'not_found' => 'No Instructor Posts found',
 		'not_found_in_trash' => 'No Instructor Posts found in Trash',
-		'parent_item_colon' => 'Parent Instructor Post:',
 		'archives' => 'Instructor Post archives',
 		'attributes' => 'Instructor post Attributes',
 		'featured_image' => 'Featured image for this instructor post',
@@ -366,10 +348,6 @@ add_action( 'init', function() {
 		'item_reverted_to_draft' => 'Instructor Post reverted to draft',
 		'item_scheduled' => 'Instructor Post scheduled',
 		'item_updated' => 'Instructor Post updated',
-		'parent' => 'Parent Instructor Post:',
-		'name_admin_bar' => 'Instructor Post',
-		'item_trashed' => 'Instructor Post trashed.',
-		'template_name' => 'Single item: Instructor Post',
 	),
 	'public' => true,
 	'show_in_rest' => true,
@@ -378,9 +356,9 @@ add_action( 'init', function() {
 		0 => 'title',
 		1 => 'editor',
 		2 => 'thumbnail',
-		3 => 'excerpt',
+		3 => 'author',
 		4 => 'custom-fields',
-		5 => 'author',
+		5 => 'excerpt',
 		6 => 'page-attributes',
 	),
 	'taxonomies' => array(
@@ -395,7 +373,7 @@ add_action( 'init', function() {
 	'labels' => array(
 		'name' => 'Programs',
 		'singular_name' => 'Program',
-		'menu_name' => 'My Programs',
+		'menu_name' => 'Programs',
 		'all_items' => 'All Programs',
 		'edit_item' => 'Edit Program',
 		'view_item' => 'View Program',
@@ -444,19 +422,18 @@ add_action( 'init', function() {
 	'can_export' => true,
 	'delete_with_user' => false,
 ) );
-} );
+} 
+add_action( 'init', 'cheremosh_register_post_types' );
 
+/* Titles */
 
-add_filter( 'enter_title_here', function( $default, $post ) {
+function cheremosh_enter_title_here( $default, $post ) {
 	switch ( $post->post_type ) {
-		case 'events':
-			return 'Add Event';
 		case 'instructors':
 			return 'Add Post Instructor';
 		case 'programs':
 			return 'Add Program';
 	}
-
 	return $default;
-}, 10, 2 );
-
+}
+add_filter( 'enter_title_here', 'cheremosh_enter_title_here', 10, 2 );
