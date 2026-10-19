@@ -8,6 +8,109 @@ function cheremosh_register_acf_field_groups() {
 		return;
 	}
 
+    acf_add_local_field_group( array(
+	'key' => 'group_6ad66f1992130',
+	'title' => 'Info',
+	'fields' => array(
+		array(
+			'key' => 'field_6ad66f1be255f',
+			'label' => 'Photo',
+			'name' => 'photo',
+			'aria-label' => '',
+			'type' => 'image',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'url',
+			'library' => 'all',
+			'min_width' => '',
+			'min_height' => '',
+			'min_size' => '',
+			'max_width' => '',
+			'max_height' => '',
+			'max_size' => '',
+			'mime_types' => '',
+			'allow_in_bindings' => 0,
+			'preview_size' => 'medium',
+		),
+		array(
+			'key' => 'field_6ad66f86e2560',
+			'label' => 'Name',
+			'name' => 'name',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 'Name:',
+			'maxlength' => '',
+			'allow_in_bindings' => 0,
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6ad66fd6e2561',
+			'label' => 'Bio',
+			'name' => 'bio',
+			'aria-label' => '',
+			'type' => 'textarea',
+			'instructions' => '',
+			'required' => 1,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 'Input Bio here:',
+			'maxlength' => '',
+			'allow_in_bindings' => 0,
+			'rows' => '',
+			'placeholder' => '',
+			'new_lines' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'instructors',
+			),
+		),
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'people',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+	'show_in_rest' => 0,
+	'display_title' => '',
+	'allow_ai_access' => false,
+	'ai_description' => '',
+) );
+
 	acf_add_local_field_group( array(
 	'key' => 'group_6ad297a534374',
 	'title' => 'Related Instructors',
@@ -309,6 +412,39 @@ function cheremosh_register_taxonomies() {
 	'show_tagcloud' => false,
 	'show_in_quick_edit' => false,
 ) );
+
+register_taxonomy( 'role', array(
+	0 => 'instructors',
+	1 => 'people',
+), array(
+	'labels' => array(
+		'name' => 'Roles',
+		'singular_name' => 'Role',
+		'menu_name' => 'Roles',
+		'all_items' => 'All Roles',
+		'edit_item' => 'Edit Role',
+		'view_item' => 'View Role',
+		'update_item' => 'Update Role',
+		'add_new_item' => 'Add New Role',
+		'new_item_name' => 'New Role Name',
+		'search_items' => 'Search Roles',
+		'popular_items' => 'Popular Roles',
+		'separate_items_with_commas' => 'Separate roles with commas',
+		'add_or_remove_items' => 'Add or remove roles',
+		'choose_from_most_used' => 'Choose from the most used roles',
+		'not_found' => 'No roles found',
+		'no_terms' => 'No roles',
+		'items_list_navigation' => 'Roles list navigation',
+		'items_list' => 'Roles list',
+		'back_to_items' => '← Go to roles',
+		'item_link' => 'Role Link',
+		'item_link_description' => 'A link to a role',
+	),
+	'description' => 'The roles assigned to Instructor and People post types',
+	'public' => true,
+	'show_in_menu' => true,
+	'show_in_rest' => true,
+) );
 }
 add_action( 'init', 'cheremosh_register_taxonomies' );
 
@@ -369,6 +505,54 @@ function cheremosh_register_post_types() {
 	'delete_with_user' => false,
 ) );
 
+    register_post_type( 'people', array(
+	'labels' => array(
+		'name' => 'People',
+		'singular_name' => 'Person',
+		'menu_name' => 'People',
+		'all_items' => 'All People',
+		'edit_item' => 'Edit Person',
+		'view_item' => 'View Person',
+		'view_items' => 'View People',
+		'add_new_item' => 'Add New Person',
+		'add_new' => 'Add New Person',
+		'new_item' => 'New Person',
+		'parent_item_colon' => 'Parent Person:',
+		'search_items' => 'Search People',
+		'not_found' => 'No people found',
+		'not_found_in_trash' => 'No people found in Trash',
+		'archives' => 'Person Archives',
+		'attributes' => 'Person Attributes',
+		'insert_into_item' => 'Insert into person',
+		'uploaded_to_this_item' => 'Uploaded to this person',
+		'filter_items_list' => 'Filter people list',
+		'filter_by_date' => 'Filter people by date',
+		'items_list_navigation' => 'People list navigation',
+		'items_list' => 'People list',
+		'item_published' => 'Person published.',
+		'item_published_privately' => 'Person published privately.',
+		'item_reverted_to_draft' => 'Person reverted to draft.',
+		'item_scheduled' => 'Person scheduled.',
+		'item_updated' => 'Person updated.',
+		'item_link' => 'Person Link',
+		'item_link_description' => 'A link to a person.',
+	),
+	'public' => true,
+	'show_in_rest' => true,
+	'menu_icon' => 'dashicons-admin-post',
+	'supports' => array(
+		0 => 'title',
+		1 => 'editor',
+		2 => 'thumbnail',
+		3 => 'custom-fields',
+	),
+	'taxonomies' => array(
+		0 => 'category',
+		1 => 'post_tag',
+	),
+	'delete_with_user' => false,
+) );
+
 	register_post_type( 'programs', array(
 	'labels' => array(
 		'name' => 'Programs',
@@ -422,6 +606,7 @@ function cheremosh_register_post_types() {
 	'can_export' => true,
 	'delete_with_user' => false,
 ) );
+
 } 
 add_action( 'init', 'cheremosh_register_post_types' );
 
