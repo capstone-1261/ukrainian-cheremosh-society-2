@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Dance With Us page: page content, then a list of all programs.
  */
@@ -7,7 +8,7 @@ get_header();
 ?>
 
 <main id="main-content">
-	<?php while ( have_posts() ) : the_post(); ?>
+	<?php while (have_posts()) : the_post(); ?>
 		<article <?php post_class(); ?>>
 			<h1><?php the_title(); ?></h1>
 			<?php the_content(); ?>
@@ -25,20 +26,22 @@ get_header();
 	);
 	?>
 
-	<?php if ( $programs->have_posts() ) : ?>
+	<?php if ($programs->have_posts()) : ?>
 		<section class="programs-list">
 			<h2>Our Programs</h2>
 			<ul>
-				<?php while ( $programs->have_posts() ) : $programs->the_post(); ?>
-					<?php $age_range = get_the_term_list( get_the_ID(), 'age_range', '', ', ' ); ?>
+				<?php while ($programs->have_posts()) : $programs->the_post(); ?>
+					<?php $age_range = get_the_term_list(get_the_ID(), 'age_range', '', ', '); ?>
 					<li>
 						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
-						<?php if ( $age_range && ! is_wp_error( $age_range ) ) : ?>
-							<p>Ages: <?php echo wp_kses_post( $age_range ); ?></p>
+						<?php if ($age_range && ! is_wp_error($age_range)) : ?>
+							<p>Ages: <?php echo wp_kses_post($age_range); ?></p>
 						<?php endif; ?>
 
 						<?php the_excerpt(); ?>
+
+						<a class="button" href="<?php the_permalink(); ?>" aria-label="Learn more about <?php the_title_attribute(); ?>">Learn More</a>
 					</li>
 				<?php endwhile; ?>
 			</ul>
