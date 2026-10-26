@@ -19,7 +19,7 @@
 	<!-- wp:buttons -->
 	<div class="wp-block-buttons">
 		<!-- wp:button -->
-		<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/dance-with-us/">Program Registration</a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/register/">Program Registration</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->
