@@ -32,13 +32,15 @@ get_header();
 				<?php while ( $programs->have_posts() ) : $programs->the_post(); ?>
 					<?php $age_range = get_the_term_list( get_the_ID(), 'age_range', '', ', ' ); ?>
 					<li>
-						<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<h3><?php the_title(); ?></h3>
 
 						<?php if ( $age_range && ! is_wp_error( $age_range ) ) : ?>
 							<p>Ages: <?php echo wp_kses_post( $age_range ); ?></p>
 						<?php endif; ?>
 
 						<?php the_excerpt(); ?>
+
+						<a class="button" href="<?php the_permalink(); ?>" aria-label="Learn more about <?php the_title_attribute(); ?>">Learn More</a>
 					</li>
 				<?php endwhile; ?>
 			</ul>
