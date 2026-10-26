@@ -1,6 +1,6 @@
 <?php
 /**
- * Single program: description, schedule, age range, and instructors.
+ * Single program: description, schedule, age range, instructors, and register button.
  */
 
 get_header();
@@ -34,7 +34,7 @@ get_header();
 
 						<?php if ( $start_time && $end_time ) : ?>
 							<dt>Time</dt>
-							<dd><?php echo esc_html( $start_time . ' – ' . $end_time ); ?></dd>
+							<dd><?php echo esc_html( $start_time . ' - ' . $end_time ); ?></dd>
 						<?php endif; ?>
 
 						<?php if ( $season_start && $season_end ) : ?>
@@ -64,6 +64,8 @@ get_header();
 					</section>
 				<?php endif; ?>
 			<?php endif; ?>
+
+			<a class="button" href="<?php echo esc_url( home_url( '/register/' ) ); ?>" aria-label="Register for <?php the_title_attribute(); ?>">Register</a>
 		</article>
 	<?php endwhile; ?>
 </main>
