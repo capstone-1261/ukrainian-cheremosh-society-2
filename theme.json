@@ -9,7 +9,10 @@
             "defaultGradients": false,
             "palette": [
                 { "slug": "red", "name": "Red", "color": "#D22630"},
+                { "slug": "dark-red", "name": "Dark Red (feature)", "color": "#931920"},
                 { "slug": "blue", "name": "Blue", "color": "#005A91"},
+                { "slug": "blue-hover", "name": "Blue Hover", "color": "#033B5E"},
+                { "slug": "bright-blue", "name": "Bright Blue", "color": "#009EFF"},
                 { "slug": "yellow", "name": "Yellow", "color": "#FFD600"},
                 { "slug": "charcoal", "name": "Charcoal", "color": "#2C2C2C"},
                 { "slug": "off-white", "name": "Off-White", "color": "#FCFAF2"},
@@ -43,8 +46,8 @@
             { "slug": "tiny", "name": "Tiny", "size": "0.75rem", "fluid": false },
             { "slug": "small", "name": "Small", "size": "0.875rem", "fluid": false },
             { "slug": "regular", "name": "Regular", "size": "1rem", "fluid": false },
-            { "slug": "medium", "name": "Medium", "size": "1.125rem", "fluid": false },
-            { "slug": "large", "name": "Large", "size": "1.25rem", "fluid": false },
+            { "slug": "medium", "name": "Medium", "size": "1.125rem", "fluid": { "min": "1rem", "max": "1.125rem" } },
+            { "slug": "large", "name": "Large", "size": "1.25rem", "fluid": { "min": "1.125rem", "max": "1.25rem" } },
             { "slug": "h6", "name": "Heading 6", "size": "1.25rem", "fluid": { "min": "1.125rem", "max": "1.25rem" } },
             { "slug": "h5", "name": "Heading 5", "size": "1.5rem", "fluid": { "min": "1.25rem", "max": "1.5rem" } },
             { "slug": "h4", "name": "Heading 4", "size": "2rem", "fluid": { "min": "1.5rem", "max": "2rem" } },
@@ -60,14 +63,18 @@
             { "slug": "20", "name": "S", "size": "1rem" },
             { "slug": "30", "name": "M", "size": "1.5rem" },
             { "slug": "40", "name": "L", "size": "2rem" },
-            { "slug": "50", "name": "XL", "size": "3rem" },
-            { "slug": "60", "name": "2XL", "size": "4rem" },
-            { "slug": "70", "name": "3XL", "size": "6rem" }
+            { "slug": "50", "name": "Section Small", "size": "clamp(1.5rem, 1rem + 2.5vw, 3rem)" },
+            { "slug": "60", "name": "Section Medium", "size": "clamp(2rem, 1rem + 5vw, 5rem)" },
+            { "slug": "70", "name": "Section Large", "size": "clamp(3rem, 1.667rem + 6.667vw, 7rem)" }
         ]
     },
     "layout": {
-        "contentSize": "760px",
+        "contentSize": "768px",
         "wideSize": "1280px"
+    },
+    "custom": {
+        "padding-global": "clamp(1rem, 5vw, 4rem)",
+        "container-medium": "1024px"
     }
   }
 }
