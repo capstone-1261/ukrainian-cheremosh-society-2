@@ -1,0 +1,9 @@
+# macOS creates these in every folder; they're not part of the theme.
+.DS_Store
+
+# Windows thumbnail and folder settings files.
+Thumbs.db
+desktop.ini
+
+# Editor settings that are personal to each computer.
+.vscode/
