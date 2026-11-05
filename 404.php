@@ -5,8 +5,7 @@
  * WordPress uses this file automatically when someone visits a URL
  * that doesn't exist (a broken link, a typo, or an old page from the previous site).
  *
- * Shows: a clear message, a search form, and links to the main pages
- * so the visitor isn't stuck.
+ * Shows: a clear message and links to the main pages so the visitor isn't stuck.
  * Structure only: no styling yet.
  */
 get_header(); // Loads header.php (skip link, site name, main menu, Register button).
@@ -17,14 +16,6 @@ get_header(); // Loads header.php (skip link, site name, main menu, Register but
 	<h1>Page Not Found</h1>
 
 	<p>Sorry, we couldn't find the page you were looking for. It may have moved, or the link may be broken.</p>
-
-	<!-- Search form: lets the visitor look for what they wanted.
-	     get_search_form() outputs WordPress's built-in search form (HTML5 version, turned on in inc/setup.php),
-	     which already has a proper label for screen readers. -->
-	<section aria-labelledby="search-heading">
-		<h2 id="search-heading">Search the Site</h2>
-		<?php get_search_form(); ?>
-	</section>
 
 	<!-- Helpful links to the most visited pages.
 	     home_url() builds the full link, so it works on local, dev, and live sites. -->
