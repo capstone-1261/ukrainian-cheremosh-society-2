@@ -53,12 +53,30 @@
                 {
                     "slug": "heading",
                     "name": "Cormorant Garamond",
-                    "fontFamily": "\"Cormorant Garamond\", Georgia, serif"
+                    "fontFamily": "\"Cormorant Garamond\", Georgia, serif",
+                    "fontFace": [
+                        {
+                            "fontFamily": "Cormorant Garamond",
+                            "fontStyle": "normal",
+                            "fontWeight": "300 700",
+                            "fontDisplay": "swap",
+                            "src": [ "file:./assets/fonts/cormorant-garamond.woff2"]
+                        }
+                    ]
                 },
                 {
                     "slug": "body",
                     "name": "Inter",
-                    "fontFamily": "Inter, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+                    "fontFamily": "Inter, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+                    "fontFace": [
+                        {
+                            "fontFamily": "Inter",
+                            "fontStyle": "normal",
+                            "fontWeight": "100 900",
+                            "fontDisplay": "swap",
+                            "src": [ "file:./assets/fonts/inter.woff2"]
+                        }
+                    ]
                 }
             ],
             "fontSizes": [
