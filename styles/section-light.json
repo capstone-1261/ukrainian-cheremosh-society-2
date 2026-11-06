@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 3,
+    "title": "Light section",
+    "slug": "section-light",
+    "blockTypes": [ "core/group", "core/columns", "core/column" ],
+    "styles": {
+        "color": {
+            "background": "var(--wp--preset--color--off-white)",
+            "text": "var(--wp--preset--color--black)"
+        },
+        "elements": {
+            "heading": {
+                "color": { "text": "var(--wp--preset--color--black)" }
+            },
+            "link": {
+                "color": { "text": "var(--wp--preset--color--black)" },
+                "typography": {
+                    "fontWeight": "600",
+                    "textDecoration": "none"
+                },
+                ":focus-visible": {
+                    "outline": {
+                        "color": "var(--wp--preset--color--black)",
+                        "style": "solid",
+                        "width": "2px",
+                        "offset": "2px"
+                    }
+                }
+            }
+        }
+    }
+}
