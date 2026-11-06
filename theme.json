@@ -16,7 +16,6 @@
                 { "slug": "bright-blue", "name": "Bright Blue", "color": "#009EFF" },
                 { "slug": "yellow", "name": "Yellow (banner only)", "color": "#FFD600" },
                 { "slug": "charcoal", "name": "Charcoal", "color": "#2C2C2C" },
-                { "slug": "dark", "name": "Dark (background)", "color": "#1C1B1A" },
                 { "slug": "off-white", "name": "Off-White", "color": "#FCFAF2" },
                 { "slug": "white", "name": "White", "color": "#FFFFFF" },
                 { "slug": "neutral-lightest", "name": "Neutral Lightest", "color": "#EEEEEE" },
@@ -29,20 +28,26 @@
             ],
             "gradients": [
                 {
-                    "slug": "background",
-                    "name": "Background (dark to red)",
-                    "gradient": "linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(180deg, #1C1B1A 0%, #2C0D13 55%, #6A111B 100%)"
+                    "slug": "section-red",
+                    "name": "Section (dark to red)",
+                    "gradient": "linear-gradient(180deg, #2C0D12 13.85%, #6A111B 41.36%, #D22630 68.88%)"
+                },
+                {
+                    "slug": "section-fade",
+                    "name": "Section (dark red to charcoal)",
+                    "gradient": "linear-gradient(180deg, #2C0D13 0%, #2C2C2C 100%)"
                 },
                 {
                     "slug": "header",
                     "name": "Header tint (red)",
                     "gradient": "linear-gradient(90deg, rgba(2, 1, 2, 0.2) 0%, rgba(210, 38, 48, 0.2) 19%)"
-                },
-                {
-                    "slug": "section-red",
-                    "name": "Section tint (red, bottom to top)",
-                    "gradient": "linear-gradient(0deg, rgba(106, 20, 25, 0.2) 0%, rgba(210, 38, 48, 0.2) 79%, rgba(2, 1, 2, 0.2) 100%)"
                 }
+            ]
+        },
+        "shadow": {
+            "defaultPresets": false,
+            "presets": [
+                { "slug": "large", "name": "Large", "shadow": "0 8px 8px -4px rgba(0, 0, 0, 0.03), 0 20px 24px -4px rgba(0, 0, 0, 0.08)" }
             ]
         },
         "typography": {
@@ -60,7 +65,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "300 700",
                             "fontDisplay": "swap",
-                            "src": [ "file:./assets/fonts/cormorant-garamond.woff2"]
+                            "src": [ "file:./assets/fonts/cormorant-garamond.woff2" ]
                         }
                     ]
                 },
@@ -74,7 +79,7 @@
                             "fontStyle": "normal",
                             "fontWeight": "100 900",
                             "fontDisplay": "swap",
-                            "src": [ "file:./assets/fonts/inter.woff2"]
+                            "src": [ "file:./assets/fonts/inter.woff2" ]
                         }
                     ]
                 }
@@ -111,12 +116,13 @@
         },
         "custom": {
             "padding-global": "clamp(1rem, 5vw, 4rem)",
-            "container-medium": "1024px"
+            "container-medium": "1024px",
+            "container-small": "480px"
         }
     },
     "styles": {
         "color": {
-            "background": "var(--wp--preset--color--dark)",
+            "background": "var(--wp--preset--color--charcoal)",
             "text": "var(--wp--preset--color--off-white)"
         },
         "typography": {
@@ -131,13 +137,15 @@
             },
             "blockGap": "var(--wp--preset--spacing--30)"
         },
+        "css": ".has-large-font-size { line-height: 1.4; } .has-medium-font-size { line-height: 1.556; } .has-small-font-size { line-height: 1.429; } .has-tiny-font-size { line-height: 1.333; } .wp-block-button.is-style-outline > .wp-block-button__link:hover { background: var(--wp--preset--color--off-white); color: var(--wp--preset--color--charcoal); } .is-style-card-red .wp-block-button.is-style-outline > .wp-block-button__link:hover { color: var(--wp--preset--color--red); }",
         "elements": {
             "heading": {
                 "color": { "text": "var(--wp--preset--color--off-white)" },
                 "typography": {
                     "fontFamily": "var(--wp--preset--font-family--heading)",
-                    "fontWeight": "500",
-                    "lineHeight": "1.2"
+                    "fontWeight": "700",
+                    "lineHeight": "1.2",
+                    "textTransform": "uppercase"
                 }
             },
             "h1": { "typography": { "fontSize": "var(--wp--preset--font-size--h-1)", "lineHeight": "1.143" } },
@@ -152,7 +160,7 @@
                 ":hover": {
                     "typography": { "textDecoration": "none" }
                 },
-                ":focus": {
+                ":focus-visible": {
                     "outline": {
                         "color": "var(--wp--preset--color--off-white)",
                         "style": "solid",
@@ -163,24 +171,58 @@
             },
             "button": {
                 "color": {
-                    "background": "var(--wp--preset--color--red)",
-                    "text": "var(--wp--preset--color--off-white)"
+                    "background": "var(--wp--preset--color--off-white)",
+                    "text": "var(--wp--preset--color--charcoal)"
+                },
+                "border": {
+                    "width": "2px",
+                    "style": "solid",
+                    "color": "var(--wp--preset--color--off-white)",
+                    "radius": "0"
                 },
                 "typography": {
-                    "fontFamily": "var(--wp--preset--font-family--body)",
-                    "fontSize": "var(--wp--preset--font-size--small)",
-                    "fontWeight": "600"
+                    "fontFamily": "var(--wp--preset--font-family--heading)",
+                    "fontSize": "var(--wp--preset--font-size--large)",
+                    "fontWeight": "600",
+                    "textTransform": "uppercase"
                 },
-                "border": { "radius": "0" },
+                "spacing": {
+                    "padding": {
+                        "top": "0.625rem",
+                        "bottom": "0.625rem",
+                        "left": "1.375rem",
+                        "right": "1.375rem"
+                    }
+                },
                 ":hover": {
-                    "color": { "background": "var(--wp--preset--color--dark-red)" }
+                    "color": {
+                        "background": "var(--wp--preset--color--charcoal)",
+                        "text": "var(--wp--preset--color--off-white)"
+                    }
                 },
-                ":focus": {
+                ":focus-visible": {
                     "outline": {
                         "color": "var(--wp--preset--color--off-white)",
                         "style": "solid",
                         "width": "2px",
-                        "offset": "2px"
+                        "offset": "3px"
+                    }
+                }
+            }
+        },
+        "blocks": {
+            "core/button": {
+                "variations": {
+                    "outline": {
+                        "color": {
+                            "background": "transparent",
+                            "text": "var(--wp--preset--color--off-white)"
+                        },
+                        "border": {
+                            "width": "2px",
+                            "style": "solid",
+                            "color": "var(--wp--preset--color--off-white)"
+                        }
                     }
                 }
             }
