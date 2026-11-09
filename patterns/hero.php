@@ -18,17 +18,18 @@
 
 // Placeholder background photo shipped with the theme
 // (assets/images/hero.jpg). The client replaces it with their own photo or video in the editor.
+
+// Cover block: background media + overlay + content on top.
+//  dimRatio 40 = 40% overlay opacity.
+//  customOverlayColor = the overlay colour (black).
+//  minHeight 600px gives the hero its height. align full = edge to edge.
+//  Inside: the <span> is the 40% black overlay, the <img> is the background
+//  photo (alt="" because it's decorative), and the inner container holds the
+//  H1 (only H1 on the homepage), tagline and Register button.
+//  home_url() builds the Register link so it works on local, dev and live.
+//  NOTE: no HTML comments inside the block, or WordPress marks it invalid.
 $cheremosh_hero_image = get_theme_file_uri('assets/images/hero.jpg');
 ?>
-<!-- Cover block: background media + overlay + content on top.
- dimRatio 40 = 40% overlay opacity.
- customOverlayColor = the overlay colour (black).
- minHeight 600px gives the hero its height. align full = edge to edge.
- Inside: the <span> is the 40% black overlay, the <img> is the background
- photo (alt="" because it's decorative), and the inner container holds the
- H1 (only H1 on the homepage), tagline and Register button.
- home_url() builds the Register link so it works on local, dev and live.
- NOTE: no HTML comments inside the block, or WordPress marks it invalid. -->
 <!-- wp:cover {
 	"url":"<?php echo esc_url($cheremosh_hero_image); ?>",
 	"dimRatio":40,
