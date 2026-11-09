@@ -2,8 +2,8 @@
  * main.css: the theme's own styles (things theme.json can't do).
  *
  * theme.json already handles colours, fonts, sizes and buttons for blocks.
- * This file styles the parts of the site that are plain PHP templates,
- * starting with the header (header.php).
+ * This file styles the parts of the site that are plain PHP templates:
+ * the header (header.php) and the footer (footer.php).
  *
  * All colours, fonts and spacing use the CSS variables WordPress creates
  * from theme.json (e.g. --wp--preset--color--charcoal), so if a value
@@ -75,6 +75,7 @@
 	outline-offset: 3px;
 }
 
+
 /* ==========================================================================
    Header bar
    Charcoal bar: logo on the left, menu in the middle, button on the right.
@@ -139,7 +140,8 @@
 	display: block;
 	padding-block: 0.5rem; /* Bigger click/tap target. */
 	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large); /* 20px, Daina's "Nav link" style. */	font-weight: 600;
+	font-size: var(--wp--preset--font-size--large); /* 20px, Daina's "Nav link" style. */
+	font-weight: 600;
 	text-transform: uppercase;
 	color: var(--wp--preset--color--off-white);
 	text-decoration: none; /* Underline only on hover (Daina's note). */
@@ -229,4 +231,244 @@
 .header-cta:focus-visible {
 	outline: 2px solid var(--wp--preset--color--off-white);
 	outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   Footer (footer.php)
+   Layout from Daina's design: three columns on desktop
+   (Website Map | name + logo | Contact + Follow), legal links underneath.
+   On phones everything stacks and centres.
+   ========================================================================== */
+
+.site-footer {
+	background: var(--wp--preset--color--charcoal);
+	color: var(--wp--preset--color--off-white);
+	/* Section padding top/bottom, page padding left/right (same as the header). */
+	padding-block: var(--wp--preset--spacing--60);
+	padding-inline: var(--wp--custom--padding-global);
+	/* Thin line so the footer separates from the page content above it. */
+	border-top: 1px solid var(--wp--preset--color--neutral-darker);
+}
+
+/* The three columns. CSS Grid puts them side by side. */
+.footer-columns {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr 1fr; /* Middle column a bit wider for the logo. */
+	gap: var(--wp--preset--spacing--40);
+	max-width: 1280px;                     /* container-large from Figma. */
+	margin-inline: auto;                   /* Centres the whole block on wide screens. */
+}
+
+/* Column headings: WEBSITE MAP, CONTACT, FOLLOW. */
+.footer-heading {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.2;
+}
+
+/* Remove list bullets and default spacing from every footer list. */
+.site-footer ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   Left: Website Map
+   -------------------------------------------------------------------------- */
+
+.footer-sitemap ul {
+	display: flex;
+	flex-direction: column;              /* One link per line. */
+	gap: var(--wp--preset--spacing--10);
+}
+
+/* Links in the heading font, uppercase, no underline (like the main menu). */
+.footer-sitemap a {
+	color: var(--wp--preset--color--off-white);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--medium);
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+/* Underline on hover so it's clear they're links. */
+.footer-sitemap a:hover {
+	text-decoration: underline;
+}
+
+
+/* --------------------------------------------------------------------------
+   Middle: society name and logo
+   -------------------------------------------------------------------------- */
+
+.footer-brand {
+	text-align: center;
+}
+
+.footer-name {
+	margin: 0 0 var(--wp--preset--spacing--30);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--h-5);
+	font-weight: 700;
+	text-transform: uppercase;
+	line-height: 1.2;
+}
+
+/* inline-block so the focus outline wraps the logo snugly. */
+.footer-logo {
+	display: inline-block;
+}
+
+/* Logo: big in the footer like the design (about 260px wide),
+   but max-width: 100% lets it shrink to fit on small screens. */
+.footer-logo img {
+	display: block;
+	width: 260px;
+	max-width: 100%;
+	height: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   Right: Contact and Follow
+   -------------------------------------------------------------------------- */
+
+/* Space between the Contact block and the Follow block. */
+.footer-connect {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--40);
+}
+
+/* <address> is italic by default in browsers; the design isn't. */
+.footer-contact address {
+	font-style: normal;
+}
+
+.contact-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--20);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* Each row: icon on the left, text on the right, centred vertically. */
+.contact-list li {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--10);
+}
+
+/* The red circle behind each contact icon (from the design). */
+.contact-icon {
+	flex-shrink: 0;       /* Don't let long text squash the icon. */
+	box-sizing: content-box;
+	width: 1rem;
+	height: 1rem;
+	padding: 0.5rem;      /* 16px icon + 8px each side = 32px circle. */
+	background: var(--wp--preset--color--red);
+	border-radius: 50%;   /* Square → circle. */
+}
+
+.contact-list a {
+	color: var(--wp--preset--color--off-white);
+	text-decoration: none;
+}
+
+.contact-list a:hover {
+	text-decoration: underline;
+}
+
+/* Social icons in a row. */
+.social-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--20);
+}
+
+/* Icon size. The <a> around it is the click target. */
+.social-list a {
+	display: block;
+}
+
+.social-list img {
+	display: block;
+	width: 2rem;
+	height: 2rem;
+	transition: opacity 0.2s ease;
+}
+
+/* Hover: icon fades a little. */
+.social-list a:hover img {
+	opacity: 0.75;
+}
+
+
+/* --------------------------------------------------------------------------
+   Bottom: legal links and copyright
+   -------------------------------------------------------------------------- */
+
+.footer-bottom {
+	max-width: 1280px;
+	margin: var(--wp--preset--spacing--50) auto 0;
+	padding-top: var(--wp--preset--spacing--30);
+	border-top: 1px solid var(--wp--preset--color--red); /* Red divider line from the design. */
+	text-align: center;
+	font-size: var(--wp--preset--font-size--tiny);
+}
+
+/* Legal links in a centred row that wraps on small screens. */
+.footer-legal ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
+}
+
+.footer-legal a {
+	color: var(--wp--preset--color--off-white);
+}
+
+.site-info {
+	margin: var(--wp--preset--spacing--20) 0 0;
+	color: var(--wp--preset--color--neutral-lighter); /* Softer grey; still passes contrast on charcoal. */
+}
+
+
+/* --------------------------------------------------------------------------
+   Keyboard focus for every footer link (accessibility)
+   -------------------------------------------------------------------------- */
+
+.site-footer a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--off-white);
+	outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Tablet and phone (under 768px): stack the columns and centre everything.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+
+	.footer-columns {
+		grid-template-columns: 1fr; /* One column. */
+		text-align: center;
+	}
+
+	/* Put the logo first on phones, then the Website Map, then Contact. */
+	.footer-brand {
+		order: -1;
+	}
+
+	.footer-sitemap ul,
+	.contact-list,
+	.social-list {
+		align-items: center;
+		justify-content: center;
+	}
 }

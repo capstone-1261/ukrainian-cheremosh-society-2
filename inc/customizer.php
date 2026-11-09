@@ -1,20 +1,23 @@
 <?php
 /**
- * Customizer settings: Announcement bar
+ * Customizer settings
  *
- * Adds a section in Appearance > Customize called "Announcement bar"
- * so the client can turn the yellow bar on/off and change its message
- * and link without touching code.
+ * Adds sections in Appearance > Customize so the client can change
+ * site-wide content without touching code:
  *
- * The bar itself is printed in header.php (above the site header).
- */
-
-/**
- * Register the section, settings and controls.
+ * 1. "Announcement bar": the yellow bar at the top (printed in header.php).
+ * 2. "Footer: contact and social": address, phone, email and social links
+ *    (printed in footer.php).
  *
+ * How the Customizer works:
  * - A "section" is the panel in the Customizer sidebar.
  * - A "setting" is the saved value (stored in the database).
  * - A "control" is the input field the client types into.
+ * In templates we read a saved value with get_theme_mod( 'setting_name' ).
+ */
+
+/**
+ * 1. Announcement bar
  *
  * @param WP_Customize_Manager $wp_customize The Customizer object WordPress passes in.
  */
@@ -30,7 +33,7 @@ function cheremosh_customize_announcement( $wp_customize ) {
 		)
 	);
 
-	// 1. On/off switch.
+	// On/off switch.
 	$wp_customize->add_setting(
 		'cheremosh_announcement_show',
 		array(
@@ -47,7 +50,7 @@ function cheremosh_customize_announcement( $wp_customize ) {
 		)
 	);
 
-	// 2. The message.
+	// The message.
 	$wp_customize->add_setting(
 		'cheremosh_announcement_text',
 		array(
@@ -64,7 +67,7 @@ function cheremosh_customize_announcement( $wp_customize ) {
 		)
 	);
 
-	// 3. Link text (what the link says).
+	// Link text (what the link says).
 	$wp_customize->add_setting(
 		'cheremosh_announcement_link_text',
 		array(
@@ -82,7 +85,7 @@ function cheremosh_customize_announcement( $wp_customize ) {
 		)
 	);
 
-	// 4. Link address (where the link goes).
+	// Link address (where the link goes).
 	$wp_customize->add_setting(
 		'cheremosh_announcement_link_url',
 		array(
@@ -100,3 +103,64 @@ function cheremosh_customize_announcement( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'cheremosh_customize_announcement' );
+
+/**
+ * 2. Footer: contact and social
+ *
+ * @param WP_Customize_Manager $wp_customize The Customizer object WordPress passes in.
+ */
+function cheremosh_customize_footer( $wp_customize ) {
+
+	// The panel in the Customizer sidebar.
+	$wp_customize->add_section(
+		'cheremosh_footer',
+		array(
+			'title'       => 'Footer: contact and social',
+			'description' => 'Contact details and social media links shown in the footer on every page. Leave a field empty to hide it.',
+			'priority'    => 31, // Right under the Announcement bar.
+		)
+	);
+
+	// --- Contact details ---
+	// Each array item: setting name => array( label, default, input type, sanitize function ).
+	$contact_fields = array(
+		'cheremosh_contact_address' => array( 'Address', '4005 - 115 Avenue, Edmonton AB', 'text', 'sanitize_text_field' ),
+		'cheremosh_contact_phone'   => array( 'Phone', '780-466-0089', 'text', 'sanitize_text_field' ),
+		'cheremosh_contact_email'   => array( 'Email', 'contact@cheremosh.ca', 'email', 'sanitize_email' ), // sanitize_email() only allows a valid email.
+	);
+
+	// --- Social links ---
+	// Defaults are empty, so a link only shows once the client adds the real URL.
+	$social_fields = array(
+		'cheremosh_social_facebook'  => array( 'Facebook URL', '', 'url', 'esc_url_raw' ),
+		'cheremosh_social_instagram' => array( 'Instagram URL', '', 'url', 'esc_url_raw' ),
+		'cheremosh_social_linkedin'  => array( 'LinkedIn URL', '', 'url', 'esc_url_raw' ),
+		'cheremosh_social_x'         => array( 'X (Twitter) URL', '', 'url', 'esc_url_raw' ),
+		'cheremosh_social_youtube'   => array( 'YouTube URL', '', 'url', 'esc_url_raw' ),
+	);
+
+	// array_merge() joins both lists so one loop can add every field.
+	// The loop saves typing the same add_setting / add_control code 8 times.
+	foreach ( array_merge( $contact_fields, $social_fields ) as $setting => $field ) {
+
+		// list() unpacks the 4 values in each array item into named variables.
+		list( $label, $default, $type, $sanitize ) = $field;
+
+		$wp_customize->add_setting(
+			$setting,
+			array(
+				'default'           => $default,
+				'sanitize_callback' => $sanitize,
+			)
+		);
+		$wp_customize->add_control(
+			$setting,
+			array(
+				'label'   => $label,
+				'section' => 'cheremosh_footer',
+				'type'    => $type,
+			)
+		);
+	}
+}
+add_action( 'customize_register', 'cheremosh_customize_footer' );
