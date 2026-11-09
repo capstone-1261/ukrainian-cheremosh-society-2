@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Single Person template
  *
@@ -8,67 +7,75 @@
  * or a Board member. Instructors have their own template
  * (single-instructors.php).
  *
- * Shows: name, role, photo, bio, and any extra page content.
- * Structure only: no styling yet.
+ * Shows: name, role, photo, bio, any extra page content, and a link
+ * back to Our People.
+ * Structure only: styling comes later.
  */
 
-get_header(); // Loads header.php (skip link, site name, main menu).
+get_header(); // Loads header.php (skip link, announcement bar, logo, main menu).
 ?>
 
 <main id="main-content"> <!-- The skip link in header.php jumps here. -->
 
-    <?php
-    // The Loop: on a single page this runs once, for the person being viewed.
-    while (have_posts()) :
-        the_post();
+	<?php
+	// The Loop: on a single page this runs once, for the person being viewed.
+	while ( have_posts() ) :
+		the_post();
 
-        // ACF fields (set up by Sameer in inc/content-types.php, "Info" group).
-        // function_exists() stops the page from crashing if ACF is ever turned off.
-        $photo = function_exists('get_field') ? get_field('photo') : ''; // Image
-        $bio = function_exists('get_field') ? get_field('bio') : ''; // Plain text bio
+		// ACF fields (Sam's "Info" group in inc/content-types.php).
+		// function_exists() stops the page from crashing if ACF is ever turned off.
+		$photo = function_exists( 'get_field' ) ? get_field( 'photo' ) : ''; // Image URL.
+		$bio   = function_exists( 'get_field' ) ? get_field( 'bio' ) : '';   // Plain text bio.
 
-        // The "role" taxonomy (Artistic Director, Board, etc.) as a comma-separated list.
-        $roles = get_the_term_list(get_the_ID(), 'role', '', ', ');
-    ?>
+		// The "role" taxonomy (Artistic Director, Board, etc.) as a comma-separated list.
+		$roles = get_the_term_list( get_the_ID(), 'role', '', ', ' );
+		?>
 
-        <article <?php post_class(); ?>>
+		<article <?php post_class(); ?>>
 
-            <!-- Person's name (post title). Only H1 on the page. -->
-            <h1><?php the_title(); ?></h1>
+			<!-- Person's name (post title). Only H1 on the page. -->
+			<h1><?php the_title(); ?></h1>
 
-            <?php
-            // Role(s). strip_tags() removes the term links so it shows as plain text.
-            if ($roles && ! is_wp_error($roles)) :
-            ?>
-                <p><?php echo wp_kses_post(strip_tags($roles)); ?></p>
-            <?php endif; ?>
+			<?php if ( $roles && ! is_wp_error( $roles ) ) : ?>
+				<!-- wp_strip_all_tags() removes the term links so the role shows as plain text.
+				     esc_html() makes sure nothing unsafe gets printed. -->
+				<p class="person-role"><?php echo esc_html( wp_strip_all_tags( $roles ) ); ?></p>
+			<?php endif; ?>
 
-            <?php
-            // Photo: use the ACF photo field first. If it's empty, fall back to
-            // the featured image. The alt text is the person's name for screen readers.
-            if ($photo) :
-            ?>
-                <img src="<?php echo esc_url($photo); ?>" alt="<?php the_title_attribute(); ?>">
-            <?php elseif (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail('medium'); ?>
-            <?php endif; ?>
+			<?php if ( $photo ) : ?>
+				<!-- ACF photo. Alt text is the person's name for screen readers.
+				     ACF only gives us the image URL, so the browser would show it full size.
+				     width="400" caps it; with no height set, the browser keeps the proportions.
+				     loading="lazy" waits to load the image until it's near the screen.
+				     The class lets us style it properly in main.css later. -->
+				<img class="person-photo" src="<?php echo esc_url( $photo ); ?>" alt="<?php the_title_attribute(); ?>" width="400" loading="lazy">
+			<?php elseif ( has_post_thumbnail() ) : ?>
+				<!-- Fallback: the featured image, if there's no ACF photo.
+				     'medium' is a WordPress image size (300px wide by default), so it's already small. -->
+				<?php the_post_thumbnail( 'medium', array( 'class' => 'person-photo' ) ); ?>
+			<?php endif; ?>
 
-            <?php
-            // Bio from ACF. wpautop() turns line breaks into paragraphs,
-            // wp_kses_post() keeps the output safe.
-            if ($bio) :
-                echo wp_kses_post(wpautop($bio));
-            endif;
-            ?>
+			<?php if ( $bio ) : ?>
+				<!-- wpautop() turns line breaks in the bio into proper paragraphs.
+				     wp_kses_post() keeps the output safe. -->
+				<?php echo wp_kses_post( wpautop( $bio ) ); ?>
+			<?php endif; ?>
 
-            <?php
-            // Any extra content typed into the block editor for this person.
-            the_content();
-            ?>
-        </article>
+			<?php
+			// Any extra content typed into the block editor for this person (optional).
+			the_content();
+			?>
 
-    <?php endwhile; ?>
+			<!-- Back link so visitors aren't stuck on a dead end. -->
+			<p class="back-link">
+				<a href="<?php echo esc_url( home_url( '/our-people/' ) ); ?>">&larr; Back to Our People</a>
+			</p>
+
+		</article>
+
+	<?php endwhile; ?>
 
 </main>
+
 <?php
-get_footer(); // Loads the footer.php (footer menu, copyright, wp_footer()).
+get_footer(); // Loads footer.php (footer menu, social links, copyright, wp_footer()).
