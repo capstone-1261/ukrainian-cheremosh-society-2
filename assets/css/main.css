@@ -1,0 +1,232 @@
+/*
+ * main.css: the theme's own styles (things theme.json can't do).
+ *
+ * theme.json already handles colours, fonts, sizes and buttons for blocks.
+ * This file styles the parts of the site that are plain PHP templates,
+ * starting with the header (header.php).
+ *
+ * All colours, fonts and spacing use the CSS variables WordPress creates
+ * from theme.json (e.g. --wp--preset--color--charcoal), so if a value
+ * changes in theme.json, it changes here too.
+ */
+
+
+/* ==========================================================================
+   Skip link
+   First thing keyboard users reach. Hidden off-screen until it gets focus,
+   then it appears at the top left so sighted keyboard users can see it.
+   ========================================================================== */
+
+.skip-link {
+	position: absolute;
+	left: -9999px; /* Off-screen, but still readable by screen readers. */
+	top: 0;
+	z-index: 1000; /* Sits above everything when visible. */
+	padding: 0.75rem 1.5rem;
+	background: var(--wp--preset--color--off-white);
+	color: var(--wp--preset--color--charcoal);
+	font-weight: 600;
+}
+
+/* When tabbed to, bring it back on screen. */
+.skip-link:focus {
+	left: 1rem;
+	top: 1rem;
+}
+
+
+/* ==========================================================================
+   Announcement bar
+   Yellow bar above the header (Daina: yellow is for this banner only).
+   Turned on/off and edited in Appearance > Customize > Announcement bar.
+   ========================================================================== */
+
+.announcement-bar {
+	padding-block: 0.5rem;                              /* Top and bottom. */
+	padding-inline: var(--wp--custom--padding-global);  /* Same side padding as the header. */
+	background: var(--wp--preset--color--yellow);
+	color: var(--wp--preset--color--charcoal);          /* Dark text on yellow: strong contrast. */
+	text-align: center;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+}
+
+/* Remove the paragraph's default space so the bar stays slim. */
+.announcement-bar p {
+	margin: 0;
+}
+
+/* The link: charcoal and underlined, so it's not shown by colour alone. */
+.announcement-bar a {
+	margin-left: 0.5rem; /* Small gap after the message. */
+	color: var(--wp--preset--color--charcoal);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+/* Hover: remove the underline as a visual change. */
+.announcement-bar a:hover {
+	text-decoration: none;
+}
+
+/* Keyboard focus: charcoal outline (off-white wouldn't show on yellow). */
+.announcement-bar a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--charcoal);
+	outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Header bar
+   Charcoal bar: logo on the left, menu in the middle, button on the right.
+   ========================================================================== */
+
+.site-header {
+	display: flex;               /* Put logo, menu and button in one row. */
+	align-items: center;         /* Line them up vertically in the middle. */
+	justify-content: space-between; /* Logo left, button right, menu between. */
+	flex-wrap: wrap;             /* On small screens, let items drop to a new line. */
+	gap: var(--wp--preset--spacing--30);
+	padding-block: var(--wp--preset--spacing--20);       /* Top and bottom. */
+	padding-inline: var(--wp--custom--padding-global);   /* Left and right: 64/40/16px. */
+	background: var(--wp--preset--color--charcoal);
+}
+
+
+/* --------------------------------------------------------------------------
+   Logo / site name (left)
+   -------------------------------------------------------------------------- */
+
+/* Keep an uploaded logo a sensible size. */
+.site-branding img {
+	display: block;
+	max-height: 3rem;  /* 48px tall. */
+	width: auto;       /* Keep its proportions. */
+}
+
+/* Text fallback when no logo is uploaded yet. */
+.site-title {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--h-5);
+	font-weight: 700;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--off-white);
+	text-decoration: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Main menu (middle)
+   Uses Daina's "Nav link" style: Cormorant Garamond, semibold, uppercase.
+   -------------------------------------------------------------------------- */
+
+/* Turn the menu list into a row with no bullets. */
+.main-navigation ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--30);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Each menu item is the anchor point for its dropdown. */
+.main-navigation li {
+	position: relative;
+}
+
+/* The menu links. */
+.main-navigation a {
+	display: block;
+	padding-block: 0.5rem; /* Bigger click/tap target. */
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--large); /* 20px, Daina's "Nav link" style. */	font-weight: 600;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--off-white);
+	text-decoration: none; /* Underline only on hover (Daina's note). */
+}
+
+/* Hover: underline (not yellow, per Daina's accessibility note). */
+.main-navigation a:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+
+/* Keyboard focus: 2px off-white outline, 3px gap (Daina's note). */
+.main-navigation a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--off-white);
+	outline-offset: 3px;
+}
+
+/* The page you're on: underlined so it's not shown by colour alone. */
+.main-navigation .current-menu-item > a {
+	text-decoration: underline;
+	text-underline-offset: 0.25em;
+}
+
+/* Push the menu to the right, next to the button (like Daina's design).
+   "auto" margin on the left takes up all the spare space. */
+.main-navigation {
+	margin-left: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   Dropdown (e.g. Dance with Us > Cheremosh Company, School of Dance)
+   Hidden until you hover the parent OR tab into it with the keyboard
+   (:focus-within), so it works without a mouse.
+   -------------------------------------------------------------------------- */
+
+.main-navigation .sub-menu {
+	display: none;          /* Hidden by default. */
+	position: absolute;     /* Float below the parent item. */
+	top: 100%;
+	left: 0;
+	z-index: 100;           /* Above the page content. */
+	min-width: 14rem;
+	flex-direction: column; /* Stack the dropdown links. */
+	gap: 0;
+	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+	background: var(--wp--preset--color--charcoal);
+	box-shadow: var(--wp--preset--shadow--large);
+}
+
+/* Show it on hover, or when anything inside the item has keyboard focus. */
+.main-navigation li:hover > .sub-menu,
+.main-navigation li:focus-within > .sub-menu {
+	display: flex;
+}
+
+/* Small down arrow after items that have a dropdown. */
+.main-navigation .menu-item-has-children > a::after {
+	content: " ▾";
+}
+
+
+/* --------------------------------------------------------------------------
+   Header button (right)
+   Red button from the design (LOGIN in the Figma).
+   -------------------------------------------------------------------------- */
+
+.header-cta {
+	display: inline-block;
+	padding: 0.5rem 1.25rem;
+	background: var(--wp--preset--color--red);
+	color: var(--wp--preset--color--off-white);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: 600;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: 0;
+}
+
+/* Hover: darker red (off-white on dark red still passes contrast). */
+.header-cta:hover {
+	background: var(--wp--preset--color--dark-red);
+}
+
+/* Keyboard focus: same off-white outline as the menu links. */
+.header-cta:focus-visible {
+	outline: 2px solid var(--wp--preset--color--off-white);
+	outline-offset: 3px;
+}
