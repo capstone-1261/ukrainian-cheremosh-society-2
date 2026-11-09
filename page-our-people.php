@@ -90,11 +90,16 @@ get_header(); // Loads header.php (skip link, site name, main menu).
 						<li>
 							<?php
 							// Photo: ACF photo first, featured image as a fallback.
+							// ACF only gives us the image URL, so the browser would show it full size.
+							// width="300" keeps the card photos small; the height scales to match.
+							// loading="lazy" means photos further down the page load as you scroll.
+							// The class lets us style the card photos in main.css later.
 							if ( $photo ) :
 								?>
-								<img src="<?php echo esc_url( $photo ); ?>" alt="<?php the_title_attribute(); ?>">
+								<img class="person-photo" src="<?php echo esc_url( $photo ); ?>" alt="<?php the_title_attribute(); ?>" width="300" loading="lazy">
 							<?php elseif ( has_post_thumbnail() ) : ?>
-								<?php the_post_thumbnail( 'medium' ); ?>
+								<?php // 'medium' is already 300px wide by default. ?>
+								<?php the_post_thumbnail( 'medium', array( 'class' => 'person-photo' ) ); ?>
 							<?php endif; ?>
 
 							<!-- Name as plain text (the Learn More button is the link). -->
