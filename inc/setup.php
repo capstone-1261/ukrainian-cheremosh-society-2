@@ -38,7 +38,8 @@ function cheremosh_setup() {
 	register_nav_menus(
 		array(
 			'primary' => 'Main Menu',   // Used in header.php.
-			'footer'  => 'Footer Menu', // Used in footer.php.
+			'footer'  => 'Footer Menu', // Used in footer.php: the "Website Map" column.
+			'legal'   => 'Legal Menu',  // Used in footer.php: the small links at the very bottom (Privacy, Terms, Cookies).
 		)
 	);
 }
