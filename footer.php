@@ -5,13 +5,13 @@
  * Loaded on every page by get_footer().
  * Layout (from Daina's design):
  *   Left:   Website Map (Footer Menu)
- *   Middle: Society name + logo (newsletter goes under it later)
+ *   Middle: Society name + logo + newsletter signup
  *   Right:  Contact details + Follow (social links)
  *   Bottom: Legal Menu (Privacy, Terms, Cookies, Refunds) + copyright
  *
- * Contact details and social links come from Appearance > Customize >
- * "Footer: contact and social" (inc/customizer.php), so the client can
- * change them without code.
+ * Contact details, social links and the newsletter address all come from
+ * Appearance > Customize > "Footer: contact and social" (inc/customizer.php),
+ * so the client can change them without code.
  */
 
 // Path to our icon files, used a few times below.
@@ -19,7 +19,7 @@
 $icons = get_template_directory_uri() . '/assets/icons/';
 
 // Contact details from the Customizer. get_theme_mod( 'name' ) reads a saved setting.
-$address = get_theme_mod( 'cheremosh_contact_address', '4005 - 115 Avenue, Edmonton AB' );
+$address = get_theme_mod( 'cheremosh_contact_address', '4005 115 Avenue NW, Edmonton, AB T5W 0V5' );
 $phone   = get_theme_mod( 'cheremosh_contact_phone', '780-466-0089' );
 $email   = get_theme_mod( 'cheremosh_contact_email', 'contact@cheremosh.ca' );
 
@@ -45,12 +45,38 @@ foreach ( $social_networks as $slug => $name ) {
 		);
 	}
 }
+
+// The Mailchimp signup address. Empty = hide the whole newsletter section.
+$newsletter_url = get_theme_mod( 'cheremosh_newsletter_url' );
+
+/*
+ * Mailchimp's bot trap ("honeypot").
+ *
+ * Mailchimp expects one extra text field, named b_{account}_{list}, that real
+ * people never see. Bots fill in every field they find, so anything arriving
+ * with that box filled in gets rejected as spam.
+ *
+ * Rather than hard-coding the name, we read the account (u) and list (id)
+ * straight out of the signup address, so this keeps working if the client
+ * ever pastes in a different Mailchimp form.
+ */
+$honeypot_name = '';
+if ( $newsletter_url ) {
+	$query_string = wp_parse_url( $newsletter_url, PHP_URL_QUERY ); // The part after the "?".
+	$query_parts  = array();
+	if ( $query_string ) {
+		wp_parse_str( $query_string, $query_parts ); // Turns "u=123&id=456" into an array.
+	}
+	if ( ! empty( $query_parts['u'] ) && ! empty( $query_parts['id'] ) ) {
+		$honeypot_name = 'b_' . $query_parts['u'] . '_' . $query_parts['id'];
+	}
+}
 ?>
 
 	<!-- <footer> is a landmark: screen readers can jump straight to it. -->
 	<footer class="site-footer">
 
-		<!-- The three columns. CSS will place them side by side (stacked on phones). -->
+		<!-- The three columns. CSS places them side by side (stacked on phones). -->
 		<div class="footer-columns">
 
 			<!-- LEFT: Website Map.
@@ -71,21 +97,89 @@ foreach ( $social_networks as $slug => $name ) {
 				?>
 			</nav>
 
-			<!-- MIDDLE: Society name and logo. -->
+			<!-- MIDDLE: Society name, logo and newsletter signup. -->
 			<div class="footer-brand">
+
 				<!-- Plain text, not a heading: it's a name, not the start of a section. -->
 				<p class="footer-name">Ukrainian Cheremosh Society</p>
 
 				<!-- Logo links home. alt is empty because the name is already
 				     right above it; the aria-label says where the link goes. -->
 				<a class="footer-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Cheremosh home">
-					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.svg' ); ?>" alt="" width="160" loading="lazy">
+					<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.svg' ); ?>" alt="" width="260" loading="lazy">
 				</a>
 
 				<?php
-				// NEWSLETTER: goes here once the team picks how sign-ups are handled
-				// (likely a Fluent Forms form, added with do_shortcode()).
-				?>
+				// Newsletter signup. Only shows once a Mailchimp address is saved.
+				if ( $newsletter_url ) :
+					?>
+					<section class="footer-newsletter" aria-labelledby="footer-newsletter-heading">
+						<h2 id="footer-newsletter-heading" class="footer-heading">Newsletter</h2>
+
+						<p class="newsletter-intro">Get performance announcements, registration dates, and festival news delivered to your inbox.</p>
+
+						<?php
+						/*
+						 * This form posts straight to Mailchimp, not to our website:
+						 * - action  = Cheremosh's Mailchimp signup address.
+						 * - method  = "post", which is how Mailchimp expects the data.
+						 * - target  = "_blank" so Mailchimp's thank-you page opens in a new
+						 *             tab and the visitor doesn't lose their place on our site.
+						 * - novalidate lets us keep the browser's own error wording
+						 *             consistent rather than mixing two styles of message.
+						 *
+						 * No sign-up data is stored on this website at all.
+						 */
+						?>
+						<form class="newsletter-form" action="<?php echo esc_url( $newsletter_url ); ?>" method="post" target="_blank" rel="noopener">
+
+							<?php
+							// A real <label> for the email box. It's hidden on screen (the
+							// placeholder does that job visually) but read out by screen
+							// readers, because a placeholder alone isn't an accessible name.
+							?>
+							<label class="screen-reader-text" for="newsletter-email">Your email address</label>
+
+							<?php
+							/*
+							 * name="EMAIL" is required: that's the field name Mailchimp looks for.
+							 * type="email" makes phones show the @ keyboard and lets the browser
+							 * check the address looks valid before sending.
+							 */
+							?>
+							<input
+								class="newsletter-email"
+								id="newsletter-email"
+								type="email"
+								name="EMAIL"
+								placeholder="Enter your email"
+								autocomplete="email"
+								required>
+
+							<?php
+							// The bot trap from the top of this file. It sits inside a container
+							// pushed off-screen, and aria-hidden plus tabindex="-1" keep screen
+							// readers and the Tab key away from it.
+							if ( $honeypot_name ) :
+								?>
+								<div class="newsletter-honeypot" aria-hidden="true">
+									<input type="text" name="<?php echo esc_attr( $honeypot_name ); ?>" tabindex="-1" value="" autocomplete="off">
+								</div>
+							<?php endif; ?>
+
+							<button class="newsletter-submit" type="submit">Subscribe</button>
+						</form>
+
+						<!-- Consent line. The Privacy Policy link uses the page's slug so it
+						     keeps working if the site ever moves to a different address. -->
+						<p class="newsletter-consent">
+							By subscribing you agree to our
+							<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
+							and consent to receive updates from the Ukrainian Cheremosh Society.
+						</p>
+					</section>
+				<?php endif; ?>
+
 			</div>
 
 			<!-- RIGHT: Contact and Follow. -->
