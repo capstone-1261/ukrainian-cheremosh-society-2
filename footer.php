@@ -47,7 +47,10 @@ foreach ( $social_networks as $slug => $name ) {
 }
 
 // The Mailchimp signup address. Empty = hide the whole newsletter section.
-$newsletter_url = get_theme_mod( 'cheremosh_newsletter_url' );
+// The second argument is the fallback used until someone saves the Customizer
+// for the first time. get_theme_mod() doesn't know about the default we
+// registered in inc/customizer.php — that one only pre-fills the input box.
+$newsletter_url = get_theme_mod( 'cheremosh_newsletter_url', 'https://cheremosh.us17.list-manage.com/subscribe/post?u=57c9c1368507b392b0108d7ff&id=f71b458757&f_id=00c9e7e3f0' );
 
 /*
  * Mailchimp's bot trap ("honeypot").
