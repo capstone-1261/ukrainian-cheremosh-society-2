@@ -2,13 +2,31 @@
  * main.css: the theme's own styles (things theme.json can't do).
  *
  * theme.json already handles colours, fonts, sizes and buttons for blocks.
- * This file styles the parts of the site that are plain PHP templates:
- * the header (header.php) and the footer (footer.php).
+ * This file styles the parts of the site that theme.json can't reach:
+ * the header, the footer, and the hero pattern.
  *
  * All colours, fonts and spacing use the CSS variables WordPress creates
  * from theme.json (e.g. --wp--preset--color--charcoal), so if a value
  * changes in theme.json, it changes here too.
  */
+
+
+/* ==========================================================================
+   Screen-reader-only text
+   Hides something visually while keeping it readable by screen readers.
+   ========================================================================== */
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%); /* Crops it to nothing without removing it. */
+	white-space: nowrap;
+	border: 0;
+}
 
 
 /* ==========================================================================
@@ -235,10 +253,89 @@
 
 
 /* ==========================================================================
+   Hero (patterns/hero.php)
+   The full-width banner at the top of the homepage: background photo (or
+   video), dark overlay, heading, tagline and Register button in the
+   lower-left, matching Daina's homepage design.
+   ========================================================================== */
+
+/* theme.json makes EVERY heading uppercase. The hero H1 is the one exception
+   in the design ("Cheremosh" in mixed case), so we switch it off here only,
+   rather than changing the global rule and affecting the whole site. */
+.cheremosh-hero h1 {
+	margin: 0;
+	text-transform: none;
+}
+
+/* The Cover block centres its content by default. The pattern sets the
+   position to bottom-left; this gives the text the same side padding as the
+   header above it, so the heading lines up under the logo. */
+.cheremosh-hero .wp-block-cover__inner-container {
+	width: 100%;
+	padding-inline: var(--wp--custom--padding-global); /* 64/40/16px. */
+	padding-block-end: var(--wp--preset--spacing--40); /* Gap from the bottom edge. */
+	text-align: left;
+}
+
+/* Tagline under the heading: uppercase and spaced out, like the design. */
+.cheremosh-hero .hero-tagline {
+	margin: var(--wp--preset--spacing--10) 0 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--h-5);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em; /* Small gap between letters so caps stay readable. */
+}
+
+/* Space between the tagline and the Register button. */
+.cheremosh-hero .wp-block-buttons {
+	margin-top: var(--wp--preset--spacing--30);
+}
+
+
+/* --------------------------------------------------------------------------
+   Pause/Play button (only appears when the hero uses a video)
+   Added by assets/js/hero-video.js. Colours from Daina's note:
+   neutral-darker background, neutral-light text.
+   -------------------------------------------------------------------------- */
+
+/* position: relative makes the button's "bottom right" below measure from the
+   hero rather than the whole page. Cover blocks are already positioned, but
+   setting it here means this doesn't break if that ever changes. */
+.cheremosh-hero {
+	position: relative;
+}
+
+.hero-video-toggle {
+	position: absolute;
+	right: var(--wp--custom--padding-global);
+	bottom: var(--wp--preset--spacing--40);
+	z-index: 2; /* Above the overlay. */
+	padding: 0.5rem 1rem;
+	background: var(--wp--preset--color--neutral-darker);
+	color: var(--wp--preset--color--neutral-light);
+	border: none;
+	border-radius: 999px; /* Pill shape. Any big number makes fully round ends. */
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--tiny);
+	cursor: pointer;
+}
+
+.hero-video-toggle:hover {
+	color: var(--wp--preset--color--off-white);
+}
+
+.hero-video-toggle:focus-visible {
+	outline: 2px solid var(--wp--preset--color--off-white);
+	outline-offset: 3px;
+}
+
+
+/* ==========================================================================
    Footer (footer.php)
    Layout from Daina's design: three columns on desktop
-   (Website Map | name + logo | Contact + Follow), legal links underneath.
-   On phones everything stacks and centres.
+   (Website Map | name + logo + newsletter | Contact + Follow),
+   legal links underneath. On phones everything stacks and centres.
    ========================================================================== */
 
 .site-footer {
@@ -254,13 +351,13 @@
 /* The three columns. CSS Grid puts them side by side. */
 .footer-columns {
 	display: grid;
-	grid-template-columns: 1fr 1.5fr 1fr; /* Middle column a bit wider for the logo. */
+	grid-template-columns: 1fr 1.5fr 1fr; /* Middle column wider for the logo and form. */
 	gap: var(--wp--preset--spacing--40);
 	max-width: 1280px;                     /* container-large from Figma. */
 	margin-inline: auto;                   /* Centres the whole block on wide screens. */
 }
 
-/* Column headings: WEBSITE MAP, CONTACT, FOLLOW. */
+/* Column headings: WEBSITE MAP, NEWSLETTER, CONTACT, FOLLOW. */
 .footer-heading {
 	margin: 0 0 var(--wp--preset--spacing--20);
 	font-family: var(--wp--preset--font-family--heading);
@@ -302,7 +399,7 @@
 
 
 /* --------------------------------------------------------------------------
-   Middle: society name and logo
+   Middle: society name, logo and newsletter
    -------------------------------------------------------------------------- */
 
 .footer-brand {
@@ -330,6 +427,86 @@
 	width: 260px;
 	max-width: 100%;
 	height: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   Newsletter signup (middle column, under the logo)
+   Posts straight to Mailchimp; see footer.php for how it's wired up.
+   -------------------------------------------------------------------------- */
+
+.footer-newsletter {
+	max-width: 24rem;                              /* Keeps the form a readable width. */
+	margin: var(--wp--preset--spacing--40) auto 0; /* Space above, centred in the column. */
+}
+
+.newsletter-intro {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* Email box above, Subscribe button below, both full width. */
+.newsletter-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--10);
+}
+
+.newsletter-email {
+	width: 100%;
+	box-sizing: border-box; /* Padding counts inside the width, so it can't overflow. */
+	padding: 0.75rem 1rem;
+	background: transparent;
+	color: var(--wp--preset--color--off-white);
+	border: 1px solid var(--wp--preset--color--neutral-light);
+	border-radius: 0;       /* Square corners, matching our buttons. */
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* Placeholder text: dimmer than real input, but still readable. */
+.newsletter-email::placeholder {
+	color: var(--wp--preset--color--neutral-light);
+	opacity: 1; /* Firefox dims placeholders by default; this undoes that. */
+}
+
+/* Red Subscribe button, matching the header's Login button. */
+.newsletter-submit {
+	padding: 0.75rem 1.5rem;
+	background: var(--wp--preset--color--red);
+	color: var(--wp--preset--color--off-white);
+	border: none;
+	border-radius: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: 600;
+	text-transform: uppercase;
+	cursor: pointer; /* Shows the hand cursor so it reads as clickable. */
+}
+
+.newsletter-submit:hover {
+	background: var(--wp--preset--color--dark-red);
+}
+
+/* The bot trap from footer.php: moved off-screen rather than display:none,
+   because some bots skip hidden fields but follow off-screen ones. */
+.newsletter-honeypot {
+	position: absolute;
+	left: -5000px;
+}
+
+/* Small print under the form. */
+.newsletter-consent {
+	margin: var(--wp--preset--spacing--20) 0 0;
+	font-size: var(--wp--preset--font-size--tiny);
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+/* The Privacy Policy link stays underlined: it's a legal link, so it should
+   be obvious it's clickable without relying on colour. */
+.newsletter-consent a {
+	color: var(--wp--preset--color--off-white);
+	text-decoration: underline;
 }
 
 
@@ -440,10 +617,12 @@
 
 
 /* --------------------------------------------------------------------------
-   Keyboard focus for every footer link (accessibility)
+   Keyboard focus for every footer link, input and button (accessibility)
    -------------------------------------------------------------------------- */
 
-.site-footer a:focus-visible {
+.site-footer a:focus-visible,
+.site-footer input:focus-visible,
+.site-footer button:focus-visible {
 	outline: 2px solid var(--wp--preset--color--off-white);
 	outline-offset: 3px;
 }
@@ -460,7 +639,8 @@
 		text-align: center;
 	}
 
-	/* Put the logo first on phones, then the Website Map, then Contact. */
+	/* Put the logo and newsletter first on phones, then the Website Map,
+	   then Contact. */
 	.footer-brand {
 		order: -1;
 	}

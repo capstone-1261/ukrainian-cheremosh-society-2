@@ -33,6 +33,20 @@ function cheremosh_setup() {
 	// Videos (YouTube, etc.) keep their shape and resize on smaller screens.
 	add_theme_support( 'responsive-embeds' );
 
+	/*
+	 * Load our own stylesheet inside the block editor as well.
+	 *
+	 * Without this, the editor only knows about theme.json, so anything styled
+	 * in main.css (the hero, for example) looks wrong while you're editing even
+	 * though it's correct on the real page. These two lines make the editor
+	 * preview match what visitors actually see.
+	 *
+	 * 'editor-styles' switches the feature on; add_editor_style() says which
+	 * file to load, relative to the theme folder.
+	 */
+	add_theme_support( 'editor-styles' );
+	add_editor_style( 'assets/css/main.css' );
+
 	// Menu locations the client can manage in Appearance > Menus.
 	// Left side = slug used in code (header.php / footer.php). Right side = name shown in the dashboard.
 	register_nav_menus(
