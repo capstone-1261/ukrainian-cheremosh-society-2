@@ -2,8 +2,8 @@
  * main.css: the theme's own styles (things theme.json can't do).
  *
  * theme.json already handles colours, fonts, sizes and buttons for blocks.
- * This file styles the parts of the site that are plain PHP templates:
- * the header (header.php) and the footer (footer.php).
+ * This file styles the parts of the site that theme.json can't reach:
+ * the header, the footer, and the hero pattern.
  *
  * All colours, fonts and spacing use the CSS variables WordPress creates
  * from theme.json (e.g. --wp--preset--color--charcoal), so if a value
@@ -14,8 +14,6 @@
 /* ==========================================================================
    Screen-reader-only text
    Hides something visually while keeping it readable by screen readers.
-   Used on the newsletter email label, where the placeholder does the
-   visible job but a real <label> is still needed for accessibility.
    ========================================================================== */
 
 .screen-reader-text {
@@ -249,6 +247,85 @@
 
 /* Keyboard focus: same off-white outline as the menu links. */
 .header-cta:focus-visible {
+	outline: 2px solid var(--wp--preset--color--off-white);
+	outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   Hero (patterns/hero.php)
+   The full-width banner at the top of the homepage: background photo (or
+   video), dark overlay, heading, tagline and Register button in the
+   lower-left, matching Daina's homepage design.
+   ========================================================================== */
+
+/* theme.json makes EVERY heading uppercase. The hero H1 is the one exception
+   in the design ("Cheremosh" in mixed case), so we switch it off here only,
+   rather than changing the global rule and affecting the whole site. */
+.cheremosh-hero h1 {
+	margin: 0;
+	text-transform: none;
+}
+
+/* The Cover block centres its content by default. The pattern sets the
+   position to bottom-left; this gives the text the same side padding as the
+   header above it, so the heading lines up under the logo. */
+.cheremosh-hero .wp-block-cover__inner-container {
+	width: 100%;
+	padding-inline: var(--wp--custom--padding-global); /* 64/40/16px. */
+	padding-block-end: var(--wp--preset--spacing--40); /* Gap from the bottom edge. */
+	text-align: left;
+}
+
+/* Tagline under the heading: uppercase and spaced out, like the design. */
+.cheremosh-hero .hero-tagline {
+	margin: var(--wp--preset--spacing--10) 0 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--h-5);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em; /* Small gap between letters so caps stay readable. */
+}
+
+/* Space between the tagline and the Register button. */
+.cheremosh-hero .wp-block-buttons {
+	margin-top: var(--wp--preset--spacing--30);
+}
+
+
+/* --------------------------------------------------------------------------
+   Pause/Play button (only appears when the hero uses a video)
+   Added by assets/js/hero-video.js. Colours from Daina's note:
+   neutral-darker background, neutral-light text.
+   -------------------------------------------------------------------------- */
+
+/* position: relative makes the button's "bottom right" below measure from the
+   hero rather than the whole page. Cover blocks are already positioned, but
+   setting it here means this doesn't break if that ever changes. */
+.cheremosh-hero {
+	position: relative;
+}
+
+.hero-video-toggle {
+	position: absolute;
+	right: var(--wp--custom--padding-global);
+	bottom: var(--wp--preset--spacing--40);
+	z-index: 2; /* Above the overlay. */
+	padding: 0.5rem 1rem;
+	background: var(--wp--preset--color--neutral-darker);
+	color: var(--wp--preset--color--neutral-light);
+	border: none;
+	border-radius: 999px; /* Pill shape. Any big number makes fully round ends. */
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--tiny);
+	cursor: pointer;
+}
+
+.hero-video-toggle:hover {
+	color: var(--wp--preset--color--off-white);
+}
+
+.hero-video-toggle:focus-visible {
 	outline: 2px solid var(--wp--preset--color--off-white);
 	outline-offset: 3px;
 }

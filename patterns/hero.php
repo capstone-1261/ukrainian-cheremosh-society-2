@@ -4,7 +4,7 @@
  * Title: Hero
  * Slug: cheremosh/hero
  * Categories: banner
- * Description: Full-width hero banner with a background photo, 40% dark overlay, site title, tagline and Register button.
+ * Description: Full-width hero banner with a background photo, dark overlay, heading, tagline and Register button.
  *
  * Built on WordPress's core Cover block so the client can swap the background photo for video (or back again) in the editor with "Replace", no code needed.
  *
@@ -20,6 +20,8 @@
 // (assets/images/hero.jpg). The client replaces it with their own photo or video in the editor.
 
 // Cover block: background media + overlay + content on top.
+//  className "cheremosh-hero" is our own hook for the styles in main.css.
+//  contentPosition "bottom left" puts the text in the lower-left like Daina's design.
 //  dimRatio 40 = 40% overlay opacity.
 //  customOverlayColor = the overlay colour (black).
 //  minHeight 600px gives the hero its height. align full = edge to edge.
@@ -37,10 +39,12 @@ $cheremosh_hero_image = get_theme_file_uri('assets/images/hero.jpg');
 	"isUserOverlayColor":true,
 	"minHeight":600,
 	"minHeightUnit":"px",
-	"align":"full"
+	"contentPosition":"bottom left",
+	"align":"full",
+	"className":"cheremosh-hero"
 } -->
 <div
-	class="wp-block-cover alignfull"
+	class="wp-block-cover alignfull has-custom-content-position is-position-bottom-left cheremosh-hero"
 	style="min-height:600px">
 
 	<span
@@ -57,11 +61,11 @@ $cheremosh_hero_image = get_theme_file_uri('assets/images/hero.jpg');
 	<div class="wp-block-cover__inner-container">
 
 		<!-- wp:heading {"level":1} -->
-		<h1 class="wp-block-heading">Cheremosh Ukrainian Dance Society</h1>
+		<h1 class="wp-block-heading">Cheremosh</h1>
 		<!-- /wp:heading -->
 
-		<!-- wp:paragraph -->
-		<p>Celebrating Ukrainian culture through dance.</p>
+		<!-- wp:paragraph {"className":"hero-tagline"} -->
+		<p class="hero-tagline">Ukrainian Dance in Motion</p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:buttons -->
@@ -70,7 +74,7 @@ $cheremosh_hero_image = get_theme_file_uri('assets/images/hero.jpg');
 			<div class="wp-block-button">
 				<a
 					class="wp-block-button__link wp-element-button"
-					href="<?php echo esc_url(home_url('/register/')); ?>">Program Registration</a>
+					href="<?php echo esc_url(home_url('/register/')); ?>">Register for a Program</a>
 			</div>
 			<!-- /wp:button -->
 		</div>
