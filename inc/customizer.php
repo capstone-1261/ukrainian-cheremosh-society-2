@@ -6,8 +6,8 @@
  * site-wide content without touching code:
  *
  * 1. "Announcement bar": the yellow bar at the top (printed in header.php).
- * 2. "Footer: contact and social": address, phone, email and social links
- *    (printed in footer.php).
+ * 2. "Footer: contact and social": address, phone, email, social links and
+ *    the newsletter signup (printed in footer.php).
  *
  * How the Customizer works:
  * - A "section" is the panel in the Customizer sidebar.
@@ -105,7 +105,7 @@ function cheremosh_customize_announcement( $wp_customize ) {
 add_action( 'customize_register', 'cheremosh_customize_announcement' );
 
 /**
- * 2. Footer: contact and social
+ * 2. Footer: contact, social and newsletter
  *
  * @param WP_Customize_Manager $wp_customize The Customizer object WordPress passes in.
  */
@@ -116,7 +116,7 @@ function cheremosh_customize_footer( $wp_customize ) {
 		'cheremosh_footer',
 		array(
 			'title'       => 'Footer: contact and social',
-			'description' => 'Contact details and social media links shown in the footer on every page. Leave a field empty to hide it.',
+			'description' => 'Contact details, social media links and the newsletter signup shown in the footer on every page. Leave a field empty to hide it.',
 			'priority'    => 31, // Right under the Announcement bar.
 		)
 	);
@@ -124,7 +124,7 @@ function cheremosh_customize_footer( $wp_customize ) {
 	// --- Contact details ---
 	// Each array item: setting name => array( label, default, input type, sanitize function ).
 	$contact_fields = array(
-		'cheremosh_contact_address' => array( 'Address', '4005 - 115 Avenue, Edmonton AB', 'text', 'sanitize_text_field' ),
+		'cheremosh_contact_address' => array( 'Address', '4005 115 Avenue NW, Edmonton, AB T5W 0V5', 'text', 'sanitize_text_field' ),
 		'cheremosh_contact_phone'   => array( 'Phone', '780-466-0089', 'text', 'sanitize_text_field' ),
 		'cheremosh_contact_email'   => array( 'Email', 'contact@cheremosh.ca', 'email', 'sanitize_email' ), // sanitize_email() only allows a valid email.
 	);
@@ -162,5 +162,28 @@ function cheremosh_customize_footer( $wp_customize ) {
 			)
 		);
 	}
+
+	// --- Newsletter signup ---
+	// This is Cheremosh's Mailchimp "embedded form" address, supplied by
+	// Stephania Midwinter (the board Secretary who manages their Mailchimp).
+	// The footer form posts straight to Mailchimp, so sign-ups land in their
+	// existing audience and nothing is stored on this website.
+	// Clearing this field hides the whole newsletter section.
+	$wp_customize->add_setting(
+		'cheremosh_newsletter_url',
+		array(
+			'default'           => 'https://cheremosh.us17.list-manage.com/subscribe/post?u=57c9c1368507b392b0108d7ff&id=f71b458757&f_id=00c9e7e3f0',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		'cheremosh_newsletter_url',
+		array(
+			'label'       => 'Newsletter signup URL (Mailchimp)',
+			'description' => 'From Mailchimp: Audience > Signup forms > Embedded forms. Use the web address in the form\'s action="..." (it contains list-manage.com). Leave empty to hide the newsletter signup.',
+			'section'     => 'cheremosh_footer',
+			'type'        => 'url',
+		)
+	);
 }
 add_action( 'customize_register', 'cheremosh_customize_footer' );
