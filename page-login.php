@@ -172,7 +172,9 @@ if ( 'failed' === $login_status ) {
 			wp_login_form(
 				array(
 					'echo'           => true,
-					'redirect'       => get_permalink(),
+										// Send them to My Account after signing in; falls back to
+					// this page if that page hasn't been created yet.
+					'redirect'       => get_permalink( get_page_by_path( 'my-account' ) ?: get_the_ID() ),
 					'label_username' => 'Email',
 					'label_password' => 'Password',
 					'label_log_in'   => 'Log In',
