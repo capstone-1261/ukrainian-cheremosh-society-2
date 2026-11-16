@@ -747,13 +747,12 @@ main > article {
 }
 
 /* ==========================================================================
-   Tablet and phone (under 768px)
-
+   Tablet and phone (under 1024px)
    The breakpoint matches the one in assets/js/mobile-menu.js — if you change
    it here, change it there too.
    ========================================================================== */
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   /* ---- Mobile menu ---- */
 
   /* The hamburger appears. */
