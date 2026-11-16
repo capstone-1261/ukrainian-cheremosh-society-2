@@ -30,7 +30,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	}
 
 	// Matches the breakpoint in main.css. Keep the two in step if it changes.
-	const isDesktop = window.matchMedia( '(min-width: 768px)' );
+	const isDesktop = window.matchMedia( '(min-width: 1024px)' );
 
 	// Reads the current state straight off the button, so the button's
 	// aria-expanded is the single source of truth rather than a variable
