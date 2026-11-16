@@ -4,7 +4,7 @@
  *
  * Loaded on every page by get_header().
  * Contains: <head>, skip link, announcement bar, site logo,
- * main navigation, and the header button.
+ * the mobile menu button, main navigation, and the header button.
  */
 ?>
 <!DOCTYPE html>
@@ -75,6 +75,33 @@
 				</a>
 			<?php endif; ?>
 		</div>
+
+		<?php
+		/*
+		 * Mobile menu button.
+		 *
+		 * Hidden on desktop by CSS; only appears on narrow screens.
+		 *
+		 * A real <button> so it works with keyboard and screen readers for free.
+		 * type="button" stops it submitting anything if it ever sits inside a form.
+		 *
+		 * aria-controls="main-menu" points at the <ul> that wp_nav_menu() prints
+		 * below, so assistive tech knows which thing this button opens.
+		 *
+		 * aria-expanded="false" is the state. assets/js/mobile-menu.js flips it to
+		 * "true" when the menu opens, and screen readers announce the change.
+		 * It starts as "false" in the HTML so the markup is correct even before
+		 * the JavaScript loads.
+		 *
+		 * The bars are drawn in CSS. aria-hidden="true" hides that decorative span
+		 * from screen readers, and the screen-reader-text span gives the button a
+		 * proper name ("Menu") that's invisible on screen.
+		 */
+		?>
+		<button class="menu-toggle" type="button" aria-controls="main-menu" aria-expanded="false">
+			<span class="menu-toggle-bars" aria-hidden="true"></span>
+			<span class="screen-reader-text">Menu</span>
+		</button>
 
 		<!-- Main navigation. aria-label names it "Main" so screen readers can tell it apart from the footer menu. -->
 		<nav class="main-navigation" aria-label="Main">
