@@ -1080,3 +1080,126 @@ main > article {
 	border-left: 4px solid var(--wp--preset--color--red);
 	font-size: var(--wp--preset--font-size--small);
 }
+
+/* ==========================================================================
+   Account page (page-account.php)
+
+   Reuses .auth-page, .auth-title and .auth-intro from the login page, so
+   only the parts unique to this page are below. There's no Figma design
+   for it yet — this is a sensible default, not a match to a comp.
+   ========================================================================== */
+
+/* Wider than the login card, because this page holds lists and details
+   rather than a single narrow form. */
+.account-card {
+	max-width: 48rem;
+	margin-inline: auto;
+	padding-block: var(--wp--preset--spacing--60);
+}
+
+.account-card .auth-title {
+	text-align: left;
+}
+
+
+/* --------------------------------------------------------------------------
+   Sections: "Your details", "Your registrations"
+   -------------------------------------------------------------------------- */
+
+.account-section {
+	margin-top: var(--wp--preset--spacing--50);
+	padding-top: var(--wp--preset--spacing--30);
+	border-top: 1px solid var(--wp--preset--color--neutral-dark);
+}
+
+.account-heading {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	font-size: var(--wp--preset--font-size--large);
+}
+
+
+/* --------------------------------------------------------------------------
+   The details list
+
+   A <dl> is label/value pairs. The grid puts the label in a fixed first
+   column and the value in the second, so every row lines up regardless
+   of how long the labels are.
+   -------------------------------------------------------------------------- */
+
+.account-details {
+	display: grid;
+	grid-template-columns: 10rem 1fr;
+	gap: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
+	margin: 0;
+}
+
+.account-details dt {
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--small);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+.account-details dd {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+
+/* --------------------------------------------------------------------------
+   Links and empty states
+   -------------------------------------------------------------------------- */
+
+.account-action {
+	margin: var(--wp--preset--spacing--20) 0 0;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.account-action a {
+	color: var(--wp--preset--color--off-white);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+/* Shown when they haven't registered for anything yet. Dimmer than body
+   text so it reads as a state, not as content. */
+.account-empty {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+.account-logout {
+	margin: var(--wp--preset--spacing--50) 0 0;
+	padding-top: var(--wp--preset--spacing--30);
+	border-top: 1px solid var(--wp--preset--color--neutral-dark);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.account-logout a {
+	color: var(--wp--preset--color--neutral-lighter);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+.account-logout a:hover {
+	color: var(--wp--preset--color--off-white);
+}
+
+
+/* ---- Phones ---- */
+
+@media (max-width: 767px) {
+
+	.account-card {
+		padding-block: var(--wp--preset--spacing--40);
+	}
+
+	/* Stack the label above its value — 10rem of label plus a value
+	   doesn't fit on a phone. */
+	.account-details {
+		grid-template-columns: 1fr;
+		gap: var(--wp--preset--spacing--20);
+	}
+}
