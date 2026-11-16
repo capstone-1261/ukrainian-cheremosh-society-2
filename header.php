@@ -118,7 +118,7 @@
 			);
 			?>
 		<!-- Header button (red). Goes to Register for now; may become "Login" once registration is decided. -->
-		<a class="header-cta" href="<?php echo esc_url( home_url( '/register/' ) ); ?>">Register</a>
+		<a class="header-cta" href="<?php echo esc_url( home_url( '/register/' ) ); ?>">Login</a>
 		</nav>
 
 	</header>
