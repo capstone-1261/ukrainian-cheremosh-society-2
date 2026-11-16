@@ -11,6 +11,7 @@
             "palette": [
                 { "slug": "red", "name": "Red", "color": "#D22630" },
                 { "slug": "dark-red", "name": "Dark Red (feature)", "color": "#931920" },
+                { "slug": "red-hover", "name": "Red Hover", "color": "#FF5862" },
                 { "slug": "blue", "name": "Blue", "color": "#005A91" },
                 { "slug": "blue-hover", "name": "Blue Hover", "color": "#033B5E" },
                 { "slug": "bright-blue", "name": "Bright Blue", "color": "#009EFF" },

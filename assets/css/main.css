@@ -251,6 +251,10 @@ main > article {
   outline-offset: 3px;
 }
 
+.main-navigation #menu-item-43 > a:hover {
+	color: var(--wp--preset--color--red-hover);
+}
+
 /* The page you're on: underlined so it's not shown by colour alone. */
 .main-navigation .current-menu-item > a {
   text-decoration: underline;
@@ -543,6 +547,7 @@ main > article {
 
 .footer-sitemap a:hover {
   text-decoration: underline;
+  color: var(--wp--preset--color--red-hover);
 }
 
 /* --------------------------------------------------------------------------
