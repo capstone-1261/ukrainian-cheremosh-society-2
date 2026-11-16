@@ -3,7 +3,7 @@
  *
  * theme.json already handles colours, fonts, sizes and buttons for blocks.
  * This file styles the parts of the site that theme.json can't reach:
- * the header, the footer, the hero pattern, and the program/people cards.
+ * the header and mobile menu, the footer, the hero pattern, and the cards.
  *
  * All colours, fonts and spacing use the CSS variables WordPress creates
  * from theme.json (e.g. --wp--preset--color--charcoal), so if a value
@@ -61,9 +61,9 @@ main > article {
 
 .skip-link {
 	position: absolute;
-	left: -9999px; /* Off-screen, but still readable by screen readers. */
+	left: -9999px;
 	top: 0;
-	z-index: 1000; /* Sits above everything when visible. */
+	z-index: 1000;
 	padding: 0.75rem 1.5rem;
 	background: var(--wp--preset--color--off-white);
 	color: var(--wp--preset--color--charcoal);
@@ -78,14 +78,13 @@ main > article {
 
 /* ==========================================================================
    Announcement bar
-   Yellow bar above the header (Daina: yellow is for this banner only).
    ========================================================================== */
 
 .announcement-bar {
 	padding-block: 0.5rem;
 	padding-inline: var(--wp--custom--padding-global);
 	background: var(--wp--preset--color--yellow);
-	color: var(--wp--preset--color--charcoal); /* Dark text on yellow: strong contrast. */
+	color: var(--wp--preset--color--charcoal);
 	text-align: center;
 	font-size: var(--wp--preset--font-size--small);
 	font-weight: 600;
@@ -95,7 +94,6 @@ main > article {
 	margin: 0;
 }
 
-/* The link: charcoal and underlined, so it's not shown by colour alone. */
 .announcement-bar a {
 	margin-left: 0.5rem;
 	color: var(--wp--preset--color--charcoal);
@@ -135,7 +133,6 @@ main > article {
 	width: auto;
 }
 
-/* Text fallback when no logo is uploaded yet. */
 .site-title {
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--h-5);
@@ -143,6 +140,81 @@ main > article {
 	text-transform: uppercase;
 	color: var(--wp--preset--color--off-white);
 	text-decoration: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   Mobile menu button
+   Hidden on desktop; the media query at the bottom switches it on.
+   -------------------------------------------------------------------------- */
+
+.menu-toggle {
+	display: none; /* Desktop default. */
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;  /* 44px — the minimum comfortable tap target. */
+	height: 2.75rem;
+	padding: 0;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+/*
+ * The hamburger, drawn in CSS rather than loaded as an image.
+ * The span is the middle bar; ::before and ::after are the other two,
+ * positioned above and below it.
+ */
+.menu-toggle-bars {
+	position: relative; /* The two pseudo-elements position against this. */
+	display: block;
+	width: 1.5rem;
+	height: 2px;
+	background: var(--wp--preset--color--off-white);
+	transition: background 0.2s ease;
+}
+
+.menu-toggle-bars::before,
+.menu-toggle-bars::after {
+	content: "";     /* Required, or a pseudo-element doesn't render at all. */
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: var(--wp--preset--color--off-white);
+	transition: transform 0.2s ease;
+}
+
+.menu-toggle-bars::before {
+	transform: translateY(-0.5rem); /* Top bar. */
+}
+
+.menu-toggle-bars::after {
+	transform: translateY(0.5rem);  /* Bottom bar. */
+}
+
+/*
+ * Open state: becomes an X.
+ *
+ * We hang this off aria-expanded rather than a class, so the thing screen
+ * readers announce and the thing people see can never disagree — if the
+ * icon shows an X, the attribute really does say "true".
+ */
+.menu-toggle[aria-expanded="true"] .menu-toggle-bars {
+	background: transparent; /* Middle bar disappears. */
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bars::before {
+	transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-bars::after {
+	transform: rotate(-45deg);
+}
+
+.menu-toggle:focus-visible {
+	outline: 2px solid var(--wp--preset--color--off-white);
+	outline-offset: 3px;
 }
 
 
@@ -165,7 +237,7 @@ main > article {
 
 .main-navigation a {
 	display: block;
-	padding-block: 0.5rem; /* Bigger click/tap target. */
+	padding-block: 0.5rem;
 	font-family: var(--wp--preset--font-family--heading);
 	font-size: var(--wp--preset--font-size--large);
 	font-weight: 600;
@@ -190,9 +262,8 @@ main > article {
 	text-underline-offset: 0.25em;
 }
 
-/* Push the menu right, next to the button. */
 .main-navigation {
-	margin-left: auto;
+	margin-left: auto; /* Pushes the menu right, next to the button. */
 }
 
 
@@ -262,8 +333,6 @@ main > article {
 	text-transform: none;
 }
 
-/* The pattern puts the content bottom-left; this gives it the same side
-   padding as the header, so the heading lines up under the logo. */
 .cheremosh-hero .wp-block-cover__inner-container {
 	width: 100%;
 	padding-inline: var(--wp--custom--padding-global);
@@ -271,7 +340,6 @@ main > article {
 	text-align: left;
 }
 
-/* Tagline: uppercase and spaced out, like the design. */
 .cheremosh-hero .hero-tagline {
 	margin: var(--wp--preset--spacing--10) 0 0;
 	font-family: var(--wp--preset--font-family--heading);
@@ -288,12 +356,10 @@ main > article {
 
 /* --------------------------------------------------------------------------
    Pause/Play button — only appears when the hero uses a video.
-   Added by assets/js/hero-video.js. Colours from Daina's note.
    -------------------------------------------------------------------------- */
 
-/* Makes the button's "bottom right" below measure from the hero. */
 .cheremosh-hero {
-	position: relative;
+	position: relative; /* So the button's "bottom right" measures from the hero. */
 }
 
 .hero-video-toggle {
@@ -305,7 +371,7 @@ main > article {
 	background: var(--wp--preset--color--neutral-darker);
 	color: var(--wp--preset--color--neutral-light);
 	border: none;
-	border-radius: 999px; /* Pill shape. */
+	border-radius: 999px;
 	font-family: var(--wp--preset--font-family--body);
 	font-size: var(--wp--preset--font-size--tiny);
 	cursor: pointer;
@@ -323,14 +389,9 @@ main > article {
 
 /* ==========================================================================
    Cards: programs (Dance with Us) and people (Our People)
-
-   Same card treatment as the homepage ABOUT section and our
-   styles/card-charcoal.json block style: charcoal panel, bright-blue top
-   border, large shadow.
+   Same treatment as the homepage ABOUT section and styles/card-charcoal.json.
    ========================================================================== */
 
-/* Space between the Artistic Director / Instructors / Board sections,
-   and between Our Programs and the page content above it. */
 .people-section,
 .programs-list {
 	max-width: 1280px;
@@ -342,20 +403,20 @@ main > article {
 	margin: 0 0 var(--wp--preset--spacing--30);
 }
 
-/* The grid. auto-fill + minmax means the browser fits as many columns as it
-   can at 18rem minimum and wraps the rest — no media query needed. */
+/* auto-fit collapses any empty columns, so three cards stretch across the
+   full row instead of leaving a gap on the right. */
 .people-section ul,
 .programs-list ul {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 	gap: var(--wp--preset--spacing--40);
 	list-style: none; /* Kills the bullets that sat next to the photos. */
 	margin: 0;
 	padding: 0;
 }
 
-/* The card itself. flex column so the button can be pinned to the bottom,
-   which keeps the buttons aligned across cards of different text lengths. */
+/* flex column so the button can be pinned to the bottom, which keeps the
+   buttons aligned across cards with different amounts of text. */
 .people-section li,
 .programs-list li {
 	display: flex;
@@ -367,9 +428,8 @@ main > article {
 	box-shadow: var(--wp--preset--shadow--large);
 }
 
-/* Photo fills the card width at a consistent shape.
-   object-fit: cover crops rather than squashing, so portraits and
-   landscapes both sit neatly without the client having to crop them. */
+/* object-fit: cover crops rather than squashing, so portraits and landscapes
+   both sit neatly without the client having to crop them first. */
 .people-section .person-photo {
 	width: 100%;
 	height: auto;
@@ -377,22 +437,19 @@ main > article {
 	object-fit: cover;
 }
 
-/* Card heading: the person's name, or the program name. */
 .people-section h3,
 .programs-list h3 {
 	margin: 0;
 	font-size: var(--wp--preset--font-size--h-5);
 }
 
-/* Bio preview / program description. */
 .people-section li p,
 .programs-list li p {
 	margin: 0;
 	font-size: var(--wp--preset--font-size--small);
 }
 
-/* "Ages: 6-8 years" line on the program cards: smaller and dimmer than the
-   description so it reads as a label rather than body text. */
+/* "Ages: 6-8 years": smaller and dimmer so it reads as a label, not body text. */
 .programs-list .program-ages {
 	font-size: var(--wp--preset--font-size--tiny);
 	color: var(--wp--preset--color--neutral-lighter);
@@ -406,13 +463,12 @@ main > article {
 
 
 /* --------------------------------------------------------------------------
-   Learn More button on the cards
-   Outlined style from the design (MEET THE COMPANY / EXPLORE CLASSES).
+   Learn More button on the cards (outlined style from the design)
    -------------------------------------------------------------------------- */
 
 .people-section .button,
 .programs-list .button {
-	margin-top: auto;  /* Pins it to the bottom of the card. */
+	margin-top: auto; /* Pins it to the bottom of the card. */
 	display: block;
 	padding: 0.75rem 1.5rem;
 	background: transparent;
@@ -428,9 +484,6 @@ main > article {
 	transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Hover fills the button in. Daina hasn't specced hover states yet
-   (her "Card design specs" card is still open) — this matches how the
-   outline button variation behaves elsewhere in the theme. */
 .people-section .button:hover,
 .programs-list .button:hover {
 	background: var(--wp--preset--color--off-white);
@@ -446,8 +499,6 @@ main > article {
 
 /* ==========================================================================
    Footer (footer.php)
-   Three columns on desktop (Website Map | name + logo + newsletter |
-   Contact + Follow), legal links underneath. Stacks on phones.
    ========================================================================== */
 
 .site-footer {
@@ -466,7 +517,6 @@ main > article {
 	margin-inline: auto;
 }
 
-/* Column headings: WEBSITE MAP, NEWSLETTER, CONTACT, FOLLOW. */
 .footer-heading {
 	margin: 0 0 var(--wp--preset--spacing--20);
 	font-family: var(--wp--preset--font-family--heading);
@@ -522,7 +572,7 @@ main > article {
 }
 
 .footer-logo {
-	display: inline-block; /* So the focus outline wraps the logo snugly. */
+	display: inline-block;
 }
 
 .footer-logo img {
@@ -531,11 +581,6 @@ main > article {
 	max-width: 100%;
 	height: auto;
 }
-
-
-/* --------------------------------------------------------------------------
-   Newsletter signup — posts straight to Mailchimp (see footer.php)
-   -------------------------------------------------------------------------- */
 
 .footer-newsletter {
 	max-width: 24rem;
@@ -600,7 +645,6 @@ main > article {
 	color: var(--wp--preset--color--neutral-lighter);
 }
 
-/* Legal link stays underlined so it's obvious without relying on colour. */
 .newsletter-consent a {
 	color: var(--wp--preset--color--off-white);
 	text-decoration: underline;
@@ -637,7 +681,7 @@ main > article {
 
 /* The red circle behind each contact icon (from the design). */
 .contact-icon {
-	flex-shrink: 0; /* Don't let long text squash the icon. */
+	flex-shrink: 0;
 	box-sizing: content-box;
 	width: 1rem;
 	height: 1rem;
@@ -685,7 +729,7 @@ main > article {
 	max-width: 1280px;
 	margin: var(--wp--preset--spacing--50) auto 0;
 	padding-top: var(--wp--preset--spacing--30);
-	border-top: 1px solid var(--wp--preset--color--red); /* Red divider from the design. */
+	border-top: 1px solid var(--wp--preset--color--red);
 	text-align: center;
 	font-size: var(--wp--preset--font-size--tiny);
 }
@@ -706,11 +750,6 @@ main > article {
 	color: var(--wp--preset--color--neutral-lighter);
 }
 
-
-/* --------------------------------------------------------------------------
-   Keyboard focus for every footer link, input and button
-   -------------------------------------------------------------------------- */
-
 .site-footer a:focus-visible,
 .site-footer input:focus-visible,
 .site-footer button:focus-visible {
@@ -719,11 +758,77 @@ main > article {
 }
 
 
-/* --------------------------------------------------------------------------
-   Tablet and phone (under 768px): stack the footer and centre it.
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   Tablet and phone (under 768px)
+
+   The breakpoint matches the one in assets/js/mobile-menu.js — if you change
+   it here, change it there too.
+   ========================================================================== */
 
 @media (max-width: 767px) {
+
+	/* ---- Mobile menu ---- */
+
+	/* The hamburger appears. */
+	.menu-toggle {
+		display: inline-flex;
+		margin-left: auto; /* Pushes it over to sit beside the Register button. */
+	}
+
+	/*
+	 * The menu is hidden until opened, and sits on its own full-width row
+	 * underneath the logo and Register button.
+	 *
+	 * order: 1 pushes it last in the flex row (everything else defaults to 0),
+	 * so the top row stays logo | hamburger | Register and the menu drops below.
+	 */
+	.main-navigation {
+		display: none;
+		order: 1;
+		width: 100%;
+		margin-left: 0; /* Cancels the desktop rule that pushes it right. */
+	}
+
+	/* mobile-menu.js adds .is-open when the button is pressed. */
+	.main-navigation.is-open {
+		display: block;
+	}
+
+	/* Links stack instead of sitting in a row. */
+	.main-navigation ul {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	/* Taller links so they're easy to hit with a thumb. */
+	.main-navigation a {
+		padding-block: 0.75rem;
+	}
+
+	/*
+	 * Dropdowns can't rely on hover on a touchscreen, so sub-menus are
+	 * always visible, indented under their parent rather than floating.
+	 */
+	.main-navigation .sub-menu {
+		display: flex;
+		position: static;
+		min-width: 0;
+		padding: 0 0 0 var(--wp--preset--spacing--30);
+		box-shadow: none;
+	}
+
+	/* The ▾ arrow means nothing here, since the sub-menu is already open. */
+	.main-navigation .menu-item-has-children > a::after {
+		content: "";
+	}
+
+	/* Stops the page scrolling behind an open menu.
+	   mobile-menu.js adds this class to <body>. */
+	body.menu-is-open {
+		overflow: hidden;
+	}
+
+	/* ---- Footer ---- */
 
 	.footer-columns {
 		grid-template-columns: 1fr;
