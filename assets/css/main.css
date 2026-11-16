@@ -10,24 +10,22 @@
  * changes in theme.json, it changes here too.
  */
 
-
 /* ==========================================================================
    Screen-reader-only text
    Hides something visually while keeping it readable by screen readers.
    ========================================================================== */
 
 .screen-reader-text {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	margin: -1px;
-	padding: 0;
-	overflow: hidden;
-	clip-path: inset(50%); /* Crops it to nothing without removing it. */
-	white-space: nowrap;
-	border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%); /* Crops it to nothing without removing it. */
+  white-space: nowrap;
+  border: 0;
 }
-
 
 /* ==========================================================================
    Page layout
@@ -36,23 +34,24 @@
    ========================================================================== */
 
 main {
-	padding-inline: var(--wp--custom--padding-global); /* 64/40/16px, same as the header. */
-	padding-block: var(--wp--preset--spacing--50);
+  padding-inline: var(
+    --wp--custom--padding-global
+  ); /* 64/40/16px, same as the header. */
+  padding-block: var(--wp--preset--spacing--50);
 }
 
 /* The hero is edge to edge, so it cancels out the page padding. */
 main > .cheremosh-hero,
 main > .wp-block-cover.alignfull {
-	margin-inline: calc( var(--wp--custom--padding-global) * -1 );
-	margin-block-start: calc( var(--wp--preset--spacing--50) * -1 );
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
 }
 
 /* Keep text blocks readable instead of stretching across a wide monitor. */
 main > article {
-	max-width: 1280px;
-	margin-inline: auto;
+  max-width: 1280px;
+  margin-inline: auto;
 }
-
 
 /* ==========================================================================
    Skip link
@@ -60,88 +59,85 @@ main > article {
    ========================================================================== */
 
 .skip-link {
-	position: absolute;
-	left: -9999px;
-	top: 0;
-	z-index: 1000;
-	padding: 0.75rem 1.5rem;
-	background: var(--wp--preset--color--off-white);
-	color: var(--wp--preset--color--charcoal);
-	font-weight: 600;
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 0.75rem 1.5rem;
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+  font-weight: 600;
 }
 
 .skip-link:focus {
-	left: 1rem;
-	top: 1rem;
+  left: 1rem;
+  top: 1rem;
 }
-
 
 /* ==========================================================================
    Announcement bar
    ========================================================================== */
 
 .announcement-bar {
-	padding-block: 0.5rem;
-	padding-inline: var(--wp--custom--padding-global);
-	background: var(--wp--preset--color--yellow);
-	color: var(--wp--preset--color--charcoal);
-	text-align: center;
-	font-size: var(--wp--preset--font-size--small);
-	font-weight: 600;
+  padding-block: 0.5rem;
+  padding-inline: var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--yellow);
+  color: var(--wp--preset--color--charcoal);
+  text-align: center;
+  font-size: var(--wp--preset--font-size--small);
+  font-weight: 600;
 }
 
 .announcement-bar p {
-	margin: 0;
+  margin: 0;
 }
 
 .announcement-bar a {
-	margin-left: 0.5rem;
-	color: var(--wp--preset--color--charcoal);
-	text-decoration: underline;
-	text-underline-offset: 0.2em;
+  margin-left: 0.5rem;
+  color: var(--wp--preset--color--charcoal);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .announcement-bar a:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 /* Charcoal outline: off-white wouldn't show on yellow. */
 .announcement-bar a:focus-visible {
-	outline: 2px solid var(--wp--preset--color--charcoal);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--charcoal);
+  outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    Header bar
    ========================================================================== */
 
 .site-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	gap: var(--wp--preset--spacing--30);
-	padding-block: var(--wp--preset--spacing--20);
-	padding-inline: var(--wp--custom--padding-global);
-	background: var(--wp--preset--color--charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--30);
+  padding-block: var(--wp--preset--spacing--20);
+  padding-inline: var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--charcoal);
 }
 
 .site-branding img {
-	display: block;
-	max-height: 3rem;
-	width: auto;
+  display: block;
+  max-height: 3rem;
+  width: auto;
 }
 
 .site-title {
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--h-5);
-	font-weight: 700;
-	text-transform: uppercase;
-	color: var(--wp--preset--color--off-white);
-	text-decoration: none;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--h-5);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--off-white);
+  text-decoration: none;
 }
-
 
 /* --------------------------------------------------------------------------
    Mobile menu button
@@ -149,15 +145,15 @@ main > article {
    -------------------------------------------------------------------------- */
 
 .menu-toggle {
-	display: none; /* Desktop default. */
-	align-items: center;
-	justify-content: center;
-	width: 2.75rem;  /* 44px — the minimum comfortable tap target. */
-	height: 2.75rem;
-	padding: 0;
-	background: transparent;
-	border: none;
-	cursor: pointer;
+  display: none; /* Desktop default. */
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem; /* 44px — the minimum comfortable tap target. */
+  height: 2.75rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 /*
@@ -166,31 +162,31 @@ main > article {
  * positioned above and below it.
  */
 .menu-toggle-bars {
-	position: relative; /* The two pseudo-elements position against this. */
-	display: block;
-	width: 1.5rem;
-	height: 2px;
-	background: var(--wp--preset--color--off-white);
-	transition: background 0.2s ease;
+  position: relative; /* The two pseudo-elements position against this. */
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--wp--preset--color--off-white);
+  transition: background 0.2s ease;
 }
 
 .menu-toggle-bars::before,
 .menu-toggle-bars::after {
-	content: "";     /* Required, or a pseudo-element doesn't render at all. */
-	position: absolute;
-	left: 0;
-	width: 100%;
-	height: 2px;
-	background: var(--wp--preset--color--off-white);
-	transition: transform 0.2s ease;
+  content: ""; /* Required, or a pseudo-element doesn't render at all. */
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--wp--preset--color--off-white);
+  transition: transform 0.2s ease;
 }
 
 .menu-toggle-bars::before {
-	transform: translateY(-0.5rem); /* Top bar. */
+  transform: translateY(-0.5rem); /* Top bar. */
 }
 
 .menu-toggle-bars::after {
-	transform: translateY(0.5rem);  /* Bottom bar. */
+  transform: translateY(0.5rem); /* Bottom bar. */
 }
 
 /*
@@ -201,126 +197,125 @@ main > article {
  * icon shows an X, the attribute really does say "true".
  */
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars {
-	background: transparent; /* Middle bar disappears. */
+  background: transparent; /* Middle bar disappears. */
 }
 
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars::before {
-	transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars::after {
-	transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .menu-toggle:focus-visible {
-	outline: 2px solid var(--wp--preset--color--off-white);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
 }
-
 
 /* --------------------------------------------------------------------------
    Main menu
    -------------------------------------------------------------------------- */
 
 .main-navigation ul {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--wp--preset--spacing--30);
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--30);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .main-navigation li {
-	position: relative; /* Anchor point for the dropdown. */
+  position: relative; /* Anchor point for the dropdown. */
 }
 
 .main-navigation a {
-	display: block;
-	padding-block: 0.5rem;
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
-	font-weight: 600;
-	text-transform: uppercase;
-	color: var(--wp--preset--color--off-white);
-	text-decoration: none;
+  display: block;
+  padding-block: 0.5rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--large);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--off-white);
+  text-decoration: none;
 }
 
 .main-navigation a:hover {
-	text-decoration: underline;
-	text-underline-offset: 0.25em;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
 
 .main-navigation a:focus-visible {
-	outline: 2px solid var(--wp--preset--color--off-white);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
 }
 
 /* The page you're on: underlined so it's not shown by colour alone. */
 .main-navigation .current-menu-item > a {
-	text-decoration: underline;
-	text-underline-offset: 0.25em;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
 }
 
 .main-navigation {
-	margin-left: auto; /* Pushes the menu right, next to the button. */
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--wp--preset--spacing--30);
 }
-
 
 /* --------------------------------------------------------------------------
    Dropdown — opens on hover OR keyboard focus (:focus-within)
    -------------------------------------------------------------------------- */
 
 .main-navigation .sub-menu {
-	display: none;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	z-index: 100;
-	min-width: 14rem;
-	flex-direction: column;
-	gap: 0;
-	padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
-	background: var(--wp--preset--color--charcoal);
-	box-shadow: var(--wp--preset--shadow--large);
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  min-width: 14rem;
+  flex-direction: column;
+  gap: 0;
+  padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--charcoal);
+  box-shadow: var(--wp--preset--shadow--large);
 }
 
 .main-navigation li:hover > .sub-menu,
 .main-navigation li:focus-within > .sub-menu {
-	display: flex;
+  display: flex;
 }
 
 .main-navigation .menu-item-has-children > a::after {
-	content: " ▾";
+  content: " ▾";
 }
-
 
 /* --------------------------------------------------------------------------
    Header button (red Login/Register from the design)
    -------------------------------------------------------------------------- */
 
 .header-cta {
-	display: inline-block;
-	padding: 0.5rem 1.25rem;
-	background: var(--wp--preset--color--red);
-	color: var(--wp--preset--color--off-white);
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--medium);
-	font-weight: 600;
-	text-transform: uppercase;
-	text-decoration: none;
-	border-radius: 0;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: var(--wp--preset--color--red);
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
 }
 
 .header-cta:hover {
-	background: var(--wp--preset--color--dark-red);
+  background: var(--wp--preset--color--dark-red);
 }
 
 .header-cta:focus-visible {
-	outline: 2px solid var(--wp--preset--color--off-white);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    Hero (patterns/hero.php)
@@ -329,63 +324,61 @@ main > article {
 /* theme.json uppercases EVERY heading. The hero H1 is the one exception in
    the design ("Cheremosh" in mixed case), so we switch it off here only. */
 .cheremosh-hero h1 {
-	margin: 0;
-	text-transform: none;
+  margin: 0;
+  text-transform: none;
 }
 
 .cheremosh-hero .wp-block-cover__inner-container {
-	width: 100%;
-	padding-inline: var(--wp--custom--padding-global);
-	padding-block-end: var(--wp--preset--spacing--40);
-	text-align: left;
+  width: 100%;
+  padding-inline: var(--wp--custom--padding-global);
+  padding-block-end: var(--wp--preset--spacing--40);
+  text-align: left;
 }
 
 .cheremosh-hero .hero-tagline {
-	margin: var(--wp--preset--spacing--10) 0 0;
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--h-5);
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
+  margin: var(--wp--preset--spacing--10) 0 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--h-5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .cheremosh-hero .wp-block-buttons {
-	margin-top: var(--wp--preset--spacing--30);
+  margin-top: var(--wp--preset--spacing--30);
 }
-
 
 /* --------------------------------------------------------------------------
    Pause/Play button — only appears when the hero uses a video.
    -------------------------------------------------------------------------- */
 
 .cheremosh-hero {
-	position: relative; /* So the button's "bottom right" measures from the hero. */
+  position: relative; /* So the button's "bottom right" measures from the hero. */
 }
 
 .hero-video-toggle {
-	position: absolute;
-	right: var(--wp--custom--padding-global);
-	bottom: var(--wp--preset--spacing--40);
-	z-index: 2;
-	padding: 0.5rem 1rem;
-	background: var(--wp--preset--color--neutral-darker);
-	color: var(--wp--preset--color--neutral-light);
-	border: none;
-	border-radius: 999px;
-	font-family: var(--wp--preset--font-family--body);
-	font-size: var(--wp--preset--font-size--tiny);
-	cursor: pointer;
+  position: absolute;
+  right: var(--wp--custom--padding-global);
+  bottom: var(--wp--preset--spacing--40);
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  background: var(--wp--preset--color--neutral-darker);
+  color: var(--wp--preset--color--neutral-light);
+  border: none;
+  border-radius: 999px;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--tiny);
+  cursor: pointer;
 }
 
 .hero-video-toggle:hover {
-	color: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--off-white);
 }
 
 .hero-video-toggle:focus-visible {
-	outline: 2px solid var(--wp--preset--color--off-white);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    Cards: programs (Dance with Us) and people (Our People)
@@ -394,73 +387,72 @@ main > article {
 
 .people-section,
 .programs-list {
-	max-width: 1280px;
-	margin: var(--wp--preset--spacing--60) auto 0;
+  max-width: 1280px;
+  margin: var(--wp--preset--spacing--60) auto 0;
 }
 
 .people-section > h2,
 .programs-list > h2 {
-	margin: 0 0 var(--wp--preset--spacing--30);
+  margin: 0 0 var(--wp--preset--spacing--30);
 }
 
 /* auto-fit collapses any empty columns, so three cards stretch across the
    full row instead of leaving a gap on the right. */
 .people-section ul,
 .programs-list ul {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-	gap: var(--wp--preset--spacing--40);
-	list-style: none; /* Kills the bullets that sat next to the photos. */
-	margin: 0;
-	padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--wp--preset--spacing--40);
+  list-style: none; /* Kills the bullets that sat next to the photos. */
+  margin: 0;
+  padding: 0;
 }
 
 /* flex column so the button can be pinned to the bottom, which keeps the
    buttons aligned across cards with different amounts of text. */
 .people-section li,
 .programs-list li {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--20);
-	padding: var(--wp--preset--spacing--20);
-	background: var(--wp--preset--color--charcoal);
-	border-top: 4px solid var(--wp--preset--color--bright-blue);
-	box-shadow: var(--wp--preset--shadow--large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--20);
+  padding: var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--charcoal);
+  border-top: 4px solid var(--wp--preset--color--bright-blue);
+  box-shadow: var(--wp--preset--shadow--large);
 }
 
 /* object-fit: cover crops rather than squashing, so portraits and landscapes
    both sit neatly without the client having to crop them first. */
 .people-section .person-photo {
-	width: 100%;
-	height: auto;
-	aspect-ratio: 4 / 3;
-	object-fit: cover;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
 .people-section h3,
 .programs-list h3 {
-	margin: 0;
-	font-size: var(--wp--preset--font-size--h-5);
+  margin: 0;
+  font-size: var(--wp--preset--font-size--h-5);
 }
 
 .people-section li p,
 .programs-list li p {
-	margin: 0;
-	font-size: var(--wp--preset--font-size--small);
+  margin: 0;
+  font-size: var(--wp--preset--font-size--small);
 }
 
 /* "Ages: 6-8 years": smaller and dimmer so it reads as a label, not body text. */
 .programs-list .program-ages {
-	font-size: var(--wp--preset--font-size--tiny);
-	color: var(--wp--preset--color--neutral-lighter);
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
+  font-size: var(--wp--preset--font-size--tiny);
+  color: var(--wp--preset--color--neutral-lighter);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .programs-list .program-ages a {
-	color: inherit;
+  color: inherit;
 }
-
 
 /* --------------------------------------------------------------------------
    Learn More button on the cards (outlined style from the design)
@@ -468,295 +460,291 @@ main > article {
 
 .people-section .button,
 .programs-list .button {
-	margin-top: auto; /* Pins it to the bottom of the card. */
-	display: block;
-	padding: 0.75rem 1.5rem;
-	background: transparent;
-	color: var(--wp--preset--color--off-white);
-	border: 2px solid var(--wp--preset--color--off-white);
-	border-radius: 0;
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--medium);
-	font-weight: 600;
-	text-transform: uppercase;
-	text-align: center;
-	text-decoration: none;
-	transition: background 0.2s ease, color 0.2s ease;
+  margin-top: auto; /* Pins it to the bottom of the card. */
+  display: block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 2px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .people-section .button:hover,
 .programs-list .button:hover {
-	background: var(--wp--preset--color--off-white);
-	color: var(--wp--preset--color--charcoal);
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
 }
 
 .people-section .button:focus-visible,
 .programs-list .button:focus-visible {
-	outline: 2px solid var(--wp--preset--color--bright-blue);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    Footer (footer.php)
    ========================================================================== */
 
 .site-footer {
-	background: var(--wp--preset--color--charcoal);
-	color: var(--wp--preset--color--off-white);
-	padding-block: var(--wp--preset--spacing--60);
-	padding-inline: var(--wp--custom--padding-global);
-	border-top: 1px solid var(--wp--preset--color--neutral-darker);
+  background: var(--wp--preset--color--charcoal);
+  color: var(--wp--preset--color--off-white);
+  padding-block: var(--wp--preset--spacing--60);
+  padding-inline: var(--wp--custom--padding-global);
+  border-top: 1px solid var(--wp--preset--color--neutral-darker);
 }
 
 .footer-columns {
-	display: grid;
-	grid-template-columns: 1fr 1.5fr 1fr; /* Middle column wider for the logo and form. */
-	gap: var(--wp--preset--spacing--40);
-	max-width: 1280px;
-	margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr; /* Middle column wider for the logo and form. */
+  gap: var(--wp--preset--spacing--40);
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 .footer-heading {
-	margin: 0 0 var(--wp--preset--spacing--20);
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--large);
-	line-height: 1.2;
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--large);
+  line-height: 1.2;
 }
 
 .site-footer ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
 
 /* --------------------------------------------------------------------------
    Left: Website Map
    -------------------------------------------------------------------------- */
 
 .footer-sitemap ul {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--10);
 }
 
 .footer-sitemap a {
-	color: var(--wp--preset--color--off-white);
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--medium);
-	text-transform: uppercase;
-	text-decoration: none;
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 .footer-sitemap a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
-
 
 /* --------------------------------------------------------------------------
    Middle: society name, logo and newsletter
    -------------------------------------------------------------------------- */
 
 .footer-brand {
-	text-align: center;
+  text-align: center;
 }
 
 .footer-name {
-	margin: 0 0 var(--wp--preset--spacing--30);
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--h-5);
-	font-weight: 700;
-	text-transform: uppercase;
-	line-height: 1.2;
+  margin: 0 0 var(--wp--preset--spacing--30);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--h-5);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .footer-logo {
-	display: inline-block;
+  display: inline-block;
 }
 
 .footer-logo img {
-	display: block;
-	width: 260px;
-	max-width: 100%;
-	height: auto;
+  display: block;
+  width: 260px;
+  max-width: 100%;
+  height: auto;
 }
 
 .footer-newsletter {
-	max-width: 24rem;
-	margin: var(--wp--preset--spacing--40) auto 0;
+  max-width: 24rem;
+  margin: var(--wp--preset--spacing--40) auto 0;
 }
 
 .newsletter-intro {
-	margin: 0 0 var(--wp--preset--spacing--20);
-	font-size: var(--wp--preset--font-size--small);
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-size: var(--wp--preset--font-size--small);
 }
 
 .newsletter-form {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--10);
 }
 
 .newsletter-email {
-	width: 100%;
-	box-sizing: border-box; /* Padding counts inside the width, so it can't overflow. */
-	padding: 0.75rem 1rem;
-	background: transparent;
-	color: var(--wp--preset--color--off-white);
-	border: 1px solid var(--wp--preset--color--neutral-light);
-	border-radius: 0;
-	font-family: var(--wp--preset--font-family--body);
-	font-size: var(--wp--preset--font-size--small);
+  width: 100%;
+  box-sizing: border-box; /* Padding counts inside the width, so it can't overflow. */
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 1px solid var(--wp--preset--color--neutral-light);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--small);
 }
 
 .newsletter-email::placeholder {
-	color: var(--wp--preset--color--neutral-light);
-	opacity: 1; /* Firefox dims placeholders by default; this undoes that. */
+  color: var(--wp--preset--color--neutral-light);
+  opacity: 1; /* Firefox dims placeholders by default; this undoes that. */
 }
 
 .newsletter-submit {
-	padding: 0.75rem 1.5rem;
-	background: var(--wp--preset--color--red);
-	color: var(--wp--preset--color--off-white);
-	border: none;
-	border-radius: 0;
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--medium);
-	font-weight: 600;
-	text-transform: uppercase;
-	cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  background: var(--wp--preset--color--red);
+  color: var(--wp--preset--color--off-white);
+  border: none;
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .newsletter-submit:hover {
-	background: var(--wp--preset--color--dark-red);
+  background: var(--wp--preset--color--dark-red);
 }
 
 /* Bot trap: moved off-screen rather than display:none, because some bots
    skip hidden fields but follow off-screen ones. */
 .newsletter-honeypot {
-	position: absolute;
-	left: -5000px;
+  position: absolute;
+  left: -5000px;
 }
 
 .newsletter-consent {
-	margin: var(--wp--preset--spacing--20) 0 0;
-	font-size: var(--wp--preset--font-size--tiny);
-	color: var(--wp--preset--color--neutral-lighter);
+  margin: var(--wp--preset--spacing--20) 0 0;
+  font-size: var(--wp--preset--font-size--tiny);
+  color: var(--wp--preset--color--neutral-lighter);
 }
 
 .newsletter-consent a {
-	color: var(--wp--preset--color--off-white);
-	text-decoration: underline;
+  color: var(--wp--preset--color--off-white);
+  text-decoration: underline;
 }
-
 
 /* --------------------------------------------------------------------------
    Right: Contact and Follow
    -------------------------------------------------------------------------- */
 
 .footer-connect {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--40);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--40);
 }
 
 /* <address> is italic by default in browsers; the design isn't. */
 .footer-contact address {
-	font-style: normal;
+  font-style: normal;
 }
 
 .contact-list {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--20);
-	font-size: var(--wp--preset--font-size--small);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--20);
+  font-size: var(--wp--preset--font-size--small);
 }
 
 .contact-list li {
-	display: flex;
-	align-items: center;
-	gap: var(--wp--preset--spacing--10);
+  display: flex;
+  align-items: center;
+  gap: var(--wp--preset--spacing--10);
 }
 
 /* The red circle behind each contact icon (from the design). */
 .contact-icon {
-	flex-shrink: 0;
-	box-sizing: content-box;
-	width: 1rem;
-	height: 1rem;
-	padding: 0.5rem; /* 16px icon + 8px each side = 32px circle. */
-	background: var(--wp--preset--color--red);
-	border-radius: 50%;
+  flex-shrink: 0;
+  box-sizing: content-box;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.5rem; /* 16px icon + 8px each side = 32px circle. */
+  background: var(--wp--preset--color--red);
+  border-radius: 50%;
 }
 
 .contact-list a {
-	color: var(--wp--preset--color--off-white);
-	text-decoration: none;
+  color: var(--wp--preset--color--off-white);
+  text-decoration: none;
 }
 
 .contact-list a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .social-list {
-	display: flex;
-	flex-wrap: wrap;
-	gap: var(--wp--preset--spacing--20);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--20);
 }
 
 .social-list a {
-	display: block;
+  display: block;
 }
 
 .social-list img {
-	display: block;
-	width: 2rem;
-	height: 2rem;
-	transition: opacity 0.2s ease;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  transition: opacity 0.2s ease;
 }
 
 .social-list a:hover img {
-	opacity: 0.75;
+  opacity: 0.75;
 }
-
 
 /* --------------------------------------------------------------------------
    Bottom: legal links and copyright
    -------------------------------------------------------------------------- */
 
 .footer-bottom {
-	max-width: 1280px;
-	margin: var(--wp--preset--spacing--50) auto 0;
-	padding-top: var(--wp--preset--spacing--30);
-	border-top: 1px solid var(--wp--preset--color--red);
-	text-align: center;
-	font-size: var(--wp--preset--font-size--tiny);
+  max-width: 1280px;
+  margin: var(--wp--preset--spacing--50) auto 0;
+  padding-top: var(--wp--preset--spacing--30);
+  border-top: 1px solid var(--wp--preset--color--red);
+  text-align: center;
+  font-size: var(--wp--preset--font-size--tiny);
 }
 
 .footer-legal ul {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--wp--preset--spacing--10) var(--wp--preset--spacing--30);
 }
 
 .footer-legal a {
-	color: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--off-white);
 }
 
 .site-info {
-	margin: var(--wp--preset--spacing--20) 0 0;
-	color: var(--wp--preset--color--neutral-lighter);
+  margin: var(--wp--preset--spacing--20) 0 0;
+  color: var(--wp--preset--color--neutral-lighter);
 }
 
 .site-footer a:focus-visible,
 .site-footer input:focus-visible,
 .site-footer button:focus-visible {
-	outline: 2px solid var(--wp--preset--color--off-white);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
 }
-
 
 /* ==========================================================================
    Tablet and phone (under 768px)
@@ -766,86 +754,93 @@ main > article {
    ========================================================================== */
 
 @media (max-width: 767px) {
+  /* ---- Mobile menu ---- */
 
-	/* ---- Mobile menu ---- */
+  /* The hamburger appears. */
+  .menu-toggle {
+    display: inline-flex;
+    margin-left: auto; /* Pushes it over to sit beside the Register button. */
+  }
 
-	/* The hamburger appears. */
-	.menu-toggle {
-		display: inline-flex;
-		margin-left: auto; /* Pushes it over to sit beside the Register button. */
-	}
-
-	/*
+  /*
 	 * The menu is hidden until opened, and sits on its own full-width row
 	 * underneath the logo and Register button.
 	 *
 	 * order: 1 pushes it last in the flex row (everything else defaults to 0),
 	 * so the top row stays logo | hamburger | Register and the menu drops below.
 	 */
-	.main-navigation {
-		display: none;
-		order: 1;
-		width: 100%;
-		margin-left: 0; /* Cancels the desktop rule that pushes it right. */
-	}
+  .main-navigation {
+    display: none;
+    order: 1;
+    width: 100%;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-	/* mobile-menu.js adds .is-open when the button is pressed. */
-	.main-navigation.is-open {
-		display: block;
-	}
+  /* mobile-menu.js adds .is-open when the button is pressed. */
+  .main-navigation.is-open {
+    display: flex;
+  }
 
-	/* Links stack instead of sitting in a row. */
-	.main-navigation ul {
-		flex-direction: column;
-		gap: 0;
-	}
+  /* Links stack instead of sitting in a row. */
+  .main-navigation ul {
+    flex-direction: column;
+    gap: 0;
+  }
 
-	/* Taller links so they're easy to hit with a thumb. */
-	.main-navigation a {
-		padding-block: 0.75rem;
-	}
+  /* Taller links so they're easy to hit with a thumb. */
+  .main-navigation a {
+    padding-block: 0.75rem;
+  }
 
-	/*
+  .main-navigation > .header-cta {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 1rem;
+  }
+
+  /*
 	 * Dropdowns can't rely on hover on a touchscreen, so sub-menus are
 	 * always visible, indented under their parent rather than floating.
 	 */
-	.main-navigation .sub-menu {
-		display: flex;
-		position: static;
-		min-width: 0;
-		padding: 0 0 0 var(--wp--preset--spacing--30);
-		box-shadow: none;
-	}
+  .main-navigation .sub-menu {
+    display: flex;
+    position: static;
+    min-width: 0;
+    padding: 0 0 0 var(--wp--preset--spacing--30);
+    box-shadow: none;
+  }
 
-	/* The ▾ arrow means nothing here, since the sub-menu is already open. */
-	.main-navigation .menu-item-has-children > a::after {
-		content: "";
-	}
+  /* The ▾ arrow means nothing here, since the sub-menu is already open. */
+  .main-navigation .menu-item-has-children > a::after {
+    content: "";
+  }
 
-	/* Stops the page scrolling behind an open menu.
+  /* Stops the page scrolling behind an open menu.
 	   mobile-menu.js adds this class to <body>. */
-	body.menu-is-open {
-		overflow: hidden;
-	}
+  body.menu-is-open {
+    overflow: hidden;
+  }
 
-	/* ---- Footer ---- */
+  /* ---- Footer ---- */
 
-	.footer-columns {
-		grid-template-columns: 1fr;
-		text-align: center;
-	}
+  .footer-columns {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 
-	/* Logo and newsletter first on phones, then Website Map, then Contact. */
-	.footer-brand {
-		order: -1;
-	}
+  /* Logo and newsletter first on phones, then Website Map, then Contact. */
+  .footer-brand {
+    order: -1;
+  }
 
-	.footer-sitemap ul,
-	.contact-list,
-	.social-list {
-		align-items: center;
-		justify-content: center;
-	}
+  .footer-sitemap ul,
+  .contact-list,
+  .social-list {
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================
@@ -857,75 +852,72 @@ main > article {
    ========================================================================== */
 
 .auth-page {
-	background: var(--wp--preset--color--charcoal);
-	color: var(--wp--preset--color--off-white);
+  background: var(--wp--preset--color--charcoal);
+  color: var(--wp--preset--color--off-white);
 }
 
 /* The form column. Narrow on purpose — a login form that spans a wide
    monitor is harder to read, not easier. */
 .auth-card {
-	max-width: 30rem;
-	margin-inline: auto;
-	padding-block: var(--wp--preset--spacing--60);
+  max-width: 30rem;
+  margin-inline: auto;
+  padding-block: var(--wp--preset--spacing--60);
 }
-
 
 /* --------------------------------------------------------------------------
    Sign Up | Log In tabs
    -------------------------------------------------------------------------- */
 
 .auth-tabs {
-	display: flex;
-	justify-content: center;
-	gap: var(--wp--preset--spacing--40);
-	margin-bottom: var(--wp--preset--spacing--40);
-	border-bottom: 1px solid var(--wp--preset--color--neutral-dark);
+  display: flex;
+  justify-content: center;
+  gap: var(--wp--preset--spacing--40);
+  margin-bottom: var(--wp--preset--spacing--40);
+  border-bottom: 1px solid var(--wp--preset--color--neutral-dark);
 }
 
 .auth-tab {
-	padding-block: var(--wp--preset--spacing--10);
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--medium);
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: var(--wp--preset--color--neutral-lighter);
-	text-decoration: none;
+  padding-block: var(--wp--preset--spacing--10);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wp--preset--color--neutral-lighter);
+  text-decoration: none;
 }
 
 /* The tab you're on. The bottom border sits on top of the nav's own
    border, which is what gives the "selected tab" look. */
 .auth-tab.is-current {
-	color: var(--wp--preset--color--off-white);
-	border-bottom: 2px solid var(--wp--preset--color--bright-blue);
-	margin-bottom: -1px;
+  color: var(--wp--preset--color--off-white);
+  border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+  margin-bottom: -1px;
 }
 
 .auth-tab:hover {
-	color: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--off-white);
 }
-
 
 /* --------------------------------------------------------------------------
    Heading and intro
    -------------------------------------------------------------------------- */
 
 .auth-title {
-	margin: 0 0 var(--wp--preset--spacing--20);
-	text-align: center;
-	font-size: var(--wp--preset--font-size--h-2, 2.5rem);
+  margin: 0 0 var(--wp--preset--spacing--20);
+  text-align: center;
+  font-size: var(--wp--preset--font-size--h-2, 2.5rem);
 }
 
 .auth-intro {
-	margin: 0 0 var(--wp--preset--spacing--40);
-	text-align: center;
-	font-size: var(--wp--preset--font-size--small);
-	color: var(--wp--preset--color--neutral-lighter);
+  margin: 0 0 var(--wp--preset--spacing--40);
+  text-align: center;
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--neutral-lighter);
 }
 
 .auth-intro a {
-	color: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--off-white);
 }
-
 
 /* --------------------------------------------------------------------------
    The form itself (core markup)
@@ -936,55 +928,54 @@ main > article {
    -------------------------------------------------------------------------- */
 
 #loginform {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--preset--spacing--30);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--30);
 }
 
 #loginform p {
-	margin: 0;
+  margin: 0;
 }
 
 #loginform label {
-	display: block;
-	margin-bottom: var(--wp--preset--spacing--10);
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--small);
-	text-transform: uppercase;
-	letter-spacing: 0.08em;
-	color: var(--wp--preset--color--neutral-lighter);
+  display: block;
+  margin-bottom: var(--wp--preset--spacing--10);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wp--preset--color--neutral-lighter);
 }
 
 /* Underline-only fields, as in the design: no box, just a rule they
    type on top of. */
 #loginform input[type="text"],
 #loginform input[type="password"] {
-	width: 100%;
-	box-sizing: border-box; /* Padding counts inside the width. */
-	padding: 0.5rem 0;
-	background: transparent;
-	color: var(--wp--preset--color--off-white);
-	border: none;
-	border-bottom: 1px solid var(--wp--preset--color--neutral-light);
-	border-radius: 0;
-	font-family: var(--wp--preset--font-family--body);
-	font-size: var(--wp--preset--font-size--medium);
+  width: 100%;
+  box-sizing: border-box; /* Padding counts inside the width. */
+  padding: 0.5rem 0;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: none;
+  border-bottom: 1px solid var(--wp--preset--color--neutral-light);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--medium);
 }
 
 #loginform input[type="text"]:focus,
 #loginform input[type="password"]:focus {
-	outline: none; /* Replaced by the border colour below, not removed. */
-	border-bottom-color: var(--wp--preset--color--bright-blue);
-	border-bottom-width: 2px;
+  outline: none; /* Replaced by the border colour below, not removed. */
+  border-bottom-color: var(--wp--preset--color--bright-blue);
+  border-bottom-width: 2px;
 }
 
 /* Keyboard users get a real focus ring as well, since a colour change
    alone isn't enough to signal focus. */
 #loginform input:focus-visible {
-	outline: 2px solid var(--wp--preset--color--bright-blue);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
 }
-
 
 /* --------------------------------------------------------------------------
    Forgot password — injected into the form by the login_form_middle
@@ -992,78 +983,74 @@ main > article {
    -------------------------------------------------------------------------- */
 
 .auth-forgot {
-	text-align: right;
-	font-size: var(--wp--preset--font-size--tiny);
+  text-align: right;
+  font-size: var(--wp--preset--font-size--tiny);
 }
 
 .auth-forgot a {
-	color: var(--wp--preset--color--neutral-lighter);
+  color: var(--wp--preset--color--neutral-lighter);
 }
 
 .auth-forgot a:hover {
-	color: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--off-white);
 }
-
 
 /* --------------------------------------------------------------------------
    Submit button — off-white block, full width, as in the design.
    -------------------------------------------------------------------------- */
 
 #loginform .login-submit input[type="submit"] {
-	width: 100%;
-	padding: 0.85rem 1.5rem;
-	background: var(--wp--preset--color--off-white);
-	color: var(--wp--preset--color--charcoal);
-	border: none;
-	border-radius: 0;
-	font-family: var(--wp--preset--font-family--heading);
-	font-size: var(--wp--preset--font-size--medium);
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	cursor: pointer;
-	transition: background 0.2s ease;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+  border: none;
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 #loginform .login-submit input[type="submit"]:hover {
-	background: var(--wp--preset--color--neutral-lightest);
+  background: var(--wp--preset--color--neutral-lightest);
 }
 
 #loginform .login-submit input[type="submit"]:focus-visible {
-	outline: 2px solid var(--wp--preset--color--bright-blue);
-	outline-offset: 3px;
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
 }
-
 
 /* --------------------------------------------------------------------------
    "Don't have an account? Sign up"
    -------------------------------------------------------------------------- */
 
 .auth-switch {
-	margin: var(--wp--preset--spacing--40) 0 0;
-	text-align: center;
-	font-size: var(--wp--preset--font-size--small);
-	color: var(--wp--preset--color--neutral-lighter);
+  margin: var(--wp--preset--spacing--40) 0 0;
+  text-align: center;
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--neutral-lighter);
 }
 
 .auth-switch a {
-	color: var(--wp--preset--color--off-white);
-	text-decoration: underline;
-	text-underline-offset: 0.2em;
+  color: var(--wp--preset--color--off-white);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
-
 
 /* ---- Phones ---- */
 
 @media (max-width: 767px) {
+  .auth-card {
+    padding-block: var(--wp--preset--spacing--40);
+  }
 
-	.auth-card {
-		padding-block: var(--wp--preset--spacing--40);
-	}
-
-	.auth-tabs {
-		gap: var(--wp--preset--spacing--30);
-	}
+  .auth-tabs {
+    gap: var(--wp--preset--spacing--30);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1073,10 +1060,10 @@ main > article {
    -------------------------------------------------------------------------- */
 
 .auth-error {
-	margin: 0 0 var(--wp--preset--spacing--30);
-	padding: var(--wp--preset--spacing--20);
-	background: var(--wp--preset--color--neutral-darker);
-	color: var(--wp--preset--color--off-white);
-	border-left: 4px solid var(--wp--preset--color--red);
-	font-size: var(--wp--preset--font-size--small);
+  margin: 0 0 var(--wp--preset--spacing--30);
+  padding: var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--neutral-darker);
+  color: var(--wp--preset--color--off-white);
+  border-left: 4px solid var(--wp--preset--color--red);
+  font-size: var(--wp--preset--font-size--small);
 }
