@@ -400,12 +400,17 @@ main > article {
   margin: 0 0 var(--wp--preset--spacing--30);
 }
 
-/* auto-fit collapses any empty columns, so three cards stretch across the
-   full row instead of leaving a gap on the right. */
+/* auto-fit collapses empty columns so cards fill the row, but the max track
+   is capped at 24rem — otherwise a section with one person in it (Artistic
+   Director) stretches that single card across the whole 1280px, and the
+   photo inside it renders about 960px tall.
+   justify-content: start keeps a short row left-aligned instead of
+   stretching to fit. */
 .people-section ul,
 .programs-list ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 24rem));
+  justify-content: start;
   gap: var(--wp--preset--spacing--40);
   list-style: none; /* Kills the bullets that sat next to the photos. */
   margin: 0;
@@ -1187,5 +1192,227 @@ main > article {
   .account-details {
     grid-template-columns: 1fr;
     gap: var(--wp--preset--spacing--20);
+  }
+}
+
+/* ==========================================================================
+   Our People (page-our-people.php)
+
+   Three different layouts, matching Daina's design:
+     .people-feature     — Artistic Director banner, portrait beside text
+     .people-instructors — a row of landscape photo tiles
+     .people-board       — a grid of board member cards
+
+   The old shared .people-section rule higher up is no longer used by this
+   page; it still serves the programs cards.
+   ========================================================================== */
+
+/* Shared section spacing and headings. */
+.people-feature,
+.people-instructors,
+.people-board {
+  max-width: 1280px;
+  margin: var(--wp--preset--spacing--60) auto 0;
+}
+
+.people-heading {
+  margin: 0 0 var(--wp--preset--spacing--30);
+  padding-bottom: var(--wp--preset--spacing--20);
+  border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+}
+
+
+/* --------------------------------------------------------------------------
+   Artistic Director banner
+
+   Two columns: a fixed-width portrait, then the text taking the rest.
+   minmax(0, 1fr) rather than plain 1fr so a long bio can't push the
+   column wider than the grid.
+   -------------------------------------------------------------------------- */
+
+.feature-person {
+  display: grid;
+  grid-template-columns: 20rem minmax(0, 1fr);
+  gap: var(--wp--preset--spacing--40);
+  align-items: start;
+  padding: var(--wp--preset--spacing--40);
+  background: var(--wp--preset--color--neutral-darker);
+}
+
+/* A portrait crop — taller than wide, as in the design. */
+.feature-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* The small label above the name ("ARTISTIC DIRECTOR"). */
+.feature-role {
+  margin: 0 0 var(--wp--preset--spacing--10);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+.feature-name {
+  margin: 0;
+  font-size: var(--wp--preset--font-size--h-3);
+}
+
+/* The short blue rule under the name in the design. */
+.feature-name::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 3px;
+  margin-top: var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--bright-blue);
+}
+
+.feature-bio {
+  margin: var(--wp--preset--spacing--30) 0;
+  font-size: var(--wp--preset--font-size--regular);
+}
+
+/* The Learn More button, sized to its text instead of filling the column. */
+.feature-text .button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 2px solid var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.feature-text .button:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+
+/* --------------------------------------------------------------------------
+   Instructors row
+
+   auto-fill with a capped track, so one instructor stays tile-sized
+   instead of stretching across the page.
+   -------------------------------------------------------------------------- */
+
+.instructor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 20rem));
+  justify-content: start;
+  gap: var(--wp--preset--spacing--30);
+  list-style: none; /* No bullets beside the photos. */
+  margin: 0;
+  padding: 0;
+}
+
+/* The whole tile is the link, so it needs to be a block. */
+.instructor-tile a {
+  display: block;
+  text-decoration: none;
+  color: var(--wp--preset--color--off-white);
+}
+
+.instructor-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover; /* Crops rather than squashing. */
+}
+
+/* The name bar sitting under each photo. */
+.instructor-name {
+  display: block;
+  padding: var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--neutral-darker);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.instructor-tile a:hover .instructor-name {
+  background: var(--wp--preset--color--red);
+}
+
+.instructor-tile a:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Board grid
+
+   Four across on a wide screen, capped so a short board doesn't stretch.
+   -------------------------------------------------------------------------- */
+
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 18rem));
+  justify-content: start;
+  gap: var(--wp--preset--spacing--40);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Flex column so the link can be pinned to the bottom, keeping the links
+   aligned across cards with different bio lengths. */
+.board-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--20);
+}
+
+.board-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* Square, as in the design. */
+  object-fit: cover;
+}
+
+.board-name {
+  margin: 0;
+  font-size: var(--wp--preset--font-size--large);
+}
+
+.board-bio {
+  margin: 0;
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+.board-link {
+  margin-top: auto; /* Pins it to the bottom of the card. */
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--off-white);
+}
+
+
+/* ---- Tablet and phone ---- */
+
+@media (max-width: 767px) {
+  /* The banner stacks: photo above the text. */
+  .feature-person {
+    grid-template-columns: 1fr;
+    padding: var(--wp--preset--spacing--30);
+  }
+
+  /* A full-width portrait at 3/4 is very tall on a phone, so cap it. */
+  .feature-photo {
+    max-width: 16rem;
   }
 }
