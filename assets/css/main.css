@@ -239,11 +239,13 @@ main > article {
   text-transform: uppercase;
   color: var(--wp--preset--color--off-white);
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .main-navigation a:hover {
   text-decoration: underline;
   text-underline-offset: 0.25em;
+  color: var(--wp--preset--color--red-hover);
 }
 
 .main-navigation a:focus-visible {
@@ -301,7 +303,7 @@ main > article {
 
 .header-cta {
   display: inline-block;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1.125rem;
   background: var(--wp--preset--color--red);
   color: var(--wp--preset--color--off-white);
   font-family: var(--wp--preset--font-family--heading);
@@ -310,10 +312,12 @@ main > article {
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 0;
+  border: 2px solid var(--wp--preset--color--red);
+  transition: background-color 0.3s ease, transform 0.3s ease-out;
 }
 
 .header-cta:hover {
-  background: var(--wp--preset--color--dark-red);
+  background: var(--wp--preset--color--off-white);
 }
 
 .header-cta:focus-visible {
