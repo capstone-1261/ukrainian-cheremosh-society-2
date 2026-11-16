@@ -226,6 +226,14 @@
                         }
                     }
                 }
+            },
+            "core/cover": {
+                "spacing": {
+                    "padding": {
+                        "left": "var(--wp--custom--padding-global)",
+                        "right": "var(--wp--custom--padding-global)"
+                    }
+                }
             }
         }
     }
