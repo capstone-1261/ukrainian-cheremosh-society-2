@@ -847,3 +847,236 @@ main > article {
 		justify-content: center;
 	}
 }
+
+/* ==========================================================================
+   Auth pages (page-login.php, and the sign-up page when it lands)
+
+   The form markup comes from WordPress core's wp_login_form(), so the
+   class names below (#loginform, .login-username, .login-password,
+   .login-submit) are core's, not ours. They're fixed — don't rename them.
+   ========================================================================== */
+
+.auth-page {
+	background: var(--wp--preset--color--charcoal);
+	color: var(--wp--preset--color--off-white);
+}
+
+/* The form column. Narrow on purpose — a login form that spans a wide
+   monitor is harder to read, not easier. */
+.auth-card {
+	max-width: 30rem;
+	margin-inline: auto;
+	padding-block: var(--wp--preset--spacing--60);
+}
+
+
+/* --------------------------------------------------------------------------
+   Sign Up | Log In tabs
+   -------------------------------------------------------------------------- */
+
+.auth-tabs {
+	display: flex;
+	justify-content: center;
+	gap: var(--wp--preset--spacing--40);
+	margin-bottom: var(--wp--preset--spacing--40);
+	border-bottom: 1px solid var(--wp--preset--color--neutral-dark);
+}
+
+.auth-tab {
+	padding-block: var(--wp--preset--spacing--10);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--medium);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--wp--preset--color--neutral-lighter);
+	text-decoration: none;
+}
+
+/* The tab you're on. The bottom border sits on top of the nav's own
+   border, which is what gives the "selected tab" look. */
+.auth-tab.is-current {
+	color: var(--wp--preset--color--off-white);
+	border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+	margin-bottom: -1px;
+}
+
+.auth-tab:hover {
+	color: var(--wp--preset--color--off-white);
+}
+
+
+/* --------------------------------------------------------------------------
+   Heading and intro
+   -------------------------------------------------------------------------- */
+
+.auth-title {
+	margin: 0 0 var(--wp--preset--spacing--20);
+	text-align: center;
+	font-size: var(--wp--preset--font-size--h-2, 2.5rem);
+}
+
+.auth-intro {
+	margin: 0 0 var(--wp--preset--spacing--40);
+	text-align: center;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+.auth-intro a {
+	color: var(--wp--preset--color--off-white);
+}
+
+
+/* --------------------------------------------------------------------------
+   The form itself (core markup)
+
+   Core wraps each field in its own <p>, so we lay the form out as a flex
+   column and let the gap do the spacing rather than fighting the margins
+   core puts on those paragraphs.
+   -------------------------------------------------------------------------- */
+
+#loginform {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--30);
+}
+
+#loginform p {
+	margin: 0;
+}
+
+#loginform label {
+	display: block;
+	margin-bottom: var(--wp--preset--spacing--10);
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--small);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+/* Underline-only fields, as in the design: no box, just a rule they
+   type on top of. */
+#loginform input[type="text"],
+#loginform input[type="password"] {
+	width: 100%;
+	box-sizing: border-box; /* Padding counts inside the width. */
+	padding: 0.5rem 0;
+	background: transparent;
+	color: var(--wp--preset--color--off-white);
+	border: none;
+	border-bottom: 1px solid var(--wp--preset--color--neutral-light);
+	border-radius: 0;
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--medium);
+}
+
+#loginform input[type="text"]:focus,
+#loginform input[type="password"]:focus {
+	outline: none; /* Replaced by the border colour below, not removed. */
+	border-bottom-color: var(--wp--preset--color--bright-blue);
+	border-bottom-width: 2px;
+}
+
+/* Keyboard users get a real focus ring as well, since a colour change
+   alone isn't enough to signal focus. */
+#loginform input:focus-visible {
+	outline: 2px solid var(--wp--preset--color--bright-blue);
+	outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   Forgot password — injected into the form by the login_form_middle
+   filter in page-login.php, so it sits under the password field.
+   -------------------------------------------------------------------------- */
+
+.auth-forgot {
+	text-align: right;
+	font-size: var(--wp--preset--font-size--tiny);
+}
+
+.auth-forgot a {
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+.auth-forgot a:hover {
+	color: var(--wp--preset--color--off-white);
+}
+
+
+/* --------------------------------------------------------------------------
+   Submit button — off-white block, full width, as in the design.
+   -------------------------------------------------------------------------- */
+
+#loginform .login-submit input[type="submit"] {
+	width: 100%;
+	padding: 0.85rem 1.5rem;
+	background: var(--wp--preset--color--off-white);
+	color: var(--wp--preset--color--charcoal);
+	border: none;
+	border-radius: 0;
+	font-family: var(--wp--preset--font-family--heading);
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+#loginform .login-submit input[type="submit"]:hover {
+	background: var(--wp--preset--color--neutral-lightest);
+}
+
+#loginform .login-submit input[type="submit"]:focus-visible {
+	outline: 2px solid var(--wp--preset--color--bright-blue);
+	outline-offset: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   "Don't have an account? Sign up"
+   -------------------------------------------------------------------------- */
+
+.auth-switch {
+	margin: var(--wp--preset--spacing--40) 0 0;
+	text-align: center;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--neutral-lighter);
+}
+
+.auth-switch a {
+	color: var(--wp--preset--color--off-white);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+
+/* ---- Phones ---- */
+
+@media (max-width: 767px) {
+
+	.auth-card {
+		padding-block: var(--wp--preset--spacing--40);
+	}
+
+	.auth-tabs {
+		gap: var(--wp--preset--spacing--30);
+	}
+}
+
+/* --------------------------------------------------------------------------
+   Login error message
+   Printed by page-login.php when inc/login.php sends someone back here
+   after a failed or empty submission.
+   -------------------------------------------------------------------------- */
+
+.auth-error {
+	margin: 0 0 var(--wp--preset--spacing--30);
+	padding: var(--wp--preset--spacing--20);
+	background: var(--wp--preset--color--neutral-darker);
+	color: var(--wp--preset--color--off-white);
+	border-left: 4px solid var(--wp--preset--color--red);
+	font-size: var(--wp--preset--font-size--small);
+}

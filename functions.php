@@ -15,6 +15,9 @@ require get_template_directory() . '/inc/content-types.php';
 // Customizer settings (Appearance > Customize), e.g. the announcement bar.
 require get_template_directory() . '/inc/customizer.php';
 
+// Keeps failed logins on our own Log In page instead of wp-login.php.
+require get_template_directory() . '/inc/login.php';
+
 /**
  * Tell WooCommerce this theme supports it (Sam).
  */
