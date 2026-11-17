@@ -1420,3 +1420,151 @@ main > article {
     max-width: 16rem;
   }
 }
+
+/* ==========================================================================
+   Sign up page (page-signup.php)
+
+   The form is ours rather than core's, so it needs its own rules. The
+   values match the login form so the two pages look like one flow.
+   ========================================================================== */
+
+#signupform {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--30);
+}
+
+#signupform p {
+  margin: 0;
+}
+
+#signupform label {
+  display: block;
+  margin-bottom: var(--wp--preset--spacing--10);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+/* Underline-only fields, same as the login form. */
+#signupform input[type="text"],
+#signupform input[type="email"],
+#signupform input[type="password"] {
+  width: 100%;
+  box-sizing: border-box; /* Padding counts inside the width. */
+  padding: 0.5rem 0;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: none;
+  border-bottom: 1px solid var(--wp--preset--color--neutral-light);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--medium);
+}
+
+#signupform input[type="text"]:focus,
+#signupform input[type="email"]:focus,
+#signupform input[type="password"]:focus {
+  outline: none; /* Replaced by the border below, not removed. */
+  border-bottom-color: var(--wp--preset--color--bright-blue);
+  border-bottom-width: 2px;
+}
+
+/* Keyboard users still get a real focus ring — a colour change alone
+   isn't enough to signal focus. */
+#signupform input:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* Small helper text under a field ("At least 8 characters."). */
+.signup-hint {
+  display: block;
+  margin-top: var(--wp--preset--spacing--10);
+  font-size: var(--wp--preset--font-size--tiny);
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+
+/* --------------------------------------------------------------------------
+   "What are you looking to sign up for?" checkboxes
+
+   A fieldset has a browser default border we don't want, but the element
+   is kept because it's what groups the checkboxes for screen readers.
+   -------------------------------------------------------------------------- */
+
+.signup-interests {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.signup-interests legend {
+  padding: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+/* Each option: the box and its words on one line, wrapped in the label
+   so clicking the words ticks the box. */
+.signup-check {
+  display: flex;
+  align-items: center;
+  gap: var(--wp--preset--spacing--10);
+  margin: var(--wp--preset--spacing--20) 0 0;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: var(--wp--preset--font-size--regular);
+  text-transform: none; /* Undoes the uppercase on #signupform label. */
+  letter-spacing: normal;
+  color: var(--wp--preset--color--off-white);
+  cursor: pointer;
+}
+
+/* 1.15rem is a bigger tap target than the browser default, which is
+   uncomfortably small on a phone. accent-color tints the tick itself. */
+.signup-check input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--wp--preset--color--red);
+}
+
+
+/* --------------------------------------------------------------------------
+   Create Account button — same block as the login submit.
+   -------------------------------------------------------------------------- */
+
+.signup-submit {
+  margin-top: var(--wp--preset--spacing--20);
+}
+
+.signup-submit button {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+  border: none;
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.signup-submit button:hover {
+  background: var(--wp--preset--color--neutral-lightest);
+}
+
+.signup-submit button:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
