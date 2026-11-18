@@ -1650,19 +1650,19 @@ main > article {
 
 /* The editor wraps table blocks in .wp-block-table, which is where the
    scrolling has to happen — the table itself can't scroll. */
-.wp-block-table.festival-table {
+.wp-block-table:is(.festival-table, .data-table) {
   margin-block: var(--wp--preset--spacing--40);
   overflow-x: auto;
 }
 
-.festival-table table {
+:is(.festival-table, .data-table) table {
   width: 100%;
   min-width: 36rem; /* Below this the columns become unreadable. */
   border-collapse: collapse;
   color: var(--wp--preset--color--off-white);
 }
 
-.festival-table :is(th, td) {
+:is(.festival-table, .data-table) :is(th, td) {
   padding: var(--wp--preset--spacing--20);
   text-align: left;
   vertical-align: top;
@@ -1670,7 +1670,7 @@ main > article {
   border-bottom: 1px solid var(--wp--preset--color--neutral-dark);
 }
 
-.festival-table th {
+:is(.festival-table, .data-table) th {
   font-family: var(--wp--preset--font-family--heading);
   font-size: var(--wp--preset--font-size--small);
   text-transform: uppercase;
@@ -1682,7 +1682,7 @@ main > article {
 
 /* Alternating rows make a long table easier to read across. Darker than the
    page rather than lighter, so the text keeps its colour. */
-.festival-table tbody tr:nth-child(even) {
+:is(.festival-table, .data-table) tbody tr:nth-child(even) {
   background: var(--wp--preset--color--neutral-darker);
 }
 
