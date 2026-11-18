@@ -1568,3 +1568,197 @@ main > article {
   outline: 2px solid var(--wp--preset--color--bright-blue);
   outline-offset: 3px;
 }
+
+
+
+/* ==========================================================================
+   DANCE FESTIVAL PAGE
+
+   Three things get styled here:
+
+     .festival-notice      — the postponement callout at the top of the page
+     .festival-table       — the scholarship winners table
+     .festival-subpages    — the cards linking to the festival's child pages
+
+   The first two are applied in the editor, not in the template: select the
+   block, open Advanced > Additional CSS class(es), and type the class name.
+   That way the client can remove the notice entirely when the festival is
+   rescheduled, without touching theme files.
+   ========================================================================== */
+
+/* The page wrapper and its heading, matching the other inner pages. */
+.festival-page {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.festival-title {
+  margin: 0 0 var(--wp--preset--spacing--30);
+  padding-bottom: var(--wp--preset--spacing--20);
+  border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+}
+
+
+/* --------------------------------------------------------------------------
+   Postponement notice
+
+   A callout, not a banner: it sits in the flow of the page rather than
+   across the top, because it's news about one event and not a site-wide
+   alert. The red left border carries the urgency; the background stays
+   pale so the text keeps its contrast.
+   -------------------------------------------------------------------------- */
+
+.festival-notice {
+  margin-block: var(--wp--preset--spacing--40);
+  padding: var(--wp--preset--spacing--30);
+  background: var(--wp--preset--color--neutral-lightest);
+  border-left: 4px solid var(--wp--preset--color--red);
+  color: var(--wp--preset--color--charcoal); /* The page text is off-white.
+                                                On a pale box it disappears,
+                                                so it's set here instead of
+                                                inherited. */
+}
+
+/* The theme's h2 is full-size display caps, which is far too loud inside a
+   callout. This keeps the family and the caps but brings the size down so
+   it reads as a notice heading, not a page heading. */
+.festival-notice :is(h2, h3) {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-size: var(--wp--preset--font-size--h-5);
+  line-height: 1.2;
+  color: var(--wp--preset--color--dark-red);
+}
+
+/* Links inside the box need their own colour too — the theme's link colour
+   is picked for the dark page, not for this one. */
+.festival-notice a {
+  color: var(--wp--preset--color--blue);
+}
+
+.festival-notice p:last-child {
+  margin-bottom: 0; /* No trailing gap inside the box. */
+}
+
+
+/* --------------------------------------------------------------------------
+   Scholarship winners table
+
+   Fourteen rows of three columns. On a phone the table can't shrink far
+   enough to fit, so rather than squashing the text the wrapper scrolls
+   sideways and the table keeps a sensible minimum width.
+   -------------------------------------------------------------------------- */
+
+/* The editor wraps table blocks in .wp-block-table, which is where the
+   scrolling has to happen — the table itself can't scroll. */
+.wp-block-table.festival-table {
+  margin-block: var(--wp--preset--spacing--40);
+  overflow-x: auto;
+}
+
+.festival-table table {
+  width: 100%;
+  min-width: 36rem; /* Below this the columns become unreadable. */
+  border-collapse: collapse;
+  color: var(--wp--preset--color--off-white);
+}
+
+.festival-table :is(th, td) {
+  padding: var(--wp--preset--spacing--20);
+  text-align: left;
+  vertical-align: top;
+  border: none; /* Replaced by the row lines below. */
+  border-bottom: 1px solid var(--wp--preset--color--neutral-dark);
+}
+
+.festival-table th {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wp--preset--color--bright-blue); /* The darker blue is too
+                                                   low-contrast on charcoal. */
+  border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+}
+
+/* Alternating rows make a long table easier to read across. Darker than the
+   page rather than lighter, so the text keeps its colour. */
+.festival-table tbody tr:nth-child(even) {
+  background: var(--wp--preset--color--neutral-darker);
+}
+
+/* --------------------------------------------------------------------------
+   Festival subpage cards
+
+   minmax(18rem, 24rem) rather than minmax(18rem, 1fr): with 1fr a single
+   card would stretch across the whole row. The cap plus justify-content
+   keeps one card the same size as four.
+   -------------------------------------------------------------------------- */
+
+.festival-subpages {
+  max-width: 1280px;
+  margin: var(--wp--preset--spacing--60) auto 0;
+}
+
+.festival-subpages-heading {
+  margin: 0 0 var(--wp--preset--spacing--30);
+  padding-bottom: var(--wp--preset--spacing--20);
+  border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+}
+
+.festival-subpage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 24rem));
+  justify-content: start;
+  gap: var(--wp--preset--spacing--30);
+  margin: 0;
+  padding: 0;
+  list-style: none; /* These are cards, not a bulleted list. */
+}
+
+/* The <a> inside is the card — it fills the <li> so the whole tile is
+   clickable, not just the words. Slightly darker than the page with a red
+   top edge, the same way the other cards in the theme are built. */
+.festival-subpage-card a {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  padding: var(--wp--preset--spacing--30);
+  background: var(--wp--preset--color--neutral-darker);
+  border-top: 3px solid var(--wp--preset--color--red);
+  text-decoration: none;
+  color: var(--wp--preset--color--off-white);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.festival-subpage-card a:hover {
+  background: var(--wp--preset--color--neutral-dark);
+  transform: translateY(-2px);
+}
+
+/* A colour or lift alone isn't enough to signal focus for keyboard users. */
+.festival-subpage-card a:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+.festival-subpage-name {
+  margin: 0 0 var(--wp--preset--spacing--10);
+  font-size: var(--wp--preset--font-size--h-5);
+  color: var(--wp--preset--color--bright-blue);
+}
+
+.festival-subpage-summary {
+  margin: 0;
+  font-size: var(--wp--preset--font-size--regular);
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+/* Phone: the notice and cards lose some of their inner padding so the
+   text isn't squeezed into a narrow column. */
+@media (max-width: 767px) {
+
+  .festival-notice,
+  .festival-subpage-card a {
+    padding: var(--wp--preset--spacing--20);
+  }
+}
