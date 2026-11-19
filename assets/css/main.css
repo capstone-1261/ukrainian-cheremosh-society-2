@@ -277,15 +277,27 @@ main > article {
 .main-navigation .sub-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+   top: 100%;
+  right: 0;
+  left: auto;
   z-index: 100;
-  min-width: 14rem;
-  flex-direction: column;
-  gap: 0;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
   padding: var(--wp--preset--spacing--10) var(--wp--preset--spacing--20);
   background: var(--wp--preset--color--charcoal);
   box-shadow: var(--wp--preset--shadow--large);
+}
+
+.main-navigation .sub-menu > li {
+  flex: 0 0 auto;
+}
+
+.main-navigation .sub-menu a {
+  white-space: nowrap;
 }
 
 .main-navigation li:hover > .sub-menu,
@@ -293,8 +305,23 @@ main > article {
   display: flex;
 }
 
-.main-navigation .menu-item-has-children > a::after {
-  content: " ▾";
+/* Arrow beside More */
+.main-navigation .menu-item-118 > a::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  vertical-align: middle;
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.2s ease;
+}
+
+/* Point upward when open */
+.main-navigation .menu-item-118:hover > a::after,
+.main-navigation .menu-item-118:focus-within > a::after {
+  transform: rotate(180deg);
 }
 
 /* --------------------------------------------------------------------------
@@ -823,6 +850,8 @@ main > article {
     min-width: 0;
     padding: 0 0 0 var(--wp--preset--spacing--30);
     box-shadow: none;
+     flex-direction: column;
+  flex-wrap: nowrap;
   }
 
   /* The ▾ arrow means nothing here, since the sub-menu is already open. */
