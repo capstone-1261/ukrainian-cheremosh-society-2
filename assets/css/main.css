@@ -1343,6 +1343,7 @@ main > article {
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover; /* Crops rather than squashing. */
+  object-position: center 20%; /* Keep the crop near the top so heads aren't cut off. */
 }
 
 /* Photo on a single instructor page (single-instructors.php). The tile rule
