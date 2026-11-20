@@ -1335,12 +1335,24 @@ main > article {
   color: var(--wp--preset--color--off-white);
 }
 
-.instructor-photo {
+/* Scoped to .instructor-tile so it only styles the Our People grid. The same
+   class is used on the single instructor page, which has its own rule below. */
+.instructor-tile .instructor-photo {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover; /* Crops rather than squashing. */
+}
+
+/* Photo on a single instructor page (single-instructors.php). The tile rule
+   above only covers the Our People grid, so this one caps the size here. */
+article > .instructor-photo {
+  display: block;
+  width: 100%;
+  max-width: 400px; /* Matches the width="400" in the template. */
+  height: auto;
+  margin-block: var(--wp--preset--spacing--30);
 }
 
 /* The name bar sitting under each photo. */
