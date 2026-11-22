@@ -1855,3 +1855,288 @@ article > .button:focus-visible {
   outline: 2px solid var(--wp--preset--color--bright-blue);
   outline-offset: 3px;
 }
+/* ==========================================================================
+   Faculty & Instructors page (page-sod-instructors.php)
+
+   Built in blocks: the hero banner first, then the instructor rows, then
+   the call-to-action band at the bottom.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero banner
+
+   The page's featured image sits behind the title. It's positioned to fill
+   the whole banner, and a dark gradient is laid over it so the white title
+   stays readable on any photo the client picks.
+   -------------------------------------------------------------------------- */
+
+.instructors-hero {
+  position: relative; /* The photo and the dark overlay position against this. */
+  display: flex;
+  align-items: center; /* Text sits in the middle of the banner, like the design. */
+  box-sizing: border-box; /* Height below includes the padding, so it's the exact banner height. */
+  height: clamp(16rem, 28vw, 32rem); /* About 3.6 to 1 from roughly 910px to 1830px wide; stops at 16rem on phones and 32rem on huge monitors. */
+  /* The banner is edge to edge, so it cancels out the padding that
+     <main> puts around everything (same trick as the homepage hero). */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
+  margin-block-end: 0; /* Rows below have their own background, so no gap needed. */
+  padding: var(--wp--preset--spacing--40) var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo. */
+  overflow: hidden; /* Crops the photo to the banner. */
+}
+/* The photo fills the banner, cropped rather than squashed. */
+.instructors-hero-image {
+  position: absolute;
+  inset: 0; /* Shorthand for top, right, bottom and left all at 0. */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%; /* Keeps faces in view when the crop is wide. */
+}
+
+/* Dark gradient over the photo: nearly solid at the bottom (behind the
+   title) and fading to clear at the top. */
+.instructors-hero::after {
+  content: ""; /* Required, or the pseudo-element doesn't render. */
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.35) 60%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* The text wrapper holds the tagline and the title. It sits above the photo
+   and the gradient (z-index puts it on top) and lines up with the rows below. */
+.instructors-hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Small tagline above the title. */
+.instructors-hero-title {
+  margin: 0;
+  max-width: 9em; /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
+}
+
+.instructors-hero-title {
+  margin: 0;
+}
+/* --------------------------------------------------------------------------
+   Instructor rows
+
+   Each row is a two-column grid: text on one side, photo on the other.
+   Every second row has .is-reversed (added in page-sod-instructors.php),
+   which swaps the sides. The markup order is always text then photo, so the
+   default row has the photo on the right.
+   -------------------------------------------------------------------------- */
+
+.instructor-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* Two equal columns;
+                                                            minmax(0, ...) stops
+                                                            long text pushing
+                                                            a column wider. */
+  align-items: center; /* Text sits at the vertical middle of the photo. */
+  gap: var(--wp--preset--spacing--50);
+  padding-block: var(--wp--preset--spacing--40);
+}
+
+/* Reversed rows: moving the photo to the front puts it on the left. */
+.instructor-row.is-reversed .instructor-row-photo {
+  order: -1;
+  justify-self: start; /* Photo hugs the left edge of its column. */
+}
+
+/* --------------------------------------------------------------------------
+   Text column
+   -------------------------------------------------------------------------- */
+
+/* The small label above the name ("INSTRUCTOR", "PROGRAMS"). Also used by
+   the call-to-action band at the bottom of the page. */
+.instructor-row-label {
+  margin: 0 0 var(--wp--preset--spacing--10);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+.instructor-row-name {
+  margin: 0;
+  font-size: var(--wp--preset--font-size--h-3);
+}
+
+/* The short blue rule under the name, as in the design. */
+.instructor-row-name::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 3px;
+  margin-top: var(--wp--preset--spacing--20);
+  background: var(--wp--preset--color--bright-blue);
+}
+
+/* "Instructing: Chobitok, and Ballet": dimmer so it reads as a label. */
+.instructor-row-teaches {
+  margin: var(--wp--preset--spacing--30) 0 var(--wp--preset--spacing--10);
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--neutral-lighter);
+}
+
+.instructor-row-bio {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-size: var(--wp--preset--font-size--small);
+}
+
+.instructor-row-link {
+  font-size: var(--wp--preset--font-size--small);
+  color: var(--wp--preset--color--off-white);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.instructor-row-link:hover {
+  color: var(--wp--preset--color--red-hover);
+}
+
+.instructor-row-link:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Photo column
+   -------------------------------------------------------------------------- */
+
+.instructor-row-photo {
+  display: block;
+  width: 100%;
+  max-width: 28rem; /* Keeps it from growing huge on a wide monitor. */
+  height: auto;
+  aspect-ratio: 1 / 1; /* Square, as in the design. */
+  object-fit: cover; /* Crops rather than squashing. */
+  object-position: center 20%; /* Keeps heads in the frame. */
+  justify-self: end; /* Photo hugs the right edge of its column. */
+}
+
+/* --------------------------------------------------------------------------
+   Phones and small tablets: one column, photo above the text.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .instructor-row {
+    grid-template-columns: 1fr;
+    gap: var(--wp--preset--spacing--30);
+  }
+
+  /* On every row the photo goes first, whichever way it was flipped. */
+  .instructor-row .instructor-row-photo,
+  .instructor-row.is-reversed .instructor-row-photo {
+    order: -1;
+    justify-self: start;
+  }
+}
+/* --------------------------------------------------------------------------
+   Call-to-action band ("Ready to start dancing?")
+
+   Sits under the last instructor row. A dark panel with a blue line on top,
+   the same way the other cards in the theme are built.
+   -------------------------------------------------------------------------- */
+
+.instructors-cta {
+  max-width: 1280px;
+  margin: var(--wp--preset--spacing--50) auto 0; /* Centres it and adds space above. */
+  padding: var(--wp--preset--spacing--40);
+  background: var(--wp--preset--color--neutral-darker);
+  border-top: 4px solid var(--wp--preset--color--bright-blue);
+}
+
+/* The heading uses the theme's heading style; this just tightens the gap
+   so the label, heading and button read as one group. */
+.instructors-cta-title {
+  margin: 0 0 var(--wp--preset--spacing--30);
+}
+
+/* The View Programs button. The shared "button" class has no style of its
+   own outside the cards, so this is the same outlined look used on the
+   other buttons in the theme. */
+.instructors-cta .button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 2px solid var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Hover/focus: fills in solid, like the other buttons. */
+.instructors-cta .button:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.instructors-cta .button:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* Phones: less padding so the panel isn't cramped. */
+@media (max-width: 767px) {
+  .instructors-cta {
+    padding: var(--wp--preset--spacing--30);
+  }
+}
+/* --------------------------------------------------------------------------
+   Row backgrounds (from the design)
+
+   Each row has its own vertical gradient, and they alternate so they join
+   up into a wave: dark to maroon, maroon to dark, dark to maroon.
+
+   The rows are capped at 1280px wide, but the background has to reach the
+   edges of the screen. A ::before layer behind the row does that: it is
+   100vw wide and shifted back to the left edge of the window.
+   -------------------------------------------------------------------------- */
+
+/* 100vw includes the scrollbar, which can cause a sideways scrollbar.
+   overflow-x: clip cuts anything past the edge without adding one. */
+main:has(.instructors-hero) {
+  overflow-x: clip;
+}
+
+.instructor-row {
+  position: relative; /* The ::before layer positions against the row. */
+  isolation: isolate; /* Keeps the layer behind the row's text, but not behind the page. */
+}
+
+.instructor-row::before {
+  content: "";
+  position: absolute;
+  z-index: -1; /* Behind the text and photo. */
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw; /* Shifts it back to the left edge of the window. */
+  background: linear-gradient(to bottom, #161514, #421216); /* Dark to maroon. */
+}
+
+/* Every second row runs the other way, so the maroon joins up with the
+   row above. */
+.instructor-row.is-reversed::before {
+  background: linear-gradient(to bottom, #421216, #161514); /* Maroon to dark. */
+}
