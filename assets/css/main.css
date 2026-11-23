@@ -2140,3 +2140,769 @@ main:has(.instructors-hero) {
 .instructor-row.is-reversed::before {
   background: linear-gradient(to bottom, #421216, #161514); /* Maroon to dark. */
 }
+/* ==========================================================================
+   About page (page-about.php)
+
+   Built in sections, top to bottom, matching the design. First up: the
+   hero banner.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero banner
+
+   Same idea as the Faculty banner: the page's featured image fills the
+   banner, and a dark gradient on the left keeps the white text readable
+   while the dancers show on the right.
+   -------------------------------------------------------------------------- */
+
+.about-hero {
+  position: relative; /* The photo and the dark overlay position against this. */
+  display: flex;
+  align-items: flex-end; /* Text sits at the bottom of the banner. */
+  box-sizing: border-box;
+  /* Grows and shrinks with the screen, never under 30rem or over 36.375rem
+     (the design's 582px). */
+  min-height: clamp(30rem, 45vw, 36.375rem);
+  /* Edge to edge: cancels the padding <main> puts around everything. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
+  padding: var(--wp--preset--spacing--40) var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo. */
+  overflow: hidden; /* Crops the photo to the banner. */
+}
+
+/* The photo fills the banner, cropped rather than squashed. */
+.about-hero-image {
+  position: absolute;
+  inset: 0; /* Shorthand for top, right, bottom and left all at 0. */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark gradient from the design: almost solid on the left, clear on the right. */
+.about-hero::after {
+  content: ""; /* Required, or the pseudo-element doesn't render. */
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+     rgba(18, 18, 18, 0.85) 0%,
+    rgba(18, 18, 18, 0.5) 35%,
+    rgba(18, 18, 18, 0) 60%
+  );
+}
+
+/* Blurred strip along the bottom of the banner so the text and buttons stand out (like the design). */
+.about-hero::before {
+  content: ""; /* Required, or the pseudo-element doesn't render. */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 11rem; /* How tall the blurred strip is. Make it bigger for a taller blur. */
+  z-index: 1; /* Above the photo and gradient, but under the text (text is also 1 and comes later). */
+  backdrop-filter: blur(12px); /* Blurs whatever is behind it. Raise the number for more blur. */
+  -webkit-backdrop-filter: blur(12px); /* Safari needs this version too. */
+  background: rgba(18, 18, 18, 0.25); /* A light dark tint like the design. */
+  /* Fades the top edge so there's no hard line. */
+  -webkit-mask-image: linear-gradient(to top, #000 60%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 60%, transparent 100%);
+}
+/* Text sits above the photo and the gradient (z-index puts it on top). */
+.about-hero-text {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto; /* Lines up with the sections below. */
+}
+
+/* Small line above the title. */
+.about-hero-tagline {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-family: var(--wp--preset--font-family--heading); /* Serif. */
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.about-hero-title {
+  margin: 0;
+  max-width: 9em; /* Narrow enough to wrap to two lines, like the design. */
+}
+
+/* Description on the left, buttons on the right, along the bottom. */
+.about-hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap; /* Buttons drop under the text on narrow screens. */
+  gap: var(--wp--preset--spacing--30);
+  margin-block-start: var(--wp--preset--spacing--30);
+}
+
+.about-hero-description {
+  margin: 0;
+  max-width: 38rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.about-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--20);
+}
+
+/* Buttons: first is filled (the main action), second is outlined. */
+.about-hero-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading); /* Serif, like the nav links. */
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.about-hero-actions .button:first-child {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* Hover and keyboard focus swap the two styles. */
+.about-hero-actions .button:hover,
+.about-hero-actions .button:focus-visible {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.about-hero-actions .button:first-child:hover,
+.about-hero-actions .button:first-child:focus-visible {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+
+/* ===== ABOUT PAGE: SECTION 2, OUR STORY ===== */
+
+/* Full-width band with the dark red gradient from the design.
+   Edge to edge, so it cancels the padding <main> puts around everything. */
+.about-story {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Two columns: text on the left, photo on the right (536px wide in the design).
+   max-width keeps it from stretching across a huge screen. */
+.about-story-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 536px);
+  align-items: center;
+  gap: var(--wp--preset--spacing--60);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* The photo scales with its column and keeps its shape. */
+.about-story-photo {
+  margin: 0; /* Browsers add a default margin to <figure>. */
+}
+
+.about-story-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Phones and small tablets: one column, text first and photo underneath. */
+@media (max-width: 767px) {
+  .about-story-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small "Our Story" label above the heading. */
+.about-label {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.about-story-title {
+  margin: 0;
+  max-width: 14em;
+}
+
+/* The short blue line under the heading (70px by 3px in the design). */
+.about-rule {
+  display: block;
+  width: 70px;
+  height: 3px;
+  margin-block: var(--wp--preset--spacing--30);
+  background: var(--wp--preset--color--bright-blue);
+}
+
+/* Readable line length for the two paragraphs. */
+.about-story-text p:not(.about-label) {
+  max-width: 38rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.about-story-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--20);
+  margin-block-start: var(--wp--preset--spacing--40);
+}
+
+/* Same button look as the banner: outlined, and the first one filled. */
+.about-story-actions .button {
+  display: inline-flex;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.about-story-actions .button:first-child {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.about-story-actions .button:hover,
+.about-story-actions .button:focus-visible {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.about-story-actions .button:first-child:hover,
+.about-story-actions .button:first-child:focus-visible {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+
+/* ===== ABOUT PAGE: SECTION 3, MILESTONES ===== */
+
+/* Full-width red band (the design's red gradient). Edge to edge, so it
+   cancels the padding <main> puts around everything. */
+.about-milestones {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: linear-gradient(126.87deg, #d22630 0%, #b51f28 39.29%, #7e141b 71.43%);
+  color: var(--wp--preset--color--off-white);
+}
+
+.about-milestones-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.about-milestones-title {
+  margin: 0;
+}
+
+/* Four stats in a row; they wrap to fewer columns on smaller screens. */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--wp--preset--spacing--40);
+  margin: var(--wp--preset--spacing--50) 0 0;
+  padding: 0;
+  list-style: none; /* Removes the bullets. */
+}
+
+/* Each stat has a blue bar on its left edge. */
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-inline-start: var(--wp--preset--spacing--30);
+  border-inline-start: 4px solid #005a91;
+}
+
+/* The big number, like 1969. */
+.about-stat-number {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1;
+}
+
+/* The short title under the number. */
+.about-stat-label {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.about-stat-text {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+/* ===== ABOUT PAGE: SECTION 4, LEADERSHIP ===== */
+
+/* Dark grey band, edge to edge. */
+.about-leadership {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: #2c2c2c;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Stacks the three pieces with space between them. */
+.about-leadership-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--60);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* Name headings (MYKOLA KANEVETS, CHESTER & LUBA KUC). */
+.about-leadership-name {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Body text in the Leadership band. */
+.about-director-text p:not(.about-label),
+.about-founders-text p:not(.about-label) {
+  max-width: 38rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* PIECE 1: portrait on the left, text on the right. */
+.about-director {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) 1fr;
+  align-items: center;
+  gap: var(--wp--preset--spacing--60);
+}
+
+.about-director-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The pull quote: red bar on the left, small italic capitals. */
+.about-pullquote {
+  margin: var(--wp--preset--spacing--40) 0;
+  padding-inline-start: var(--wp--preset--spacing--30);
+  border-inline-start: 3px solid #d22630;
+}
+
+.about-pullquote p {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.about-pullquote cite {
+  display: block;
+  margin-block-start: 0.5rem;
+  font-size: 0.875rem;
+  font-style: normal;
+}
+
+/* Outlined button; fills in on hover (same look as the rest of the page). */
+.about-director-text .button {
+  display: inline-flex;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.about-director-text .button:hover,
+.about-director-text .button:focus-visible {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* PIECE 2: text on the left, photo on the right. */
+.about-founders {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 560px);
+  align-items: center;
+  gap: var(--wp--preset--spacing--60);
+}
+
+.about-founders-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* PIECE 3: the timeline. */
+.about-timeline-title {
+  margin: 0 0 var(--wp--preset--spacing--40);
+  text-transform: uppercase;
+}
+
+/* Three columns, each with a blue line across the top. */
+.about-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--wp--preset--spacing--40);
+  margin: 0;
+  padding: 0;
+  list-style: none; /* Removes the 1. 2. 3. numbers. */
+}
+
+.about-timeline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-block-start: var(--wp--preset--spacing--20);
+  border-block-start: 3px solid var(--wp--preset--color--bright-blue);
+}
+
+/* The red year, like 1969 and TODAY. */
+.about-timeline-year {
+  color: #d22630;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.about-timeline-name {
+  font-weight: 700;
+}
+
+.about-timeline-role {
+  font-size: 0.875rem;
+}
+
+/* Phones and small tablets: everything stacks into one column. */
+@media (max-width: 767px) {
+  .about-director,
+  .about-founders,
+  .about-timeline {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== ABOUT PAGE: SECTION 5, PRESS QUOTES ===== */
+
+/* Band that fades from dark grey into red (from the design). Edge to edge. */
+.about-press {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: linear-gradient(180deg, #2c2c2c 0%, #d22630 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+.about-press-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.about-press-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Three cards in a row; they wrap on smaller screens. */
+.about-quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--wp--preset--spacing--30);
+  margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* One card: dark box with a blue line across the top. */
+.about-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Name sits at the bottom of every card. */
+  gap: var(--wp--preset--spacing--30);
+  margin: 0; /* Browsers add a default margin to <figure>. */
+  padding: 2.5rem 2rem;
+  background: #2c2c2c;
+  border-block-start: 3px solid var(--wp--preset--color--bright-blue);
+}
+
+.about-quote blockquote {
+  margin: 0;
+}
+
+.about-quote blockquote p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.about-quote figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.875rem;
+}
+
+/* Name in bold capitals, role underneath. */
+.about-quote-name {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
+/* ===== ABOUT PAGE: SECTION 6, HIRE US ===== */
+
+/* Red at the top fading to dark grey at the bottom (the design's gradient). */
+.about-hire {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: linear-gradient(0deg, #2c2c2c 32.73%, #7f292e 66.37%, #d22630 100%);
+  color: var(--wp--preset--color--off-white);
+  scroll-margin-top: 6rem; /* Stops the sticky header covering the heading when a button jumps here. */
+}
+
+/* Two columns: heading, text and reel on the left, contact and form on the right. */
+.about-hire-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--wp--preset--spacing--60);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.about-hire-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.about-hire-main p:not(.about-label) {
+  max-width: 38rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* The reel: photo with a round play button in the middle. */
+.about-reel {
+  position: relative;
+  display: block;
+  margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.about-reel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about-reel-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  transform: translate(-50%, -50%); /* Centres it exactly. */
+  border-radius: 50%;
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+  transition: transform 0.2s ease;
+}
+
+.about-reel:hover .about-reel-play,
+.about-reel:focus-visible .about-reel-play {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Contact line above the form. */
+.about-hire-contact {
+  margin: 0 0 var(--wp--preset--spacing--40);
+  font-size: 1.125rem;
+}
+
+.about-hire-contact a {
+  color: inherit;
+}
+
+/* The form card: dark box with a blue line across the top. */
+.about-inquiry {
+  padding: 2.5rem 2rem;
+  background: #2c2c2c;
+  border-block-start: 3px solid var(--wp--preset--color--bright-blue);
+}
+
+.about-inquiry-title {
+  margin: 0 0 var(--wp--preset--spacing--30);
+  text-transform: uppercase;
+}
+
+/* Phones and small tablets: one column. */
+@media (max-width: 767px) {
+  .about-hire-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== ABOUT PAGE: SECTIONS 7 AND 8, JOIN & PRESS, COMPANY DANCER STRIP ===== */
+
+/* Dark grey fading into red (the design's gradient). Edge to edge. */
+.about-join-press {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: linear-gradient(180deg, #2c2c2c 0%, #6a111b 70%, #d22630 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Two equal cards side by side. */
+.about-join-press-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--wp--preset--spacing--40);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* One card: dark box, photo on top, blue line along the top edge. */
+.about-card {
+  display: flex;
+  flex-direction: column;
+  background: #2c2c2c;
+  border-block-start: 3px solid var(--wp--preset--color--bright-blue);
+}
+
+.about-card-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Text area under the photo. The button is pushed to the bottom
+   so both cards' buttons line up. */
+.about-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--wp--preset--spacing--20);
+  padding: 2rem;
+}
+
+.about-card-label {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.about-card-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.about-card-body p {
+  line-height: 1.5;
+}
+
+.about-card-small {
+  font-size: 0.875rem;
+}
+
+.about-card-small a {
+  color: inherit;
+}
+
+/* Buttons: outlined by default, filled for the .--filled one. */
+.about-card-button,
+.about-dancer-button {
+  display: inline-flex;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.about-card-button {
+  margin-block-start: auto; /* Pushes the button to the bottom of the card. */
+}
+
+.about-card-button--filled {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* Hover and keyboard focus swap the two styles. */
+.about-card-button:hover,
+.about-card-button:focus-visible,
+.about-dancer-button:hover,
+.about-dancer-button:focus-visible {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.about-card-button--filled:hover,
+.about-card-button--filled:focus-visible {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* The thin red "Company Dancer?" bar. */
+.about-dancer-strip {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--40) var(--wp--custom--padding-global);
+  background: #832b23;
+  color: var(--wp--preset--color--off-white);
+}
+
+.about-dancer-strip-inner {
+  display: flex;
+  flex-wrap: wrap; /* Button drops under the text on narrow screens. */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wp--preset--spacing--30);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.about-dancer-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.about-dancer-strip p {
+  margin: 0.5rem 0 0;
+}
+
+/* Phones and small tablets: the cards stack. */
+@media (max-width: 767px) {
+  .about-join-press-inner {
+    grid-template-columns: 1fr;
+  }
+}
