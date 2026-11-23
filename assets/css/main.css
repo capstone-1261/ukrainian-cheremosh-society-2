@@ -1825,14 +1825,18 @@ article > .button:focus-visible {
   margin-inline: auto;
 }
 
-/* Small tagline above the title. */
-.instructors-hero-title {
-  margin: 0;
-  max-width: 9em; /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
+/* Small tagline above the title (same look as the About banner tagline). */
+.instructors-hero-tagline {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-family: var(--wp--preset--font-family--heading); /* Serif. */
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .instructors-hero-title {
   margin: 0;
+  max-width: 9em; /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
 }
 /* --------------------------------------------------------------------------
    Instructor rows
