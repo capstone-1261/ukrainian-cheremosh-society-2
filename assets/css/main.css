@@ -3025,3 +3025,23 @@ main:has(.instructors-hero) {
   width: 20px;
   height: 20px;
 }
+
+
+
+/* ===== TABLETS: STACK THE LEADERSHIP CARDS ===== */
+
+/* Between 768px and 1023px the two-column cards leave the text only about
+   200px wide, so the Director and Founders cards stack into one column
+   (phones already do this at 767px and below). */
+@media (max-width: 1023px) {
+  .about-director,
+  .about-founders {
+    grid-template-columns: 1fr;
+  }
+
+  /* Founders: the photo sits under the text, like on phones. */
+  .about-founders-photo {
+    max-width: 560px;
+    margin-inline: auto;
+  }
+}
