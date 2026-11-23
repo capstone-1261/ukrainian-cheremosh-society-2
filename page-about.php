@@ -317,31 +317,22 @@ get_header(); // Loads header.php (skip link, announcement bar, menu).
 						<svg viewBox="0 0 24 24" width="28" height="28"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg>
 					</span>
 				</a>
+					<div class="about-hire-contact">
+						<h5>Prefer email?</h5>
+						<a href="mailto:performances@cheremosh.ca">performances@cheremosh.ca</a>
+						·
+						<a href="tel:+17804660089">780-466-0089</a>
+                  </div>
 			</div>
 
 			<div class="about-hire-side">
-				<p class="about-hire-contact">
-					Prefer email?
-					<a href="mailto:performances@cheremosh.ca">performances@cheremosh.ca</a>
-					·
-					<a href="tel:+17804660089">780-466-0089</a>
-				</p>
 
 				<div class="about-inquiry">
 					<h3 class="about-inquiry-title">Performance Inquiry</h3>
-
-					<?php
-					/*
-					 * FORM GOES HERE (Abdale's area).
-					 * Build the "Performance Inquiry" form in Fluent Forms with:
-					 * name, email, performance location, date & time, length,
-					 * stage dimensions, additional notes, and a "Send Inquiry" button.
-					 * Then replace the <p> below with:
-					 *   <?php echo do_shortcode( '[fluentform id="THE_FORM_ID"]' ); ?>
-					 */
-					?>
-					<p class="about-inquiry-placeholder">The inquiry form is coming soon. In the meantime, email us at performances@cheremosh.ca.</p>
-				</div>
+						<?php
+						echo do_shortcode( '[fluentform id="5"]' );
+						?>
+			</div>
 			</div>
 
 		</div>
