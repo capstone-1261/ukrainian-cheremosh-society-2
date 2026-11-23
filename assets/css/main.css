@@ -2300,6 +2300,7 @@ main:has(.instructors-hero) {
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .about-story-actions .button:first-child {
@@ -2770,6 +2771,7 @@ main:has(.instructors-hero) {
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .about-card-button {
@@ -2798,6 +2800,7 @@ a.button.about-dancer-button {
 .about-card-button--filled:focus-visible {
   background: transparent;
   color: var(--wp--preset--color--off-white);
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 /* The thin red "Company Dancer?" bar. */
