@@ -239,7 +239,9 @@ main > article {
   text-transform: uppercase;
   color: var(--wp--preset--color--off-white);
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease-out;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease-out;
 }
 
 .main-navigation a:hover {
@@ -251,10 +253,6 @@ main > article {
 .main-navigation a:focus-visible {
   outline: 2px solid var(--wp--preset--color--off-white);
   outline-offset: 3px;
-}
-
-.main-navigation #menu-item-43 > a:hover {
-	color: var(--wp--preset--color--red-hover);
 }
 
 /* The page you're on: underlined so it's not shown by colour alone. */
@@ -277,13 +275,13 @@ main > article {
 .main-navigation .sub-menu {
   display: none;
   position: absolute;
-   top: 100%;
+  top: 100%;
   right: 0;
   left: auto;
   z-index: 100;
   width: max-content;
   max-width: calc(100vw - 2rem);
-   flex-direction: row;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
@@ -305,8 +303,8 @@ main > article {
   display: flex;
 }
 
-/* Arrow beside More */
-.main-navigation .menu-item-118 > a::after {
+/* Arrow beside any menu item that has a dropdown (More, Dance with Us). */
+.main-navigation .menu-item-has-children > a::after {
   content: "";
   display: inline-block;
   width: 18px;
@@ -314,13 +312,14 @@ main > article {
   margin-left: 10px;
   vertical-align: middle;
   background-color: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
   transition: transform 0.2s ease;
 }
 
 /* Point upward when open */
-.main-navigation .menu-item-118:hover > a::after,
-.main-navigation .menu-item-118:focus-within > a::after {
+.main-navigation .menu-item-has-children:hover > a::after,
+.main-navigation .menu-item-has-children:focus-within > a::after {
   transform: rotate(180deg);
 }
 
@@ -340,7 +339,9 @@ main > article {
   text-decoration: none;
   border-radius: 0;
   border: 2px solid var(--wp--preset--color--red);
-  transition: background-color 0.3s ease, transform 0.3s ease-out;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease-out;
 }
 
 .header-cta:hover {
@@ -416,28 +417,25 @@ main > article {
 }
 
 /* ==========================================================================
-   Cards: programs (Dance with Us) and people (Our People)
+   Cards: programs (Dance with Us)
    Same treatment as the homepage ABOUT section and styles/card-charcoal.json.
+   The Our People page has its own layouts further down.
    ========================================================================== */
 
-.people-section,
 .programs-list {
   max-width: 1280px;
   margin: var(--wp--preset--spacing--60) auto 0;
 }
 
-.people-section > h2,
 .programs-list > h2 {
   margin: 0 0 var(--wp--preset--spacing--30);
 }
 
 /* auto-fit collapses empty columns so cards fill the row, but the max track
-   is capped at 24rem — otherwise a section with one person in it (Artistic
-   Director) stretches that single card across the whole 1280px, and the
-   photo inside it renders about 960px tall.
+   is capped at 24rem so a section with a single card doesn't stretch it
+   across the whole 1280px.
    justify-content: start keeps a short row left-aligned instead of
    stretching to fit. */
-.people-section ul,
 .programs-list ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 24rem));
@@ -450,7 +448,6 @@ main > article {
 
 /* flex column so the button can be pinned to the bottom, which keeps the
    buttons aligned across cards with different amounts of text. */
-.people-section li,
 .programs-list li {
   display: flex;
   flex-direction: column;
@@ -461,22 +458,11 @@ main > article {
   box-shadow: var(--wp--preset--shadow--large);
 }
 
-/* object-fit: cover crops rather than squashing, so portraits and landscapes
-   both sit neatly without the client having to crop them first. */
-.people-section .person-photo {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.people-section h3,
 .programs-list h3 {
   margin: 0;
   font-size: var(--wp--preset--font-size--h-5);
 }
 
-.people-section li p,
 .programs-list li p {
   margin: 0;
   font-size: var(--wp--preset--font-size--small);
@@ -498,7 +484,6 @@ main > article {
    Learn More button on the cards (outlined style from the design)
    -------------------------------------------------------------------------- */
 
-.people-section .button,
 .programs-list .button {
   margin-top: auto; /* Pins it to the bottom of the card. */
   display: block;
@@ -518,13 +503,11 @@ main > article {
     color 0.2s ease;
 }
 
-.people-section .button:hover,
 .programs-list .button:hover {
   background: var(--wp--preset--color--off-white);
   color: var(--wp--preset--color--charcoal);
 }
 
-.people-section .button:focus-visible,
 .programs-list .button:focus-visible {
   outline: 2px solid var(--wp--preset--color--bright-blue);
   outline-offset: 3px;
@@ -803,12 +786,12 @@ main > article {
   }
 
   /*
-	 * The menu is hidden until opened, and sits on its own full-width row
-	 * underneath the logo and Register button.
-	 *
-	 * order: 1 pushes it last in the flex row (everything else defaults to 0),
-	 * so the top row stays logo | hamburger | Register and the menu drops below.
-	 */
+   * The menu is hidden until opened, and sits on its own full-width row
+   * underneath the logo and Register button.
+   *
+   * order: 1 pushes it last in the flex row (everything else defaults to 0),
+   * so the top row stays logo | hamburger | Register and the menu drops below.
+   */
   .main-navigation {
     display: none;
     order: 1;
@@ -841,17 +824,17 @@ main > article {
   }
 
   /*
-	 * Dropdowns can't rely on hover on a touchscreen, so sub-menus are
-	 * always visible, indented under their parent rather than floating.
-	 */
+   * Dropdowns can't rely on hover on a touchscreen, so sub-menus are
+   * always visible, indented under their parent rather than floating.
+   */
   .main-navigation .sub-menu {
     display: flex;
     position: static;
     min-width: 0;
     padding: 0 0 0 var(--wp--preset--spacing--30);
     box-shadow: none;
-     flex-direction: column;
-  flex-wrap: nowrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 
   /* The ▾ arrow means nothing here, since the sub-menu is already open. */
@@ -860,7 +843,7 @@ main > article {
   }
 
   /* Stops the page scrolling behind an open menu.
-	   mobile-menu.js adds this class to <body>. */
+     mobile-menu.js adds this class to <body>. */
   body.menu-is-open {
     overflow: hidden;
   }
@@ -1221,7 +1204,7 @@ main > article {
   }
 
   /* Stack the label above its value — 10rem of label plus a value
-	   doesn't fit on a phone. */
+     doesn't fit on a phone. */
   .account-details {
     grid-template-columns: 1fr;
     gap: var(--wp--preset--spacing--20);
@@ -1235,9 +1218,6 @@ main > article {
      .people-feature     — Artistic Director banner, portrait beside text
      .people-instructors — a row of landscape photo tiles
      .people-board       — a grid of board member cards
-
-   The old shared .people-section rule higher up is no longer used by this
-   page; it still serves the programs cards.
    ========================================================================== */
 
 /* Shared section spacing and headings. */
@@ -1253,7 +1233,6 @@ main > article {
   padding-bottom: var(--wp--preset--spacing--20);
   border-bottom: 2px solid var(--wp--preset--color--bright-blue);
 }
-
 
 /* --------------------------------------------------------------------------
    Artistic Director banner
@@ -1332,7 +1311,6 @@ main > article {
   color: var(--wp--preset--color--charcoal);
 }
 
-
 /* --------------------------------------------------------------------------
    Instructors row
 
@@ -1357,12 +1335,25 @@ main > article {
   color: var(--wp--preset--color--off-white);
 }
 
-.instructor-photo {
+/* Scoped to .instructor-tile so it only styles the Our People grid. The same
+   class is used on the single instructor page, which has its own rule below. */
+.instructor-tile .instructor-photo {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover; /* Crops rather than squashing. */
+  object-position: center 20%; /* Keep the crop near the top so heads aren't cut off. */
+}
+
+/* Photo on a single instructor page (single-instructors.php). The tile rule
+   above only covers the Our People grid, so this one caps the size here. */
+article > .instructor-photo {
+  display: block;
+  width: 100%;
+  max-width: 400px; /* Matches the width="400" in the template. */
+  height: auto;
+  margin-block: var(--wp--preset--spacing--30);
 }
 
 /* The name bar sitting under each photo. */
@@ -1384,7 +1375,6 @@ main > article {
   outline: 2px solid var(--wp--preset--color--bright-blue);
   outline-offset: 3px;
 }
-
 
 /* --------------------------------------------------------------------------
    Board grid
@@ -1433,7 +1423,6 @@ main > article {
   font-size: var(--wp--preset--font-size--small);
   color: var(--wp--preset--color--off-white);
 }
-
 
 /* ---- Tablet and phone ---- */
 
@@ -1516,7 +1505,6 @@ main > article {
   color: var(--wp--preset--color--neutral-lighter);
 }
 
-
 /* --------------------------------------------------------------------------
    "What are you looking to sign up for?" checkboxes
 
@@ -1564,7 +1552,6 @@ main > article {
   accent-color: var(--wp--preset--color--red);
 }
 
-
 /* --------------------------------------------------------------------------
    Create Account button — same block as the login submit.
    -------------------------------------------------------------------------- */
@@ -1598,8 +1585,6 @@ main > article {
   outline-offset: 3px;
 }
 
-
-
 /* ==========================================================================
    DANCE FESTIVAL PAGE
 
@@ -1626,7 +1611,6 @@ main > article {
   padding-bottom: var(--wp--preset--spacing--20);
   border-bottom: 2px solid var(--wp--preset--color--bright-blue);
 }
-
 
 /* --------------------------------------------------------------------------
    Postponement notice
@@ -1667,7 +1651,6 @@ main > article {
 .festival-notice p:last-child {
   margin-bottom: 0; /* No trailing gap inside the box. */
 }
-
 
 /* --------------------------------------------------------------------------
    Scholarship winners table
@@ -1756,7 +1739,9 @@ main > article {
   border-top: 3px solid var(--wp--preset--color--red);
   text-decoration: none;
   color: var(--wp--preset--color--off-white);
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .festival-subpage-card a:hover {
@@ -1785,9 +1770,88 @@ main > article {
 /* Phone: the notice and cards lose some of their inner padding so the
    text isn't squeezed into a narrow column. */
 @media (max-width: 767px) {
-
   .festival-notice,
   .festival-subpage-card a {
     padding: var(--wp--preset--spacing--20);
   }
+}
+
+/* ==========================================================================
+   Single program page (single-programs.php): Schedule + Register button
+   ========================================================================== */
+
+/* The Schedule section becomes a card: a dark panel with a blue line on its
+   left edge so it stands out from the description above it. */
+.program-schedule {
+  margin-block: var(--wp--preset--spacing--40); /* Space above and below the card. */
+  padding: var(--wp--preset--spacing--30); /* Space inside the card. */
+  background: var(--wp--preset--color--neutral-darker);
+  border-left: 4px solid var(--wp--preset--color--bright-blue);
+}
+
+/* The "Schedule" heading: smaller than the page headings, since it's a label. */
+.program-schedule h2 {
+  margin-top: 0;
+  font-size: var(--wp--preset--font-size--large);
+}
+
+/* The <dl> list: two columns on a wide screen (label | value). */
+.program-schedule dl {
+  display: grid;
+  grid-template-columns: max-content 1fr; /* Label column is as wide as its longest label. */
+  gap: 0.5rem var(--wp--preset--spacing--30); /* Row gap, then column gap. */
+  margin: 0;
+}
+
+/* Labels (Days, Time, Season, Ages): small, uppercase, blue, like the table headers. */
+.program-schedule dt {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wp--preset--color--bright-blue);
+}
+
+/* Values (Saturday, 12:00 pm - 1:30 pm). Browsers indent <dd> by default; remove it. */
+.program-schedule dd {
+  margin: 0;
+}
+
+/* Age links inherit the text colour instead of the default link colour. */
+.program-schedule dd a {
+  color: inherit;
+}
+
+/* The Register link at the bottom of the program page. It has class "button"
+   but the card styles above only cover .programs-list, so on its own it was
+   plain text. Same outlined look as those buttons. */
+.program-schedule ~ .button,
+article > .button {
+  display: inline-block;
+  margin-block: var(--wp--preset--spacing--30);
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 2px solid var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: var(--wp--preset--font-size--medium);
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Hover/focus: fills in solid, matching the card buttons. */
+.program-schedule ~ .button:hover,
+article > .button:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.program-schedule ~ .button:focus-visible,
+article > .button:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
 }
