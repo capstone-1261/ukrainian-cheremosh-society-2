@@ -1215,13 +1215,11 @@ main > article {
    Our People (page-our-people.php)
 
    Three different layouts, matching Daina's design:
-     .people-feature     — Artistic Director banner, portrait beside text
      .people-instructors — a row of landscape photo tiles
      .people-board       — a grid of board member cards
    ========================================================================== */
 
 /* Shared section spacing and headings. */
-.people-feature,
 .people-instructors,
 .people-board {
   max-width: 1280px;
@@ -1232,83 +1230,6 @@ main > article {
   margin: 0 0 var(--wp--preset--spacing--30);
   padding-bottom: var(--wp--preset--spacing--20);
   border-bottom: 2px solid var(--wp--preset--color--bright-blue);
-}
-
-/* --------------------------------------------------------------------------
-   Artistic Director banner
-
-   Two columns: a fixed-width portrait, then the text taking the rest.
-   minmax(0, 1fr) rather than plain 1fr so a long bio can't push the
-   column wider than the grid.
-   -------------------------------------------------------------------------- */
-
-.feature-person {
-  display: grid;
-  grid-template-columns: 20rem minmax(0, 1fr);
-  gap: var(--wp--preset--spacing--40);
-  align-items: start;
-  padding: var(--wp--preset--spacing--40);
-  background: var(--wp--preset--color--neutral-darker);
-}
-
-/* A portrait crop — taller than wide, as in the design. */
-.feature-photo {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-/* The small label above the name ("ARTISTIC DIRECTOR"). */
-.feature-role {
-  margin: 0 0 var(--wp--preset--spacing--10);
-  font-family: var(--wp--preset--font-family--heading);
-  font-size: var(--wp--preset--font-size--small);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--wp--preset--color--neutral-lighter);
-}
-
-.feature-name {
-  margin: 0;
-  font-size: var(--wp--preset--font-size--h-3);
-}
-
-/* The short blue rule under the name in the design. */
-.feature-name::after {
-  content: "";
-  display: block;
-  width: 4rem;
-  height: 3px;
-  margin-top: var(--wp--preset--spacing--20);
-  background: var(--wp--preset--color--bright-blue);
-}
-
-.feature-bio {
-  margin: var(--wp--preset--spacing--30) 0;
-  font-size: var(--wp--preset--font-size--regular);
-}
-
-/* The Learn More button, sized to its text instead of filling the column. */
-.feature-text .button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  color: var(--wp--preset--color--off-white);
-  border: 2px solid var(--wp--preset--color--off-white);
-  font-family: var(--wp--preset--font-family--heading);
-  font-size: var(--wp--preset--font-size--medium);
-  font-weight: 600;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.feature-text .button:hover {
-  background: var(--wp--preset--color--off-white);
-  color: var(--wp--preset--color--charcoal);
 }
 
 /* --------------------------------------------------------------------------
@@ -1422,21 +1343,6 @@ article > .instructor-photo {
   margin-top: auto; /* Pins it to the bottom of the card. */
   font-size: var(--wp--preset--font-size--small);
   color: var(--wp--preset--color--off-white);
-}
-
-/* ---- Tablet and phone ---- */
-
-@media (max-width: 767px) {
-  /* The banner stacks: photo above the text. */
-  .feature-person {
-    grid-template-columns: 1fr;
-    padding: var(--wp--preset--spacing--30);
-  }
-
-  /* A full-width portrait at 3/4 is very tall on a phone, so cap it. */
-  .feature-photo {
-    max-width: 16rem;
-  }
 }
 
 /* ==========================================================================
@@ -1919,14 +1825,18 @@ article > .button:focus-visible {
   margin-inline: auto;
 }
 
-/* Small tagline above the title. */
-.instructors-hero-title {
-  margin: 0;
-  max-width: 9em; /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
+/* Small tagline above the title (same look as the About banner tagline). */
+.instructors-hero-tagline {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-family: var(--wp--preset--font-family--heading); /* Serif. */
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .instructors-hero-title {
   margin: 0;
+  max-width: 9em; /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
 }
 /* --------------------------------------------------------------------------
    Instructor rows
@@ -2905,4 +2815,213 @@ main:has(.instructors-hero) {
   .about-join-press-inner {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* ===== OUR PEOPLE PAGE: LEADERSHIP BAND ===== */
+
+/* Dark-to-maroon gradient from the design, edge to edge (same trick as About). */
+.people-leadership {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), /* The design's 20% black layer. */
+    linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Stacks the cards with space between them. */
+.people-leadership-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--60);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* On this page the Artistic Director sits on a dark grey card. */
+.people-leadership .about-director {
+  padding-inline: 1rem;
+  background: #2c2c2c;
+}
+
+
+/* On the Our People page the Founders also sit on a dark grey card. */
+.people-leadership .about-founders {
+  padding-inline: 1rem;
+  background: #2c2c2c;
+}
+
+
+/* ===== OUR PEOPLE PAGE: INSTRUCTORS BAND ===== */
+
+/* Deep red band, edge to edge. The Board section reuses it next. */
+.people-band {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
+  background: #4f0d15;
+  color: var(--wp--preset--color--off-white);
+}
+
+.people-band-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--preset--spacing--50);
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* Heading on the left, intro paragraph on the right. */
+.people-band-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--wp--preset--spacing--60);
+  align-items: end;
+}
+
+.people-band-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.people-band-intro {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Three equal cards, each with a blue line across the top. */
+.people-band .instructor-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-content: stretch;
+}
+
+.people-band .instructor-tile {
+  border-block-start: 3px solid var(--wp--preset--color--bright-blue);
+}
+
+.people-band .instructor-name {
+  background: #2c2c2c;
+  font-size: 1.25rem;
+}
+
+
+/* ===== OUR PEOPLE PAGE: FESTIVAL DIRECTOR ===== */
+
+/* Portrait on the left (343px wide in the design), text centred beside it.
+   No card background: it sits straight on the gradient. */
+.people-festival {
+  display: grid;
+  grid-template-columns: minmax(0, 343px) 1fr;
+  align-items: center;
+  gap: var(--wp--preset--spacing--60);
+  padding-inline: 1rem;
+}
+
+.people-festival-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Phones and small tablets: portrait on top, text underneath. */
+@media (max-width: 767px) {
+  .people-festival {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The "Instructors" button sits at the right under the cards. */
+.people-band-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.people-band-actions .button {
+  display: inline-flex;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.people-band-actions .button:hover,
+.people-band-actions .button:focus-visible {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* Phones and small tablets: everything stacks. */
+@media (max-width: 767px) {
+  .people-band-header,
+  .people-band .instructor-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===== OUR PEOPLE PAGE: BOARD ===== */
+
+/* Four cards across, like the design. */
+.people-band .board-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-content: stretch;
+}
+
+/* Name in bold, bio and link in the light off-white used on this band. */
+.people-band .board-name {
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.people-band .board-bio {
+  color: var(--wp--preset--color--off-white);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Tablets and phones: fewer columns. */
+@media (max-width: 1023px) {
+  .people-band .board-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .people-band .board-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Placeholder board cards (see the note in page-our-people.php). */
+
+/* The grey square standing in for a photo. */
+.board-photo--placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #d9d9d9;
+}
+
+/* "Job title" line under the name. */
+.board-job {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Row of small social icons at the bottom of the card. */
+.board-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto; /* Pins the icons to the bottom of the card. */
+}
+
+.board-social img {
+  display: block;
+  width: 20px;
+  height: 20px;
 }
