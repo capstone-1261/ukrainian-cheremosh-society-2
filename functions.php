@@ -93,5 +93,20 @@ function cheremosh_enqueue_scripts() {
 			'in_footer' => true,
 		)
 	);
+
+	// dance-programs.js: arrows and dots for the program carousel.
+	// Only loaded on the Dance with Us page.
+	if ( is_page( 'dance-with-us' ) ) {
+		wp_enqueue_script(
+			'cheremosh-dance-programs',
+			get_theme_file_uri( 'assets/js/dance-programs.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/dance-programs.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'cheremosh_enqueue_scripts' );
