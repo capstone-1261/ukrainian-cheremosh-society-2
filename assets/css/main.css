@@ -567,6 +567,7 @@ main > article {
 .footer-sitemap a:hover {
   text-decoration: underline;
   color: var(--wp--preset--color--red-hover);
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 /* --------------------------------------------------------------------------
@@ -641,6 +642,7 @@ main > article {
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
+  transition: 0.3s ease, transform 0.3s ease-out;
 }
 
 .newsletter-submit:hover {
@@ -1290,6 +1292,11 @@ article > .instructor-photo {
 
 .instructor-tile a:hover .instructor-name {
   background: var(--wp--preset--color--red);
+  transition: 0.3s ease, transform 0.3s ease-out;
+}
+
+.instructor-tile .instructor-name {
+  transition: 0.3s ease, transform 0.3s ease-out;
 }
 
 .instructor-tile a:focus-visible {
@@ -1911,6 +1918,7 @@ article > .button:focus-visible {
   color: var(--wp--preset--color--off-white);
   text-decoration: underline;
   text-underline-offset: 0.2em;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .instructor-row-link:hover {
@@ -2164,6 +2172,10 @@ main:has(.instructors-hero) {
   display: flex;
   flex-wrap: wrap;
   gap: var(--wp--preset--spacing--20);
+}
+
+.about-hero-actions .button {
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 /* Buttons: first is filled (the main action), second is outlined. */
@@ -2447,6 +2459,7 @@ main:has(.instructors-hero) {
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .about-director-text .button:hover,
@@ -2777,6 +2790,10 @@ main:has(.instructors-hero) {
   color: var(--wp--preset--color--charcoal);
 }
 
+a.button.about-dancer-button {
+  transition: color 0.3s ease, transform 0.3s ease-out;
+}
+
 .about-card-button--filled:hover,
 .about-card-button--filled:focus-visible {
   background: transparent;
@@ -2946,6 +2963,7 @@ main:has(.instructors-hero) {
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .people-band-actions .button:hover,
@@ -3180,6 +3198,7 @@ main:has(.instructors-hero) {
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 /* The first card's button is filled, as in the design. */
@@ -3246,6 +3265,7 @@ main:has(.instructors-hero) {
 .dance-programs-arrows {
   display: flex;
   gap: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 /* Round outlined arrow buttons. */
@@ -3438,6 +3458,7 @@ main:has(.instructors-hero) {
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .dance-why-actions .button:first-child {
@@ -3526,6 +3547,7 @@ main:has(.instructors-hero) {
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 .dance-instructors-intro .button:hover,
@@ -3575,6 +3597,7 @@ main:has(.instructors-hero) {
   font-weight: 700;
   line-height: 1.33;
   text-transform: uppercase;
+  transition: color 0.3s ease, transform 0.3s ease-out;
 }
 
 /* Hover/keyboard focus: name turns blue so it reads as a link. */
