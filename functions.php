@@ -138,5 +138,20 @@ function cheremosh_enqueue_scripts() {
 			)
 		);
 	}
+
+	// event-countdown.js: counts down to the start of an event.
+	// Only loaded on single event pages.
+	if ( is_singular( 'events' ) ) {
+		wp_enqueue_script(
+			'cheremosh-event-countdown',
+			get_theme_file_uri( 'assets/js/event-countdown.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/event-countdown.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'cheremosh_enqueue_scripts' );
