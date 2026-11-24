@@ -371,6 +371,70 @@ function cheremosh_register_acf_field_groups() {
 	'allow_ai_access' => false,
 	'ai_description' => '',
 ) );
+
+	// EVENT FIELDS: what an editor fills in on each event.
+	acf_add_local_field_group( array(
+		'key'      => 'group_events_details',
+		'title'    => 'Event Details',
+		'fields'   => array(
+			array(
+				'key'            => 'field_event_date',
+				'label'          => 'Event Date',
+				'name'           => 'event_date',
+				'type'           => 'date_picker',
+				'required'       => 1,
+				'display_format' => 'F j, Y',
+				'return_format'  => 'Y-m-d', // Sorts correctly and is easy to format.
+				'first_day'      => 0,
+			),
+			array(
+				'key'            => 'field_event_start_time',
+				'label'          => 'Start Time',
+				'name'           => 'event_start_time',
+				'type'           => 'time_picker',
+				'display_format' => 'g:i a',
+				'return_format'  => 'g:i A',
+			),
+			array(
+				'key'            => 'field_event_end_time',
+				'label'          => 'End Time',
+				'name'           => 'event_end_time',
+				'type'           => 'time_picker',
+				'display_format' => 'g:i a',
+				'return_format'  => 'g:i A',
+			),
+			array(
+				'key'   => 'field_event_location',
+				'label' => 'Location',
+				'name'  => 'event_location',
+				'type'  => 'text',
+			),
+			array(
+				'key'          => 'field_event_featuring',
+				'label'        => 'Featuring',
+				'name'         => 'event_featuring',
+				'type'         => 'text',
+				'instructions' => 'Names of guest performers, if any.',
+			),
+			array(
+				'key'          => 'field_event_featured',
+				'label'        => 'Featured Event',
+				'name'         => 'event_featured',
+				'type'         => 'true_false',
+				'instructions' => 'Tick to show this as the big card at the top of the Events page. Only the soonest ticked event is used.',
+				'ui'           => 1,
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param'    => 'post_type',
+					'operator' => '==',
+					'value'    => 'events',
+				),
+			),
+		),
+	) );
 } 
 add_action( 'acf/include_fields', 'cheremosh_register_acf_field_groups' );
 
@@ -445,6 +509,19 @@ register_taxonomy( 'role', array(
 	'show_in_menu' => true,
 	'show_in_rest' => true,
 ) );
+
+	// EVENT CATEGORIES: the small blue tag on each card (e.g. Performance, Festival).
+	register_taxonomy( 'event_category', array( 'events' ), array(
+		'labels' => array(
+			'name'          => 'Event Categories',
+			'singular_name' => 'Event Category',
+			'menu_name'     => 'Categories',
+			'add_new_item'  => 'Add New Event Category',
+		),
+		'public'       => true,
+		'hierarchical' => true,
+		'show_in_rest' => true,
+	) );
 }
 add_action( 'init', 'cheremosh_register_taxonomies' );
 
@@ -606,6 +683,30 @@ function cheremosh_register_post_types() {
 	'can_export' => true,
 	'delete_with_user' => false,
 ) );
+
+	// EVENTS: one post per event. The /events/ page lists them; the
+	// single URL is /event/event-name/ (singular, so it doesn't clash
+	// with the /events/ page).
+	register_post_type( 'events', array(
+		'labels' => array(
+			'name'               => 'Events',
+			'singular_name'      => 'Event',
+			'menu_name'          => 'Events',
+			'all_items'          => 'All Events',
+			'add_new_item'       => 'Add New Event',
+			'edit_item'          => 'Edit Event',
+			'view_item'          => 'View Event',
+			'search_items'       => 'Search Events',
+			'not_found'          => 'No Events Found',
+			'featured_image'     => 'Event Image',
+			'set_featured_image' => 'Set Event Image',
+		),
+		'public'       => true,
+		'show_in_rest' => true,
+		'menu_icon'    => 'dashicons-calendar-alt',
+		'rewrite'      => array( 'slug' => 'event' ),
+		'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+	) );
 
 } 
 add_action( 'init', 'cheremosh_register_post_types' );
