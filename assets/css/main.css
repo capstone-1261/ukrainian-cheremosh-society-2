@@ -3847,3 +3847,305 @@ a.button.about-dancer-button {
     font-size: 2rem;
   }
 }
+
+
+/* ==========================================================================
+   SHOP (woocommerce.php)
+   Banner uses the shared .about-hero styles; everything below is the
+   sidebar + product grid band.
+   ========================================================================== */
+
+/* Full-width dark band that holds the sidebar and the grid. */
+.shop-layout {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  padding: 4rem var(--wp--custom--padding-global);
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Two columns: fixed-width sidebar on the left, products fill the rest. */
+.shop-layout-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 249px 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* ----- Sidebar ----- */
+
+.shop-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.shop-sidebar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.shop-sidebar-title {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2rem;
+  text-transform: uppercase;
+}
+
+.shop-sidebar-count {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* "Clear all" link. */
+.shop-clear {
+  color: var(--wp--preset--color--off-white);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.shop-clear:hover {
+  opacity: 0.7;
+}
+
+/* Category list. */
+.shop-categories ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shop-categories a {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--wp--preset--color--off-white);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.shop-categories a:hover,
+.shop-categories a[aria-current="page"] {
+  opacity: 1;
+}
+
+/* The category being viewed is bold, like "All" in the design. */
+.shop-categories a[aria-current="page"] {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+/* Search and sort blocks: a line above, a bold label, then the field. */
+.shop-filter {
+  border-top: 1px solid var(--wp--preset--color--off-white);
+  padding-top: 1.25rem;
+}
+
+.shop-filter-label {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.75rem;
+}
+
+.shop-filter-input,
+.shop-filter-select {
+  width: 100%;
+  height: 3rem;
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 1.5px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.shop-filter-input::placeholder {
+  color: rgba(252, 250, 242, 0.5);
+}
+
+/* Dropdown options need their own colours or they show off-white on white. */
+.shop-filter-select option {
+  background: var(--wp--preset--color--charcoal);
+  color: var(--wp--preset--color--off-white);
+}
+
+.shop-filter-input:focus-visible,
+.shop-filter-select:focus-visible,
+.shop-clear:focus-visible,
+.shop-categories a:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* ----- Product grid ----- */
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* One product card: charcoal box, blue left edge, soft offset shadow. */
+.shop-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--wp--preset--color--charcoal);
+  border-left: 3px solid var(--wp--preset--color--bright-blue);
+  box-shadow: 10px 10px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Photo area: fixed height, photo cropped to fill it, off-white behind it. */
+.shop-card-media {
+  height: 476px;
+  background: var(--wp--preset--color--off-white);
+}
+
+.shop-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-inline: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Name on the left, price on the right. */
+.shop-card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.shop-card-title {
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  text-transform: none;
+}
+
+.shop-card-price {
+  margin: 0;
+  color: var(--wp--preset--color--bright-blue);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  white-space: nowrap;
+}
+
+/* Red Details button, full width. The transition lives here, not in :hover. */
+.shop-card-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  padding: 0.75rem 1.5rem;
+  background: #d22630;
+  color: #fff;
+  border: 2px solid #d22630;
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.shop-card-button:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.shop-card-button:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+.shop-empty {
+  margin: 0;
+}
+
+/* WooCommerce page numbers under the grid. */
+.shop-products .woocommerce-pagination {
+  margin-top: 2rem;
+}
+
+.shop-products .woocommerce-pagination ul {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shop-products .woocommerce-pagination a,
+.shop-products .woocommerce-pagination span {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--wp--preset--color--off-white);
+  border: 1px solid var(--wp--preset--color--off-white);
+  text-decoration: none;
+}
+
+.shop-products .woocommerce-pagination .current {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* ----- Tablet: sidebar goes on top, categories sit in a row ----- */
+@media (max-width: 1023px) {
+  .shop-layout-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .shop-categories ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+  }
+
+  .shop-card-media {
+    height: 360px;
+  }
+}
+
+/* ----- Phone: one product per row ----- */
+@media (max-width: 599px) {
+  .shop-layout {
+    padding-block: 3rem;
+  }
+
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-card-media {
+    height: 320px;
+  }
+}
