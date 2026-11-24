@@ -4492,3 +4492,316 @@ a.button.about-dancer-button {
     height: 320px;
   }
 }
+
+
+/* ==========================================================================
+   EVENT DETAILS (single-events.php)
+   ========================================================================== */
+
+/* ----- Hero ----- */
+
+/* Full-width photo with the text panel in the middle. */
+.event-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 40rem;
+  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Pull out past the page padding */
+  margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
+  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo */
+  overflow: hidden;
+}
+
+.event-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark layer over the photo so the text is readable */
+.event-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Blurred band across the middle that holds the text */
+.event-hero-panel {
+  position: relative;
+  z-index: 1; /* Above the photo and the dark layer */
+  width: 100%;
+  padding: 2rem var(--wp--custom--padding-global);
+  box-sizing: border-box;
+  background: rgba(44, 44, 44, 0.4);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  color: #fff;
+}
+
+.event-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 768px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.event-hero-content .about-label {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.event-hero-title {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.event-hero-text {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.75rem;
+}
+
+.event-hero-date {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Blue category tag */
+.event-tag {
+  padding: 0.25rem;
+  background: #005a91;
+  color: var(--wp--preset--color--off-white);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+/* Countdown: four boxes in a row with a line between each */
+.event-countdown {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #fff;
+}
+
+.event-countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4rem;
+}
+
+.event-countdown-item + .event-countdown-item {
+  padding-left: 1rem;
+  border-left: 1px solid #fff; /* The dividing line */
+  width: 5rem; /* Wider to make room for the padding */
+}
+
+.event-countdown-number {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.event-countdown-label {
+  font-size: 1rem;
+}
+
+/* Buttons, shared by the hero and the About section */
+.event-hero-actions,
+.event-about-actions {
+  display: flex;
+  gap: 2rem;
+}
+
+.event-hero-actions .button,
+.event-about-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 2px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+/* RSVP is the filled one */
+.event-hero-actions .event-rsvp,
+.event-about-actions .event-rsvp {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.event-hero-actions .button:hover,
+.event-about-actions .button:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.event-hero-actions .event-rsvp:hover,
+.event-about-actions .event-rsvp:hover {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+.event-hero-actions .button:focus-visible,
+.event-about-actions .button:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* ----- About section ----- */
+
+.event-about {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 4rem var(--wp--custom--padding-global);
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Photo on the left, text on the right */
+.event-about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.event-about-media {
+  aspect-ratio: 600 / 640;
+  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo */
+  box-shadow: 10px 10px 6px -6px rgba(0, 0, 0, 0.2);
+}
+
+.event-about-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-about-title {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.event-about-text {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.event-about-featuring {
+  margin: 1rem 0 0;
+  font-size: 1.125rem;
+}
+
+/* Date / place / time list */
+.event-about-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 0.5rem 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.event-about-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Round marker before each row (icons come later) */
+.event-about-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: var(--wp--preset--color--bright-blue);
+}
+
+/* ----- Tablet ----- */
+@media (max-width: 1023px) {
+  .event-about-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .event-about-media {
+    max-width: 32rem;
+  }
+
+  .event-hero-title,
+  .event-about-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* ----- Phone ----- */
+@media (max-width: 599px) {
+  .event-hero {
+    min-height: 34rem;
+  }
+
+  .event-hero-title,
+  .event-about-title {
+    font-size: 2rem;
+  }
+
+  .event-hero-actions,
+  .event-about-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .event-countdown {
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .event-countdown-item,
+  .event-countdown-item + .event-countdown-item {
+    width: auto;
+    min-width: 3.25rem;
+  }
+
+  .event-countdown-item + .event-countdown-item {
+    padding-left: 0.5rem;
+  }
+
+  .event-countdown-number {
+    font-size: 2rem;
+  }
+}
