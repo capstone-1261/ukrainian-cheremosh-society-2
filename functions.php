@@ -21,6 +21,10 @@ require get_template_directory() . '/inc/login.php';
 // Handles sign-up form submissions from page-signup.php.
 require get_template_directory() . '/inc/signup.php';
 
+
+// Editable homepage content (text, links and photos the client can change).
+require get_template_directory() . '/inc/homepage-fields.php';
+
 /**
  * Tell WooCommerce this theme supports it (Sam).
  */
@@ -147,6 +151,35 @@ function cheremosh_enqueue_scripts() {
 			get_theme_file_uri( 'assets/js/event-countdown.js' ),
 			array(),
 			cheremosh_asset_version( 'assets/js/event-countdown.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
+
+
+	// Homepage only: the two sliders (shop row and supporter logos).
+	if ( is_front_page() ) {
+
+		// home-shop-slider.js: arrows and dots for the shop row.
+		wp_enqueue_script(
+			'cheremosh-home-shop-slider',
+			get_theme_file_uri( 'assets/js/home-shop-slider.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/home-shop-slider.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+
+		// home-supporters-slider.js: arrows and dots for the supporter logos.
+		wp_enqueue_script(
+			'cheremosh-home-supporters-slider',
+			get_theme_file_uri( 'assets/js/home-supporters-slider.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/home-supporters-slider.js' ),
 			array(
 				'strategy'  => 'defer',
 				'in_footer' => true,

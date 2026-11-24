@@ -4805,3 +4805,1172 @@ a.button.about-dancer-button {
     font-size: 2rem;
   }
 }
+
+/* ==========================================================================
+   HOMEPAGE (front-page.php)
+   The hero is built in the block editor; everything after it is in code.
+   ========================================================================== */
+
+/* The page padding at the bottom of <main> would leave a gap above the footer,
+   because our sections run edge to edge. Take it off on the homepage only. */
+main.home {
+  padding-block-end: 0;
+}
+
+/* The editor leaves empty paragraphs around the banner. Their margins show
+   as grey bars between sections, so hide them. */
+main.home > p:empty {
+  display: none;
+}
+
+/* ----- Buttons (shared by every homepage section) ----- */
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  /* The transition lives here (not on :hover) so it animates both ways. */
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Outline: see-through with a light border, fills in on hover. */
+.home-button-outline {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+.home-button-outline:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* Filled: solid light button, goes see-through on hover. */
+.home-button-filled {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.home-button-filled:hover {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+.home-button:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* Small label above a section ("About", "Shop", etc.) */
+.home-label {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* ----- 2. About (two cards) ----- */
+
+/* Full width band: cancel the page padding, then add it back inside. */
+.home-about {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 3rem var(--wp--custom--padding-global);
+  /* Dark wine at the top fading to the brand red at the bottom. */
+  background: linear-gradient(
+    180deg,
+    #2c0d12 14%,
+    #6a111b 41%,
+    var(--wp--preset--color--red) 69%
+  );
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Two cards side by side. */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 483px));
+  justify-content: space-between;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* Each card is a dark box with a blue line on top. */
+.home-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--wp--preset--color--charcoal);
+  border-top: 4px solid var(--wp--preset--color--bright-blue);
+  box-shadow:
+    0 20px 24px -4px rgba(0, 0, 0, 0.08),
+    0 8px 8px -4px rgba(0, 0, 0, 0.03);
+}
+
+.home-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 608 / 320;
+  object-fit: cover;
+}
+
+/* The text area grows, so both buttons line up at the bottom
+   even when one card has less text. */
+.home-card-body {
+  flex: 1;
+}
+
+.home-card-tagline {
+  margin: 0 0 0.5rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.home-card-title {
+  margin: 0 0 1rem;
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.home-card-text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Tablet and phone: cards stack in one column. */
+@media (max-width: 1023px) {
+  .home-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .home-card-title {
+    font-size: 2rem;
+  }
+}
+
+/* ----- 3. Program Registration ----- */
+
+.home-register {
+    /* EMBROIDERY: Sam adds the embroidery strip along the bottom edge of this
+     section. position: relative below and the 7rem bottom padding leave room for it. */
+  position: relative;
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 7rem var(--wp--custom--padding-global);
+  /* Brand red at the top, fading to dark wine (matches the end of the About band). */
+  background: linear-gradient(
+    180deg,
+    var(--wp--preset--color--red) 0%,
+    #2c0d13 78%
+  );
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Heading on the left, text on the right. */
+.home-register-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5rem;
+  align-items: start;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.home-register-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+}
+
+/* The short blue line under the heading. */
+.home-rule {
+  display: block;
+  width: 70px;
+  height: 3px;
+  margin-top: 1rem;
+  background: var(--wp--preset--color--bright-blue);
+}
+
+.home-register-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.home-register-intro {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+/* The three points. */
+.home-register-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-register-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Small stand-in icon (a little white diamond) until the real one is added. */
+.home-list-icon {
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-inline: 0.1875rem;
+  background: var(--wp--preset--color--off-white);
+  transform: rotate(45deg);
+}
+
+/* Tablet and phone: heading on top, text underneath. */
+@media (max-width: 1023px) {
+  .home-register {
+    padding-block: 4rem 5rem;
+  }
+
+  .home-register-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 599px) {
+  .home-register-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+}
+/* ----- 4. Dance Festival ----- */
+
+.home-festival {
+  /* EMBROIDERY: Sam adds the embroidery strip along the top edge of this
+     section. The top padding below leaves room for it. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 3rem var(--wp--custom--padding-global);
+  /* Dark wine at the top fading into the page's charcoal. */
+  background: linear-gradient(
+    180deg,
+    #2c0d13 0%,
+    var(--wp--preset--color--charcoal) 100%
+  );
+  color: var(--wp--preset--color--off-white);
+}
+
+/* The dark red box: text on the left, photo on the right. */
+.home-festival-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 1.5rem;
+  background: var(--wp--preset--color--dark-red);
+}
+
+.home-festival-main {
+  padding: 1rem 0.5rem 1rem 1rem;
+}
+
+.home-festival-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+}
+
+/* The four small blocks sit in two columns. */
+.home-festival-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem 2.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Each block stacks heading, text, button. The text grows so the buttons
+   line up along the bottom even when the text lengths differ. */
+.home-festival-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-festival-link h3 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.home-festival-link p {
+  flex: 1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.home-festival-link .home-button {
+  margin-top: 1rem;
+}
+
+/* The photo fills the right side top to bottom. */
+.home-festival-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 25rem;
+  object-fit: cover;
+}
+
+/* Tablet: the photo moves underneath the text. */
+@media (max-width: 1023px) {
+  .home-festival-box {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-festival-image {
+    height: 22rem;
+  }
+}
+
+/* Phone: the blocks stack in one column. */
+@media (max-width: 599px) {
+  .home-festival-main {
+    padding: 0.5rem 0;
+  }
+
+  .home-festival-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .home-festival-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ----- 5. Events ----- */
+
+/* The cards themselves reuse the .event-card styles from the Events page. */
+.home-events {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 3rem var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--charcoal);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Everything inside is centred and no wider than the other sections. */
+.home-events-top,
+.home-events-grid,
+.home-events-all,
+.home-events-empty {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* Heading on the left, intro text on the right. */
+.home-events-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.home-events-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+}
+
+.home-events-intro {
+  max-width: 38rem;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+/* Three cards across. */
+.home-events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4rem;
+}
+
+/* "View all >" sits under the cards on the right. */
+.home-events-all {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* The little arrow after the words. */
+.home-events-all::after {
+  content: "\203A";
+  font-size: 1.75rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.home-events-all:hover::after,
+.home-events-all:focus-visible::after {
+  transform: translateX(0.25rem);
+}
+
+.home-events-all:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+.home-events-empty {
+  font-size: 1.125rem;
+}
+
+/* Tablet: two cards across, heading and intro stack. */
+@media (max-width: 1023px) {
+  .home-events-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-events-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Phone: one card across. */
+@media (max-width: 599px) {
+  .home-events-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .home-events-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ----- 6. Rent our space ----- */
+
+.home-rent {
+  /* RIBBON: the red and blue ribbon decoration goes in the top left corner
+     of this section (added later with the other decorations). */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 3rem var(--wp--custom--padding-global);
+  /* Charcoal at the top fading to the brand red at the bottom. */
+  background: linear-gradient(
+    180deg,
+    var(--wp--preset--color--charcoal) 25%,
+    var(--wp--preset--color--red) 100%
+  );
+  color: var(--wp--preset--color--off-white);
+}
+
+/* The dark box with the blue line on top. */
+.home-rent-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 3rem 1.5rem;
+  background: var(--wp--preset--color--charcoal);
+  border-top: 4px solid var(--wp--preset--color--bright-blue);
+}
+
+.home-rent-main {
+  padding-inline: 1rem;
+}
+
+.home-rent-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+}
+
+/* Three short columns side by side. */
+.home-rent-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+/* Heading, text, button. The text grows so the buttons line up at the bottom. */
+.home-rent-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-rent-column h3 {
+  margin: 0;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.home-rent-column p {
+  flex: 1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.home-rent-column .home-button {
+  margin-top: 1rem;
+}
+
+.home-rent-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 477 / 480;
+  object-fit: cover;
+}
+
+/* Tablet: the photo moves underneath the text. */
+@media (max-width: 1023px) {
+  .home-rent-box {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-rent-image {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Phone: the three columns stack. */
+@media (max-width: 599px) {
+  .home-rent-main {
+    padding-inline: 0;
+  }
+
+  .home-rent-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .home-rent-columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* ----- 7. Shop slider ----- */
+
+.home-shop {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 3rem var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--red);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Everything inside is centred and no wider than the other sections. */
+.home-shop-top,
+.home-shop-slider {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* Heading on the left, "View all products" on the right. */
+.home-shop-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.home-shop-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+}
+
+.home-shop-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* The little arrow after the words. */
+.home-shop-all::after {
+  content: "\203A";
+  font-size: 1.75rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.home-shop-all:hover::after,
+.home-shop-all:focus-visible::after {
+  transform: translateX(0.25rem);
+}
+
+.home-shop-all:focus-visible {
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
+}
+
+/* The row of cards: scrolls sideways and each card snaps into place.
+   The scrollbar is hidden because the arrows and dots do that job. */
+.home-shop-track {
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  /* Room on the right and bottom so the card shadows aren't cut off. */
+  padding: 0 14px 14px 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.home-shop-track::-webkit-scrollbar {
+  display: none;
+}
+
+.home-shop-item {
+  flex: 0 0 21rem;
+  scroll-snap-align: start;
+}
+
+/* These cards reuse the Shop page card styles. Here the photo is shorter. */
+.home-shop-item .shop-card {
+  height: 100%;
+}
+
+.home-shop-item .shop-card-media {
+  height: 15.5rem;
+}
+
+/* Dots on the left, arrows on the right. */
+.home-shop-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+/* Hidden by the script when every card already fits. */
+.home-shop-controls[hidden] {
+  display: none;
+}
+
+.home-shop-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* A small round dot; the current one stretches into a pill. */
+.home-shop-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--wp--preset--color--off-white);
+  cursor: pointer;
+  transition: width 0.3s ease;
+}
+
+.home-shop-dot[aria-current="true"] {
+  width: 1.5rem;
+}
+
+.home-shop-arrows {
+  display: flex;
+  gap: 1rem;
+}
+
+.home-shop-arrow {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 2px solid var(--wp--preset--color--off-white);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.home-shop-arrow:hover:not(:disabled) {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--red);
+}
+
+/* An arrow with nowhere to go fades out. */
+.home-shop-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.home-shop-dot:focus-visible,
+.home-shop-arrow:focus-visible {
+  outline: 2px solid var(--wp--preset--color--off-white);
+  outline-offset: 3px;
+}
+
+/* Phone: heading and link stack, cards a bit narrower. */
+@media (max-width: 599px) {
+  .home-shop-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-shop-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .home-shop-item {
+    flex-basis: 17rem;
+  }
+}
+
+
+
+/* ==========================================================================
+   HOMEPAGE 8: FAQ
+   Red-to-charcoal band. Heading and contact box on the left, questions on
+   the right. Each question is a <details> tag, so it opens with no JavaScript.
+   ========================================================================== */
+
+.home-faq {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 3rem var(--wp--custom--padding-global) 5rem;
+  background: linear-gradient(180deg, var(--wp--preset--color--red) 0%, var(--wp--preset--color--charcoal) 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* EMBROIDERY: Sam adds the embroidery strip along the bottom of this section. */
+
+.home-faq-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.home-faq-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+  text-transform: uppercase;
+}
+
+/* A bit of room between the blue line and the intro text. */
+.home-faq-side .home-rule {
+  margin-bottom: 1.5rem;
+}
+
+.home-faq-text {
+  margin: 0 0 2rem;
+  max-width: 30rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.home-faq-more-title {
+  margin: 2rem 0 1rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+/* The question list */
+.home-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.home-faq-item {
+  background: var(--wp--preset--color--charcoal);
+  border: 1px solid rgba(252, 250, 242, 0.3);
+}
+
+/* The clickable row. list-style none + the ::-webkit rule hide the browser's default arrow. */
+.home-faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.5rem;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.home-faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.home-faq-question:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: -2px;
+}
+
+/* The little arrow, drawn with two borders. It flips when the question is open. */
+.home-faq-chevron {
+  flex: 0 0 auto;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.25rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.home-faq-item[open] .home-faq-chevron {
+  transform: rotate(-135deg);
+}
+
+.home-faq-answer {
+  margin: 0;
+  padding: 0 1.5rem 1.5rem;
+  line-height: 1.6;
+}
+
+/* Tablet: one column. */
+@media (max-width: 1023px) {
+  .home-faq-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Phone: smaller headings. */
+@media (max-width: 599px) {
+  .home-faq {
+    padding-block: 2.5rem 4rem;
+  }
+
+  .home-faq-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .home-faq-more-title {
+    font-size: 1.5rem;
+  }
+
+  .home-faq-question {
+    padding-inline: 1rem;
+  }
+
+  .home-faq-answer {
+    padding-inline: 1rem;
+  }
+}
+
+
+
+/* ==========================================================================
+   HOMEPAGE 9: NEWSLETTER
+   Charcoal band. Heading on the left, Mailchimp sign-up form on the right.
+   ========================================================================== */
+
+.home-newsletter {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 5rem var(--wp--custom--padding-global);
+  background: var(--wp--preset--color--charcoal);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* EMBROIDERY: Sam adds the embroidery strip along the bottom of this section. */
+
+.home-newsletter-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.home-newsletter-title {
+  margin: 0;
+  font-size: 3rem;
+  line-height: 56px;
+  text-transform: uppercase;
+}
+
+.home-newsletter-side .home-rule {
+  margin-bottom: 1.5rem;
+}
+
+.home-newsletter-text {
+  margin: 0;
+  max-width: 30rem;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* The form */
+.home-newsletter-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Email box and button sit side by side. */
+.home-newsletter-row {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.home-newsletter-email {
+  flex: 1;
+  min-width: 0; /* Lets the box shrink on small screens instead of overflowing. */
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  border: 2px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 1rem;
+}
+
+.home-newsletter-email::placeholder {
+  color: rgba(252, 250, 242, 0.7);
+  opacity: 1;
+}
+
+.home-newsletter-email:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 2px;
+}
+
+/* A <button> doesn't need the extra border the links get. */
+.home-newsletter-row .home-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.home-newsletter-small {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+}
+
+.home-newsletter-small a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Tablet: one column. */
+@media (max-width: 1023px) {
+  .home-newsletter-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Phone: smaller heading, button goes under the email box. */
+@media (max-width: 599px) {
+  .home-newsletter {
+    padding-block: 3rem;
+  }
+
+  .home-newsletter-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .home-newsletter-row {
+    flex-direction: column;
+  }
+}
+
+
+
+/* ==========================================================================
+   HOMEPAGE 10: SUPPORTERS
+   Dark band with a blue line under the heading, a row of white logos,
+   and dots + arrows underneath (JS: assets/js/home-supporters-slider.js).
+   ========================================================================== */
+
+.home-supporters {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  padding: 4rem var(--wp--custom--padding-global) 3rem;
+  background: #222222;
+  color: var(--wp--preset--color--off-white);
+}
+
+.home-supporters-title {
+  margin: 0 0 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--wp--preset--color--bright-blue);
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.home-supporters-slider {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+/* The row of logos. It scrolls sideways and snaps to each logo. */
+.home-supporters-track {
+  display: flex;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.home-supporters-track::-webkit-scrollbar {
+  display: none;
+}
+
+.home-supporters-item {
+  flex: 0 0 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8rem;
+  scroll-snap-align: start;
+}
+
+.home-supporters-item img {
+  display: block;
+  max-width: 100%;
+  max-height: 5.5rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Dots on the left, arrows on the right. */
+.home-supporters-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+
+/* Hide the dots and arrows when every logo already fits on screen. */
+.home-supporters-controls[hidden] {
+  display: none;
+}
+
+.home-supporters-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.home-supporters-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--wp--preset--color--off-white);
+  cursor: pointer;
+  transition: width 0.3s ease;
+}
+
+.home-supporters-dot[aria-current="true"] {
+  width: 1.5rem;
+}
+
+.home-supporters-arrows {
+  display: flex;
+  gap: 1rem;
+}
+
+.home-supporters-arrow {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 2px solid var(--wp--preset--color--off-white);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.home-supporters-arrow:hover:not(:disabled) {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+.home-supporters-arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.home-supporters-dot:focus-visible,
+.home-supporters-arrow:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 3px;
+}
+
+/* Phone: smaller logos. */
+@media (max-width: 599px) {
+  .home-supporters {
+    padding-block: 3rem 2.5rem;
+  }
+
+  .home-supporters-title {
+    font-size: 1.25rem;
+  }
+
+  .home-supporters-item {
+    flex-basis: 11rem;
+  }
+}
