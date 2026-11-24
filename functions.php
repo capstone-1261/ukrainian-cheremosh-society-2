@@ -30,6 +30,36 @@ function cheremosh_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'cheremosh_add_woocommerce_support' );
 
 /**
+ * Create the Shop categories from the design (Team Wear, Fundraising, etc.).
+ *
+ * Runs on every page load, but only adds a category if it doesn't exist yet,
+ * so it's safe to leave in. Categories can still be renamed or added to in
+ * wp-admin > Products > Categories.
+ */
+function cheremosh_create_shop_categories() {
+	// Only run if WooCommerce is active (it registers the product_cat taxonomy).
+	if ( ! taxonomy_exists( 'product_cat' ) ) {
+		return;
+	}
+
+	$categories = array(
+		'Team Wear',
+		'Fundraising',
+		'Ukrainian Artwork',
+		'Ukrainian Dance Music',
+		'Ukrainian Dance Videos',
+	);
+
+	foreach ( $categories as $category_name ) {
+		// term_exists() checks by name, so we never create duplicates.
+		if ( ! term_exists( $category_name, 'product_cat' ) ) {
+			wp_insert_term( $category_name, 'product_cat' );
+		}
+	}
+}
+add_action( 'init', 'cheremosh_create_shop_categories', 20 ); // 20 = after WooCommerce registers its taxonomies.
+
+/**
  * Work out a version number for one of our own CSS or JS files.
  *
  * Browsers cache these files hard. WordPress adds ?ver=... to the URL, and the
