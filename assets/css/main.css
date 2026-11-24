@@ -309,7 +309,7 @@ main > article {
   display: inline-block;
   width: 18px;
   height: 18px;
-  margin-left: 10px;
+  margin-left: 0.625rem;
   vertical-align: middle;
   background-color: currentColor;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
@@ -2663,24 +2663,116 @@ main:has(.instructors-hero) {
 
 /* Contact line above the form. */
 .about-hire-contact {
-  margin: 0 0 var(--wp--preset--spacing--40);
-  font-size: 1.125rem;
+  max-width: 363px;
+  margin: 1.5rem 0 0;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fcfaf2;
+}
+
+.about-hire-contact h5 {
+  margin: 0 0 0.25rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  color: #fcfaf2;
+  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 .about-hire-contact a {
   color: inherit;
+  text-decoration: underline;
 }
 
 /* The form card: dark box with a blue line across the top. */
 .about-inquiry {
-  padding: 2.5rem 2rem;
-  background: #2c2c2c;
+  padding: 2.6875rem 2.5rem 2.5rem;
+  background: #1F1F1F;
   border-block-start: 3px solid var(--wp--preset--color--bright-blue);
 }
 
 .about-inquiry-title {
-  margin: 0 0 var(--wp--preset--spacing--30);
+  margin: 0 0 1.25rem;
   text-transform: uppercase;
+}
+/* Inquiry form layout */
+
+.about-inquiry form fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 20px;
+}
+.about-inquiry .ff-el-group {
+  margin: 0;
+}
+.about-inquiry .ff-el-input--label {
+  margin-bottom: 0.5rem;
+}
+.about-inquiry .ff-el-form-control {
+  height: 48px;
+  padding: 0 0.9375rem;
+}
+.about-inquiry textarea.ff-el-form-control {
+  height: 112px;
+  padding: 0.8125rem 0.9375rem;
+}
+.about-inquiry .ff-el-group:has(textarea),
+.about-inquiry .ff_submit_btn_wrapper {
+  grid-column: 1 / -1;
+}
+.about-inquiry .ff_submit_btn_wrapper .ff-btn-submit {
+  width: 100%;
+  height: 54px;
+}
+
+.about-inquiry form .ff-el-form-control,
+.about-inquiry form button.ff-btn-submit {
+  border-radius: 0 !important;
+}
+.about-inquiry form button.ff-btn-submit {
+  background-color: #d22630 !important;
+  border-color: #d22630 !important;
+  color: #ffffff !important;
+}
+
+.about-inquiry form button.ff-btn-submit:hover {
+  background-color: #931920 !important;
+  border-color: #931920 !important;
+}
+
+.about-inquiry-title,
+.about-inquiry .ff-el-form-check-label,
+.about-inquiry .ff-el-input--label label {
+  color: #fcfaf2;
+}
+.about-inquiry .ff-el-input--label label {
+  font-weight: 600;
+}
+.about-inquiry .ff-el-form-control {
+  background: #2c2c2c;
+  color: #fcfaf2;
+  border: 1px solid #fcfaf2;
+}
+.about-inquiry .ff-el-form-control::placeholder {
+  color: #fcfaf2;
+  opacity: 0.6;
+} 
+
+.about-inquiry form .ff-el-form-control,
+.about-inquiry form .ff-el-form-control:hover,
+.about-inquiry form .ff-el-form-control:focus,
+.about-inquiry form textarea.ff-el-form-control:focus {
+  background-color: #2c2c2c !important;
+  color: #fcfaf2 !important;
+}
+
+.about-inquiry form input:-webkit-autofill,
+.about-inquiry form textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #2c2c2c inset !important;
+  -webkit-text-fill-color: #fcfaf2 !important;
 }
 
 /* Phones and small tablets: one column. */
@@ -3167,7 +3259,7 @@ a.button.about-dancer-button {
 }
 
 .dance-program-tag {
-  padding: 4px;
+  padding: 0.25rem;
   background: #005a91; /* The design's blue. */
   font-size: 0.875rem;
   font-weight: 500;
@@ -3276,7 +3368,7 @@ a.button.about-dancer-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 0.75rem;
   border: 2px solid var(--wp--preset--color--off-white);
   border-radius: 50px;
   background: transparent;
