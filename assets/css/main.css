@@ -3848,6 +3848,349 @@ a.button.about-dancer-button {
   }
 }
 
+/* ===== EVENTS PAGE ===== */
+
+/* Full-width dark band under the banner (same gradient as the other dark sections). */
+.events-list {
+  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  padding: 3rem var(--wp--custom--padding-global) 7rem;
+  background:
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
+  color: var(--wp--preset--color--off-white);
+}
+
+/* Keeps the content 1280px wide and centred; space between the big card and the grid. */
+.events-list-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* ---------- The big featured card ---------- */
+
+/* Two halves: photo on the left, details on the right. Red line across the top. */
+.event-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--wp--preset--color--charcoal);
+  border-top: 3px solid #d22630;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* The photo half. position: relative lets the date badge sit on top of it. */
+.event-feature-media {
+  position: relative;
+  min-height: 420px;
+  background: #1c1b1a; /* Shows when the event has no photo yet. */
+}
+
+.event-feature-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Darkens the bottom of the photo a little, like the design. */
+.event-feature-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.35));
+  pointer-events: none;
+}
+
+/* The off-white date badge: "SAT / 23 / JAN 2027". */
+.event-badge {
+  position: absolute;
+  z-index: 1; /* Above the darkening gradient. */
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.875rem 1.375rem;
+  background: var(--wp--preset--color--off-white);
+  border-bottom: 4px solid #d22630;
+  color: #2c2c2c;
+  text-transform: uppercase;
+}
+
+.event-badge-day,
+.event-badge-month {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.43;
+}
+
+.event-badge-number {
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #d22630;
+}
+
+/* The details half. */
+.event-feature-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.75rem;
+  padding: 3.5rem;
+}
+
+/* Little "FEATURED | CATEGORY" line. */
+.event-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.event-tag-featured {
+  padding: 0.25rem 0.625rem;
+  background: #d22630;
+}
+
+.event-feature-title {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* Date / time / place rows, with thin lines between them. */
+.event-details {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(252, 250, 242, 0.15);
+}
+
+.event-details li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(252, 250, 242, 0.15);
+  line-height: 1.5;
+}
+
+.event-featuring,
+.event-feature-text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.event-featuring strong {
+  margin-right: 0.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.event-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 0.25rem;
+}
+
+/* Both buttons: same shape. "RSVP Now" is filled red, the other is outlined. */
+.event-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.event-actions .event-rsvp {
+  border-color: #d22630;
+  background: #d22630;
+  color: #fff;
+}
+
+.event-actions .button:hover,
+.event-actions .button:focus-visible {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* ---------- The grid of smaller cards ---------- */
+
+.events-grid-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.events-grid-heading {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Three cards per row. */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* A small red card. */
+.event-card {
+  display: flex;
+  flex-direction: column;
+  background: #d22630;
+  box-shadow: 0 20px 24px -4px rgba(0, 0, 0, 0.08), 0 8px 8px -4px rgba(0, 0, 0, 0.03);
+}
+
+/* The photo area: a fixed shape; the category tag sits in its top-right corner. */
+.event-card-media {
+  position: relative;
+  aspect-ratio: 405 / 270;
+  background: #1c1b1a; /* Shows when the event has no photo yet. */
+}
+
+.event-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-card-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.25rem 0.5rem;
+  background: #005a91; /* The design's blue. */
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.event-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem 1.25rem;
+}
+
+/* "Fri 09 Feb 2027 / Location" line. */
+.event-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.43;
+}
+
+.event-card-title {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.5rem;
+  line-height: 1.33;
+  text-transform: uppercase;
+}
+
+.event-card-text {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+/* "View Event": outlined, full width, pinned to the bottom of the card. */
+.event-card .button {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--wp--preset--color--off-white);
+  background: transparent;
+  color: #fff;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.event-card .button:hover,
+.event-card .button:focus-visible {
+  background: var(--wp--preset--color--off-white);
+  color: #d22630;
+}
+
+/* Message shown when there are no upcoming events. */
+.events-empty {
+  margin: 0;
+  padding: 3rem 0;
+  font-size: 1.125rem;
+  text-align: center;
+}
+
+/* Tablet: featured card stacks (photo on top), grid goes to 2 columns. */
+@media (max-width: 1023px) {
+  .event-feature {
+    grid-template-columns: 1fr;
+  }
+  .event-feature-media {
+    min-height: 320px;
+  }
+  .event-feature-body {
+    padding: 2.5rem;
+  }
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Phone: one column; buttons stack. */
+@media (max-width: 599px) {
+  .events-list {
+    padding-bottom: 4rem;
+  }
+  .event-feature-body {
+    padding: 1.5rem;
+  }
+  .event-feature-title {
+    font-size: 2rem;
+  }
+  .event-badge {
+    top: 1rem;
+    left: 1rem;
+  }
+  .event-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* ==========================================================================
    SHOP (woocommerce.php)
