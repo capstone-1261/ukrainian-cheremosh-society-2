@@ -158,6 +158,40 @@ function cheremosh_enqueue_scripts() {
 		);
 	}
 
+	// Camps page only: camps.css (all Camps styles), camps.js (carousel)
+	// and camps-faq.js (FAQ accordion).
+	if ( is_page( 'camps' ) ) {
+		wp_enqueue_style(
+			'cheremosh-camps',
+			get_theme_file_uri( 'assets/css/camps.css' ),
+			array( 'cheremosh-main' ),
+			cheremosh_asset_version( 'assets/css/camps.css' )
+		);
+
+		wp_enqueue_script(
+			'cheremosh-camps',
+			get_theme_file_uri( 'assets/js/camps.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/camps.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+
+		wp_enqueue_script(
+			'cheremosh-camps-faq',
+			get_theme_file_uri( 'assets/js/camps-faq.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/camps-faq.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
+
+
 
 	// Homepage only: the two sliders (shop row and supporter logos).
 	if ( is_front_page() ) {

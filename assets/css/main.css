@@ -22,7 +22,8 @@
   margin: -1px;
   padding: 0;
   overflow: hidden;
-  clip-path: inset(50%); /* Crops it to nothing without removing it. */
+  clip-path: inset(50%);
+  /* Crops it to nothing without removing it. */
   white-space: nowrap;
   border: 0;
 }
@@ -34,21 +35,20 @@
    ========================================================================== */
 
 main {
-  padding-inline: var(
-    --wp--custom--padding-global
-  ); /* 64/40/16px, same as the header. */
+  padding-inline: var(--wp--custom--padding-global);
+  /* 64/40/16px, same as the header. */
   padding-block: var(--wp--preset--spacing--50);
 }
 
 /* The hero is edge to edge, so it cancels out the page padding. */
-main > .cheremosh-hero,
-main > .wp-block-cover.alignfull {
+main>.cheremosh-hero,
+main>.wp-block-cover.alignfull {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
 }
 
 /* Keep text blocks readable instead of stretching across a wide monitor. */
-main > article {
+main>article {
   max-width: 1280px;
   margin-inline: auto;
 }
@@ -145,10 +145,12 @@ main > article {
    -------------------------------------------------------------------------- */
 
 .menu-toggle {
-  display: none; /* Desktop default. */
+  display: none;
+  /* Desktop default. */
   align-items: center;
   justify-content: center;
-  width: 2.75rem; /* 44px — the minimum comfortable tap target. */
+  width: 2.75rem;
+  /* 44px — the minimum comfortable tap target. */
   height: 2.75rem;
   padding: 0;
   background: transparent;
@@ -162,7 +164,8 @@ main > article {
  * positioned above and below it.
  */
 .menu-toggle-bars {
-  position: relative; /* The two pseudo-elements position against this. */
+  position: relative;
+  /* The two pseudo-elements position against this. */
   display: block;
   width: 1.5rem;
   height: 2px;
@@ -172,7 +175,8 @@ main > article {
 
 .menu-toggle-bars::before,
 .menu-toggle-bars::after {
-  content: ""; /* Required, or a pseudo-element doesn't render at all. */
+  content: "";
+  /* Required, or a pseudo-element doesn't render at all. */
   position: absolute;
   left: 0;
   width: 100%;
@@ -182,11 +186,13 @@ main > article {
 }
 
 .menu-toggle-bars::before {
-  transform: translateY(-0.5rem); /* Top bar. */
+  transform: translateY(-0.5rem);
+  /* Top bar. */
 }
 
 .menu-toggle-bars::after {
-  transform: translateY(0.5rem); /* Bottom bar. */
+  transform: translateY(0.5rem);
+  /* Bottom bar. */
 }
 
 /*
@@ -197,7 +203,8 @@ main > article {
  * icon shows an X, the attribute really does say "true".
  */
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars {
-  background: transparent; /* Middle bar disappears. */
+  background: transparent;
+  /* Middle bar disappears. */
 }
 
 .menu-toggle[aria-expanded="true"] .menu-toggle-bars::before {
@@ -227,7 +234,8 @@ main > article {
 }
 
 .main-navigation li {
-  position: relative; /* Anchor point for the dropdown. */
+  position: relative;
+  /* Anchor point for the dropdown. */
 }
 
 .main-navigation a {
@@ -256,7 +264,7 @@ main > article {
 }
 
 /* The page you're on: underlined so it's not shown by colour alone. */
-.main-navigation .current-menu-item > a {
+.main-navigation .current-menu-item>a {
   text-decoration: underline;
   text-underline-offset: 0.25em;
 }
@@ -290,7 +298,7 @@ main > article {
   box-shadow: var(--wp--preset--shadow--large);
 }
 
-.main-navigation .sub-menu > li {
+.main-navigation .sub-menu>li {
   flex: 0 0 auto;
 }
 
@@ -298,13 +306,13 @@ main > article {
   white-space: nowrap;
 }
 
-.main-navigation li:hover > .sub-menu,
-.main-navigation li:focus-within > .sub-menu {
+.main-navigation li:hover>.sub-menu,
+.main-navigation li:focus-within>.sub-menu {
   display: flex;
 }
 
 /* Arrow beside any menu item that has a dropdown (More, Dance with Us). */
-.main-navigation .menu-item-has-children > a::after {
+.main-navigation .menu-item-has-children>a::after {
   content: "";
   display: inline-block;
   width: 18px;
@@ -312,14 +320,13 @@ main > article {
   margin-left: 0.625rem;
   vertical-align: middle;
   background-color: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
-    center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
   transition: transform 0.2s ease;
 }
 
 /* Point upward when open */
-.main-navigation .menu-item-has-children:hover > a::after,
-.main-navigation .menu-item-has-children:focus-within > a::after {
+.main-navigation .menu-item-has-children:hover>a::after,
+.main-navigation .menu-item-has-children:focus-within>a::after {
   transform: rotate(180deg);
 }
 
@@ -389,7 +396,8 @@ main > article {
    -------------------------------------------------------------------------- */
 
 .cheremosh-hero {
-  position: relative; /* So the button's "bottom right" measures from the hero. */
+  position: relative;
+  /* So the button's "bottom right" measures from the hero. */
 }
 
 .hero-video-toggle {
@@ -427,7 +435,7 @@ main > article {
   margin: var(--wp--preset--spacing--60) auto 0;
 }
 
-.programs-list > h2 {
+.programs-list>h2 {
   margin: 0 0 var(--wp--preset--spacing--30);
 }
 
@@ -441,7 +449,8 @@ main > article {
   grid-template-columns: repeat(auto-fit, minmax(18rem, 24rem));
   justify-content: start;
   gap: var(--wp--preset--spacing--40);
-  list-style: none; /* Kills the bullets that sat next to the photos. */
+  list-style: none;
+  /* Kills the bullets that sat next to the photos. */
   margin: 0;
   padding: 0;
 }
@@ -485,7 +494,8 @@ main > article {
    -------------------------------------------------------------------------- */
 
 .programs-list .button {
-  margin-top: auto; /* Pins it to the bottom of the card. */
+  margin-top: auto;
+  /* Pins it to the bottom of the card. */
   display: block;
   padding: 0.75rem 1.5rem;
   background: transparent;
@@ -527,7 +537,8 @@ main > article {
 
 .footer-columns {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr; /* Middle column wider for the logo and form. */
+  grid-template-columns: 1fr 1.5fr 1fr;
+  /* Middle column wider for the logo and form. */
   gap: var(--wp--preset--spacing--40);
   max-width: 1280px;
   margin-inline: auto;
@@ -616,7 +627,8 @@ main > article {
 
 .newsletter-email {
   width: 100%;
-  box-sizing: border-box; /* Padding counts inside the width, so it can't overflow. */
+  box-sizing: border-box;
+  /* Padding counts inside the width, so it can't overflow. */
   padding: 0.75rem 1rem;
   background: transparent;
   color: var(--wp--preset--color--off-white);
@@ -628,7 +640,8 @@ main > article {
 
 .newsletter-email::placeholder {
   color: var(--wp--preset--color--neutral-light);
-  opacity: 1; /* Firefox dims placeholders by default; this undoes that. */
+  opacity: 1;
+  /* Firefox dims placeholders by default; this undoes that. */
 }
 
 .newsletter-submit {
@@ -701,7 +714,8 @@ main > article {
   box-sizing: content-box;
   width: 1rem;
   height: 1rem;
-  padding: 0.5rem; /* 16px icon + 8px each side = 32px circle. */
+  padding: 0.5rem;
+  /* 16px icon + 8px each side = 32px circle. */
   background: var(--wp--preset--color--red);
   border-radius: 50%;
 }
@@ -784,7 +798,8 @@ main > article {
   /* The hamburger appears. */
   .menu-toggle {
     display: inline-flex;
-    margin-left: auto; /* Pushes it over to sit beside the Register button. */
+    margin-left: auto;
+    /* Pushes it over to sit beside the Register button. */
   }
 
   /*
@@ -819,7 +834,7 @@ main > article {
     padding-block: 0.75rem;
   }
 
-  .main-navigation > .header-cta {
+  .main-navigation>.header-cta {
     display: inline-block;
     width: fit-content;
     margin-top: 1rem;
@@ -840,7 +855,7 @@ main > article {
   }
 
   /* The ▾ arrow means nothing here, since the sub-menu is already open. */
-  .main-navigation .menu-item-has-children > a::after {
+  .main-navigation .menu-item-has-children>a::after {
     content: "";
   }
 
@@ -979,7 +994,8 @@ main > article {
 #loginform input[type="text"],
 #loginform input[type="password"] {
   width: 100%;
-  box-sizing: border-box; /* Padding counts inside the width. */
+  box-sizing: border-box;
+  /* Padding counts inside the width. */
   padding: 0.5rem 0;
   background: transparent;
   color: var(--wp--preset--color--off-white);
@@ -992,7 +1008,8 @@ main > article {
 
 #loginform input[type="text"]:focus,
 #loginform input[type="password"]:focus {
-  outline: none; /* Replaced by the border colour below, not removed. */
+  outline: none;
+  /* Replaced by the border colour below, not removed. */
   border-bottom-color: var(--wp--preset--color--bright-blue);
   border-bottom-width: 2px;
 }
@@ -1246,7 +1263,8 @@ main > article {
   grid-template-columns: repeat(auto-fill, minmax(16rem, 20rem));
   justify-content: start;
   gap: var(--wp--preset--spacing--30);
-  list-style: none; /* No bullets beside the photos. */
+  list-style: none;
+  /* No bullets beside the photos. */
   margin: 0;
   padding: 0;
 }
@@ -1265,16 +1283,19 @@ main > article {
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 3;
-  object-fit: cover; /* Crops rather than squashing. */
-  object-position: center 20%; /* Keep the crop near the top so heads aren't cut off. */
+  object-fit: cover;
+  /* Crops rather than squashing. */
+  object-position: center 20%;
+  /* Keep the crop near the top so heads aren't cut off. */
 }
 
 /* Photo on a single instructor page (single-instructors.php). The tile rule
    above only covers the Our People grid, so this one caps the size here. */
-article > .instructor-photo {
+article>.instructor-photo {
   display: block;
   width: 100%;
-  max-width: 400px; /* Matches the width="400" in the template. */
+  max-width: 400px;
+  /* Matches the width="400" in the template. */
   height: auto;
   margin-block: var(--wp--preset--spacing--30);
 }
@@ -1331,7 +1352,8 @@ article > .instructor-photo {
 .board-photo {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1; /* Square, as in the design. */
+  aspect-ratio: 1 / 1;
+  /* Square, as in the design. */
   object-fit: cover;
 }
 
@@ -1347,7 +1369,8 @@ article > .instructor-photo {
 }
 
 .board-link {
-  margin-top: auto; /* Pins it to the bottom of the card. */
+  margin-top: auto;
+  /* Pins it to the bottom of the card. */
   font-size: var(--wp--preset--font-size--small);
   color: var(--wp--preset--color--off-white);
 }
@@ -1384,7 +1407,8 @@ article > .instructor-photo {
 #signupform input[type="email"],
 #signupform input[type="password"] {
   width: 100%;
-  box-sizing: border-box; /* Padding counts inside the width. */
+  box-sizing: border-box;
+  /* Padding counts inside the width. */
   padding: 0.5rem 0;
   background: transparent;
   color: var(--wp--preset--color--off-white);
@@ -1398,7 +1422,8 @@ article > .instructor-photo {
 #signupform input[type="text"]:focus,
 #signupform input[type="email"]:focus,
 #signupform input[type="password"]:focus {
-  outline: none; /* Replaced by the border below, not removed. */
+  outline: none;
+  /* Replaced by the border below, not removed. */
   border-bottom-color: var(--wp--preset--color--bright-blue);
   border-bottom-width: 2px;
 }
@@ -1449,7 +1474,8 @@ article > .instructor-photo {
   margin: var(--wp--preset--spacing--20) 0 0;
   font-family: var(--wp--preset--font-family--body);
   font-size: var(--wp--preset--font-size--regular);
-  text-transform: none; /* Undoes the uppercase on #signupform label. */
+  text-transform: none;
+  /* Undoes the uppercase on #signupform label. */
   letter-spacing: normal;
   color: var(--wp--preset--color--off-white);
   cursor: pointer;
@@ -1539,7 +1565,8 @@ article > .instructor-photo {
   padding: var(--wp--preset--spacing--30);
   background: var(--wp--preset--color--neutral-lightest);
   border-left: 4px solid var(--wp--preset--color--red);
-  color: var(--wp--preset--color--charcoal); /* The page text is off-white.
+  color: var(--wp--preset--color--charcoal);
+  /* The page text is off-white.
                                                 On a pale box it disappears,
                                                 so it's set here instead of
                                                 inherited. */
@@ -1562,7 +1589,8 @@ article > .instructor-photo {
 }
 
 .festival-notice p:last-child {
-  margin-bottom: 0; /* No trailing gap inside the box. */
+  margin-bottom: 0;
+  /* No trailing gap inside the box. */
 }
 
 /* --------------------------------------------------------------------------
@@ -1582,7 +1610,8 @@ article > .instructor-photo {
 
 :is(.festival-table, .data-table) table {
   width: 100%;
-  min-width: 36rem; /* Below this the columns become unreadable. */
+  min-width: 36rem;
+  /* Below this the columns become unreadable. */
   border-collapse: collapse;
   color: var(--wp--preset--color--off-white);
 }
@@ -1591,7 +1620,8 @@ article > .instructor-photo {
   padding: var(--wp--preset--spacing--20);
   text-align: left;
   vertical-align: top;
-  border: none; /* Replaced by the row lines below. */
+  border: none;
+  /* Replaced by the row lines below. */
   border-bottom: 1px solid var(--wp--preset--color--neutral-dark);
 }
 
@@ -1600,7 +1630,8 @@ article > .instructor-photo {
   font-size: var(--wp--preset--font-size--small);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--wp--preset--color--bright-blue); /* The darker blue is too
+  color: var(--wp--preset--color--bright-blue);
+  /* The darker blue is too
                                                    low-contrast on charcoal. */
   border-bottom: 2px solid var(--wp--preset--color--bright-blue);
 }
@@ -1637,7 +1668,8 @@ article > .instructor-photo {
   gap: var(--wp--preset--spacing--30);
   margin: 0;
   padding: 0;
-  list-style: none; /* These are cards, not a bulleted list. */
+  list-style: none;
+  /* These are cards, not a bulleted list. */
 }
 
 /* The <a> inside is the card — it fills the <li> so the whole tile is
@@ -1683,6 +1715,7 @@ article > .instructor-photo {
 /* Phone: the notice and cards lose some of their inner padding so the
    text isn't squeezed into a narrow column. */
 @media (max-width: 767px) {
+
   .festival-notice,
   .festival-subpage-card a {
     padding: var(--wp--preset--spacing--20);
@@ -1696,8 +1729,10 @@ article > .instructor-photo {
 /* The Schedule section becomes a card: a dark panel with a blue line on its
    left edge so it stands out from the description above it. */
 .program-schedule {
-  margin-block: var(--wp--preset--spacing--40); /* Space above and below the card. */
-  padding: var(--wp--preset--spacing--30); /* Space inside the card. */
+  margin-block: var(--wp--preset--spacing--40);
+  /* Space above and below the card. */
+  padding: var(--wp--preset--spacing--30);
+  /* Space inside the card. */
   background: var(--wp--preset--color--neutral-darker);
   border-left: 4px solid var(--wp--preset--color--bright-blue);
 }
@@ -1711,8 +1746,10 @@ article > .instructor-photo {
 /* The <dl> list: two columns on a wide screen (label | value). */
 .program-schedule dl {
   display: grid;
-  grid-template-columns: max-content 1fr; /* Label column is as wide as its longest label. */
-  gap: 0.5rem var(--wp--preset--spacing--30); /* Row gap, then column gap. */
+  grid-template-columns: max-content 1fr;
+  /* Label column is as wide as its longest label. */
+  gap: 0.5rem var(--wp--preset--spacing--30);
+  /* Row gap, then column gap. */
   margin: 0;
 }
 
@@ -1738,8 +1775,8 @@ article > .instructor-photo {
 /* The Register link at the bottom of the program page. It has class "button"
    but the card styles above only cover .programs-list, so on its own it was
    plain text. Same outlined look as those buttons. */
-.program-schedule ~ .button,
-article > .button {
+.program-schedule~.button,
+article>.button {
   display: inline-block;
   margin-block: var(--wp--preset--spacing--30);
   padding: 0.75rem 1.5rem;
@@ -1757,17 +1794,18 @@ article > .button {
 }
 
 /* Hover/focus: fills in solid, matching the card buttons. */
-.program-schedule ~ .button:hover,
-article > .button:hover {
+.program-schedule~.button:hover,
+article>.button:hover {
   background: var(--wp--preset--color--off-white);
   color: var(--wp--preset--color--charcoal);
 }
 
-.program-schedule ~ .button:focus-visible,
-article > .button:focus-visible {
+.program-schedule~.button:focus-visible,
+article>.button:focus-visible {
   outline: 2px solid var(--wp--preset--color--bright-blue);
   outline-offset: 3px;
 }
+
 /* ==========================================================================
    Faculty & Instructors page (page-sod-instructors.php)
 
@@ -1784,42 +1822,51 @@ article > .button:focus-visible {
    -------------------------------------------------------------------------- */
 
 .instructors-hero {
-  position: relative; /* The photo and the dark overlay position against this. */
+  position: relative;
+  /* The photo and the dark overlay position against this. */
   display: flex;
-  align-items: center; /* Text sits in the middle of the banner, like the design. */
-  box-sizing: border-box; /* Height below includes the padding, so it's the exact banner height. */
-  height: clamp(16rem, 28vw, 32rem); /* About 3.6 to 1 from roughly 910px to 1830px wide; stops at 16rem on phones and 32rem on huge monitors. */
+  align-items: center;
+  /* Text sits in the middle of the banner, like the design. */
+  box-sizing: border-box;
+  /* Height below includes the padding, so it's the exact banner height. */
+  height: clamp(16rem, 28vw, 32rem);
+  /* About 3.6 to 1 from roughly 910px to 1830px wide; stops at 16rem on phones and 32rem on huge monitors. */
   /* The banner is edge to edge, so it cancels out the padding that
      <main> puts around everything (same trick as the homepage hero). */
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
-  margin-block-end: 0; /* Rows below have their own background, so no gap needed. */
+  margin-block-end: 0;
+  /* Rows below have their own background, so no gap needed. */
   padding: var(--wp--preset--spacing--40) var(--wp--custom--padding-global);
-  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo. */
-  overflow: hidden; /* Crops the photo to the banner. */
+  background: var(--wp--preset--color--charcoal);
+  /* Shows if there's no photo. */
+  overflow: hidden;
+  /* Crops the photo to the banner. */
 }
+
 /* The photo fills the banner, cropped rather than squashed. */
 .instructors-hero-image {
   position: absolute;
-  inset: 0; /* Shorthand for top, right, bottom and left all at 0. */
+  inset: 0;
+  /* Shorthand for top, right, bottom and left all at 0. */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%; /* Keeps faces in view when the crop is wide. */
+  object-position: center 30%;
+  /* Keeps faces in view when the crop is wide. */
 }
 
 /* Dark gradient over the photo: nearly solid at the bottom (behind the
    title) and fading to clear at the top. */
 .instructors-hero::after {
-  content: ""; /* Required, or the pseudo-element doesn't render. */
+  content: "";
+  /* Required, or the pseudo-element doesn't render. */
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.85) 0%,
-    rgba(0, 0, 0, 0.35) 60%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.35) 60%,
+      rgba(0, 0, 0, 0.1) 100%);
 }
 
 /* The text wrapper holds the tagline and the title. It sits above the photo
@@ -1835,7 +1882,8 @@ article > .button:focus-visible {
 /* Small tagline above the title (same look as the About banner tagline). */
 .instructors-hero-tagline {
   margin: 0 0 var(--wp--preset--spacing--20);
-  font-family: var(--wp--preset--font-family--heading); /* Serif. */
+  font-family: var(--wp--preset--font-family--heading);
+  /* Serif. */
   font-size: 1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1843,8 +1891,10 @@ article > .button:focus-visible {
 
 .instructors-hero-title {
   margin: 0;
-  max-width: 9em; /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
+  max-width: 9em;
+  /* Narrow enough to wrap onto two lines and keep clear of the dancers. */
 }
+
 /* --------------------------------------------------------------------------
    Instructor rows
 
@@ -1856,11 +1906,13 @@ article > .button:focus-visible {
 
 .instructor-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* Two equal columns;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* Two equal columns;
                                                             minmax(0, ...) stops
                                                             long text pushing
                                                             a column wider. */
-  align-items: center; /* Text sits at the vertical middle of the photo. */
+  align-items: center;
+  /* Text sits at the vertical middle of the photo. */
   gap: var(--wp--preset--spacing--50);
   padding-block: var(--wp--preset--spacing--40);
 }
@@ -1868,7 +1920,8 @@ article > .button:focus-visible {
 /* Reversed rows: moving the photo to the front puts it on the left. */
 .instructor-row.is-reversed .instructor-row-photo {
   order: -1;
-  justify-self: start; /* Photo hugs the left edge of its column. */
+  justify-self: start;
+  /* Photo hugs the left edge of its column. */
 }
 
 /* --------------------------------------------------------------------------
@@ -1937,12 +1990,17 @@ article > .button:focus-visible {
 .instructor-row-photo {
   display: block;
   width: 100%;
-  max-width: 28rem; /* Keeps it from growing huge on a wide monitor. */
+  max-width: 28rem;
+  /* Keeps it from growing huge on a wide monitor. */
   height: auto;
-  aspect-ratio: 1 / 1; /* Square, as in the design. */
-  object-fit: cover; /* Crops rather than squashing. */
-  object-position: center 20%; /* Keeps heads in the frame. */
-  justify-self: end; /* Photo hugs the right edge of its column. */
+  aspect-ratio: 1 / 1;
+  /* Square, as in the design. */
+  object-fit: cover;
+  /* Crops rather than squashing. */
+  object-position: center 20%;
+  /* Keeps heads in the frame. */
+  justify-self: end;
+  /* Photo hugs the right edge of its column. */
 }
 
 /* --------------------------------------------------------------------------
@@ -1962,6 +2020,7 @@ article > .button:focus-visible {
     justify-self: start;
   }
 }
+
 /* --------------------------------------------------------------------------
    Call-to-action band ("Ready to start dancing?")
 
@@ -1971,7 +2030,8 @@ article > .button:focus-visible {
 
 .instructors-cta {
   max-width: 1280px;
-  margin: var(--wp--preset--spacing--50) auto 0; /* Centres it and adds space above. */
+  margin: var(--wp--preset--spacing--50) auto 0;
+  /* Centres it and adds space above. */
   padding: var(--wp--preset--spacing--40);
   background: var(--wp--preset--color--neutral-darker);
   border-top: 4px solid var(--wp--preset--color--bright-blue);
@@ -2019,6 +2079,7 @@ article > .button:focus-visible {
     padding: var(--wp--preset--spacing--30);
   }
 }
+
 /* --------------------------------------------------------------------------
    Row backgrounds (from the design)
 
@@ -2037,27 +2098,34 @@ main:has(.instructors-hero) {
 }
 
 .instructor-row {
-  position: relative; /* The ::before layer positions against the row. */
-  isolation: isolate; /* Keeps the layer behind the row's text, but not behind the page. */
+  position: relative;
+  /* The ::before layer positions against the row. */
+  isolation: isolate;
+  /* Keeps the layer behind the row's text, but not behind the page. */
 }
 
 .instructor-row::before {
   content: "";
   position: absolute;
-  z-index: -1; /* Behind the text and photo. */
+  z-index: -1;
+  /* Behind the text and photo. */
   top: 0;
   bottom: 0;
   left: 50%;
   width: 100vw;
-  margin-left: -50vw; /* Shifts it back to the left edge of the window. */
-  background: linear-gradient(to bottom, #161514, #421216); /* Dark to maroon. */
+  margin-left: -50vw;
+  /* Shifts it back to the left edge of the window. */
+  background: linear-gradient(to bottom, #161514, #421216);
+  /* Dark to maroon. */
 }
 
 /* Every second row runs the other way, so the maroon joins up with the
    row above. */
 .instructor-row.is-reversed::before {
-  background: linear-gradient(to bottom, #421216, #161514); /* Maroon to dark. */
+  background: linear-gradient(to bottom, #421216, #161514);
+  /* Maroon to dark. */
 }
+
 /* ==========================================================================
    About page (page-about.php)
 
@@ -2074,9 +2142,11 @@ main:has(.instructors-hero) {
    -------------------------------------------------------------------------- */
 
 .about-hero {
-  position: relative; /* The photo and the dark overlay position against this. */
+  position: relative;
+  /* The photo and the dark overlay position against this. */
   display: flex;
-  align-items: flex-end; /* Text sits at the bottom of the banner. */
+  align-items: flex-end;
+  /* Text sits at the bottom of the banner. */
   box-sizing: border-box;
   /* Grows and shrinks with the screen, never under 30rem or over 36.375rem
      (the design's 582px). */
@@ -2085,14 +2155,17 @@ main:has(.instructors-hero) {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
   padding: var(--wp--preset--spacing--40) var(--wp--custom--padding-global);
-  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo. */
-  overflow: hidden; /* Crops the photo to the banner. */
+  background: var(--wp--preset--color--charcoal);
+  /* Shows if there's no photo. */
+  overflow: hidden;
+  /* Crops the photo to the banner. */
 }
 
 /* The photo fills the banner, cropped rather than squashed. */
 .about-hero-image {
   position: absolute;
-  inset: 0; /* Shorthand for top, right, bottom and left all at 0. */
+  inset: 0;
+  /* Shorthand for top, right, bottom and left all at 0. */
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2101,46 +2174,54 @@ main:has(.instructors-hero) {
 
 /* Dark gradient from the design: almost solid on the left, clear on the right. */
 .about-hero::after {
-  content: ""; /* Required, or the pseudo-element doesn't render. */
+  content: "";
+  /* Required, or the pseudo-element doesn't render. */
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-     rgba(18, 18, 18, 0.85) 0%,
-    rgba(18, 18, 18, 0.5) 35%,
-    rgba(18, 18, 18, 0) 60%
-  );
+  background: linear-gradient(90deg,
+      rgba(18, 18, 18, 0.85) 0%,
+      rgba(18, 18, 18, 0.5) 35%,
+      rgba(18, 18, 18, 0) 60%);
 }
 
 /* Blurred strip along the bottom of the banner so the text and buttons stand out (like the design). */
 .about-hero::before {
-  content: ""; /* Required, or the pseudo-element doesn't render. */
+  content: "";
+  /* Required, or the pseudo-element doesn't render. */
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 11rem; /* How tall the blurred strip is. Make it bigger for a taller blur. */
-  z-index: 1; /* Above the photo and gradient, but under the text (text is also 1 and comes later). */
-  backdrop-filter: blur(12px); /* Blurs whatever is behind it. Raise the number for more blur. */
-  -webkit-backdrop-filter: blur(12px); /* Safari needs this version too. */
-  background: rgba(18, 18, 18, 0.25); /* A light dark tint like the design. */
+  height: 11rem;
+  /* How tall the blurred strip is. Make it bigger for a taller blur. */
+  z-index: 1;
+  /* Above the photo and gradient, but under the text (text is also 1 and comes later). */
+  backdrop-filter: blur(12px);
+  /* Blurs whatever is behind it. Raise the number for more blur. */
+  -webkit-backdrop-filter: blur(12px);
+  /* Safari needs this version too. */
+  background: rgba(18, 18, 18, 0.25);
+  /* A light dark tint like the design. */
   /* Fades the top edge so there's no hard line. */
   -webkit-mask-image: linear-gradient(to top, #000 60%, transparent 100%);
   mask-image: linear-gradient(to top, #000 60%, transparent 100%);
 }
+
 /* Text sits above the photo and the gradient (z-index puts it on top). */
 .about-hero-text {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 1280px;
-  margin-inline: auto; /* Lines up with the sections below. */
+  margin-inline: auto;
+  /* Lines up with the sections below. */
 }
 
 /* Small line above the title. */
 .about-hero-tagline {
   margin: 0 0 var(--wp--preset--spacing--20);
-  font-family: var(--wp--preset--font-family--heading); /* Serif. */
+  font-family: var(--wp--preset--font-family--heading);
+  /* Serif. */
   font-size: 1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2148,7 +2229,8 @@ main:has(.instructors-hero) {
 
 .about-hero-title {
   margin: 0;
-  max-width: 9em; /* Narrow enough to wrap to two lines, like the design. */
+  max-width: 9em;
+  /* Narrow enough to wrap to two lines, like the design. */
 }
 
 /* Description on the left, buttons on the right, along the bottom. */
@@ -2156,7 +2238,8 @@ main:has(.instructors-hero) {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  flex-wrap: wrap; /* Buttons drop under the text on narrow screens. */
+  flex-wrap: wrap;
+  /* Buttons drop under the text on narrow screens. */
   gap: var(--wp--preset--spacing--30);
   margin-block-start: var(--wp--preset--spacing--30);
 }
@@ -2187,7 +2270,8 @@ main:has(.instructors-hero) {
   border: 2px solid var(--wp--preset--color--off-white);
   background: transparent;
   color: var(--wp--preset--color--off-white);
-  font-family: var(--wp--preset--font-family--heading); /* Serif, like the nav links. */
+  font-family: var(--wp--preset--font-family--heading);
+  /* Serif, like the nav links. */
   font-size: 1.25rem;
   text-transform: uppercase;
   text-decoration: none;
@@ -2236,7 +2320,8 @@ main:has(.instructors-hero) {
 
 /* The photo scales with its column and keeps its shape. */
 .about-story-photo {
-  margin: 0; /* Browsers add a default margin to <figure>. */
+  margin: 0;
+  /* Browsers add a default margin to <figure>. */
 }
 
 .about-story-photo img {
@@ -2348,7 +2433,8 @@ main:has(.instructors-hero) {
   gap: var(--wp--preset--spacing--40);
   margin: var(--wp--preset--spacing--50) 0 0;
   padding: 0;
-  list-style: none; /* Removes the bullets. */
+  list-style: none;
+  /* Removes the bullets. */
 }
 
 /* Each stat has a blue bar on its left edge. */
@@ -2496,7 +2582,8 @@ main:has(.instructors-hero) {
   gap: var(--wp--preset--spacing--40);
   margin: 0;
   padding: 0;
-  list-style: none; /* Removes the 1. 2. 3. numbers. */
+  list-style: none;
+  /* Removes the 1. 2. 3. numbers. */
 }
 
 .about-timeline-item {
@@ -2525,6 +2612,7 @@ main:has(.instructors-hero) {
 
 /* Phones and small tablets: everything stacks into one column. */
 @media (max-width: 767px) {
+
   .about-director,
   .about-founders,
   .about-timeline {
@@ -2565,9 +2653,11 @@ main:has(.instructors-hero) {
 .about-quote {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Name sits at the bottom of every card. */
+  justify-content: space-between;
+  /* Name sits at the bottom of every card. */
   gap: var(--wp--preset--spacing--30);
-  margin: 0; /* Browsers add a default margin to <figure>. */
+  margin: 0;
+  /* Browsers add a default margin to <figure>. */
   padding: 2.5rem 2rem;
   background: #2c2c2c;
   border-block-start: 3px solid var(--wp--preset--color--bright-blue);
@@ -2605,7 +2695,8 @@ main:has(.instructors-hero) {
   padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
   background: linear-gradient(0deg, #2c2c2c 32.73%, #7f292e 66.37%, #d22630 100%);
   color: var(--wp--preset--color--off-white);
-  scroll-margin-top: 6rem; /* Stops the sticky header covering the heading when a button jumps here. */
+  scroll-margin-top: 6rem;
+  /* Stops the sticky header covering the heading when a button jumps here. */
 }
 
 /* Two columns: heading, text and reel on the left, contact and form on the right. */
@@ -2649,7 +2740,8 @@ main:has(.instructors-hero) {
   place-items: center;
   width: 4.5rem;
   height: 4.5rem;
-  transform: translate(-50%, -50%); /* Centres it exactly. */
+  transform: translate(-50%, -50%);
+  /* Centres it exactly. */
   border-radius: 50%;
   background: var(--wp--preset--color--off-white);
   color: var(--wp--preset--color--charcoal);
@@ -2697,6 +2789,7 @@ main:has(.instructors-hero) {
   margin: 0 0 1.25rem;
   text-transform: uppercase;
 }
+
 /* Inquiry form layout */
 
 .about-inquiry form fieldset {
@@ -2705,24 +2798,30 @@ main:has(.instructors-hero) {
   column-gap: 16px;
   row-gap: 20px;
 }
+
 .about-inquiry .ff-el-group {
   margin: 0;
 }
+
 .about-inquiry .ff-el-input--label {
   margin-bottom: 0.5rem;
 }
+
 .about-inquiry .ff-el-form-control {
   height: 48px;
   padding: 0 0.9375rem;
 }
+
 .about-inquiry textarea.ff-el-form-control {
   height: 112px;
   padding: 0.8125rem 0.9375rem;
 }
+
 .about-inquiry .ff-el-group:has(textarea),
 .about-inquiry .ff_submit_btn_wrapper {
   grid-column: 1 / -1;
 }
+
 .about-inquiry .ff_submit_btn_wrapper .ff-btn-submit {
   width: 100%;
   height: 54px;
@@ -2732,6 +2831,7 @@ main:has(.instructors-hero) {
 .about-inquiry form button.ff-btn-submit {
   border-radius: 0 !important;
 }
+
 .about-inquiry form button.ff-btn-submit {
   background-color: #d22630 !important;
   border-color: #d22630 !important;
@@ -2748,18 +2848,21 @@ main:has(.instructors-hero) {
 .about-inquiry .ff-el-input--label label {
   color: #fcfaf2;
 }
+
 .about-inquiry .ff-el-input--label label {
   font-weight: 600;
 }
+
 .about-inquiry .ff-el-form-control {
   background: #2c2c2c;
   color: #fcfaf2;
   border: 1px solid #fcfaf2;
 }
+
 .about-inquiry .ff-el-form-control::placeholder {
   color: #fcfaf2;
   opacity: 0.6;
-} 
+}
 
 .about-inquiry form .ff-el-form-control,
 .about-inquiry form .ff-el-form-control:hover,
@@ -2867,7 +2970,8 @@ main:has(.instructors-hero) {
 }
 
 .about-card-button {
-  margin-block-start: auto; /* Pushes the button to the bottom of the card. */
+  margin-block-start: auto;
+  /* Pushes the button to the bottom of the card. */
 }
 
 .about-card-button--filled {
@@ -2905,7 +3009,8 @@ a.button.about-dancer-button {
 
 .about-dancer-strip-inner {
   display: flex;
-  flex-wrap: wrap; /* Button drops under the text on narrow screens. */
+  flex-wrap: wrap;
+  /* Button drops under the text on narrow screens. */
   align-items: center;
   justify-content: space-between;
   gap: var(--wp--preset--spacing--30);
@@ -2937,7 +3042,8 @@ a.button.about-dancer-button {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   padding: var(--wp--preset--spacing--60) var(--wp--custom--padding-global);
   background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), /* The design's 20% black layer. */
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    /* The design's 20% black layer. */
     linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
   color: var(--wp--preset--color--off-white);
 }
@@ -3069,6 +3175,7 @@ a.button.about-dancer-button {
 
 /* Phones and small tablets: everything stacks. */
 @media (max-width: 767px) {
+
   .people-band-header,
   .people-band .instructor-grid {
     grid-template-columns: 1fr;
@@ -3130,7 +3237,8 @@ a.button.about-dancer-button {
 .board-social {
   display: flex;
   gap: 0.75rem;
-  margin-top: auto; /* Pins the icons to the bottom of the card. */
+  margin-top: auto;
+  /* Pins the icons to the bottom of the card. */
 }
 
 .board-social img {
@@ -3141,12 +3249,676 @@ a.button.about-dancer-button {
 
 
 
+/* ==========================================================================
+   Summer Camps page (page-camps.php)
+   Matches the Figma Camps design. Loaded only on the Camps page
+   (see functions.php).
+   ========================================================================== */
+
+/* Shared values for this page */
+.camps-page {
+    --camps-off-white: #fcfaf2;
+    --camps-charcoal: #2c2c2c;
+    --camps-red: #d22630;
+    --camps-serif: "Cormorant Garamond", serif;
+    --camps-sans: "Inter", sans-serif;
+    /* How far Carter's photo sits in from the left edge. Set to 0 once the photo files are cropped. */
+    --camps-photo-inset: 4rem;
+}
+
+/* ---------- Shared headings and lines ---------- */
+
+/* Small label above a heading ("Camps", "Overview", "Directors", "FAQ") */
+.camps-tagline {
+    margin: 0;
+    font-family: var(--camps-serif);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+/* Short blue line under a heading */
+.camps-line {
+    display: block;
+    width: 70px;
+    height: 3px;
+    margin-top: 1.5rem;
+    background: var(--wp--preset--color--bright-blue);
+}
+
+/* ---------- Hero ---------- */
+
+/* Full-width hero, 582px tall, text at the bottom left */
+.camps-hero {
+    position: relative;
+    min-height: 582px;
+    display: flex;
+    align-items: flex-end;
+    padding: 3rem 4rem;
+    overflow: hidden;
+    color: var(--camps-off-white);
+    background: #121212;
+}
+
+/* Background photo, cropped to fill and pushed to the right */
+.camps-hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+}
+
+/* Dark gradient: strong on the left behind the text, clear on the right */
+.camps-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(18, 18, 18, 0.85) 0%, rgba(18, 18, 18, 0.5) 35%, rgba(18, 18, 18, 0) 60%);
+}
+
+/* Text block, 1152px column, above the photo and gradient */
+.camps-hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1152px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+/* "Camps" label */
+.camps-hero-tagline {
+    margin: 0;
+    font-family: var(--camps-serif);
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+/* "Summer Camps" title */
+.camps-hero-title {
+    margin: 0;
+    font-family: var(--camps-serif);
+    font-weight: 700;
+    font-size: 3.5rem;
+    line-height: 4rem;
+    text-transform: uppercase;
+}
+
+/* Intro paragraphs, 647px wide as in Figma */
+.camps-hero-text {
+    max-width: 647px;
+    margin: 0;
+    font-family: var(--camps-sans);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* Register to camp button: off-white, swaps to charcoal on hover */
+.camps-hero-button {
+    display: inline-flex;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--camps-off-white);
+    border: 2px solid var(--camps-off-white);
+    color: var(--camps-charcoal);
+    font-family: var(--camps-serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.camps-hero-button:hover {
+    background: var(--camps-charcoal);
+    color: var(--camps-off-white);
+}
+
+/* ---------- Overview ---------- */
+
+/* Dark red gradient section */
+.camps-overview {
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 4rem;
+    color: var(--camps-off-white);
+    background: linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
+}
+
+/* Dark overlay so the text stands out */
+.camps-overview::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+/* Ribbon behind the content; ignores clicks */
+.camps-ribbon {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Ribbon at its Figma position and size */
+.camps-ribbon img {
+    position: absolute;
+    top: 0;
+    left: -200px;
+    width: 1689px;
+    height: 1102px;
+    max-width: none;
+}
+
+/* Keeps content above the ribbon, in a 1152px column */
+.camps-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1152px;
+    margin: 0 auto;
+}
+
+/* Heading on the left, intro on the right */
+.camps-overview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+/* "Camps Overview" heading */
+.camps-heading {
+    margin: 1rem 0 0;
+    font-family: var(--camps-serif);
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 3.5rem;
+    text-transform: uppercase;
+}
+
+/* Intro paragraph with the studio link */
+.camps-intro {
+    max-width: 540px;
+    margin: 0;
+    font-family: var(--camps-sans);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* Row of cards: scrolls sideways and snaps to each card */
+.camps-track {
+    display: flex;
+    gap: 2rem;
+    padding: 2.5rem 0 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* Runs the last card out to the right edge of the screen */
+    margin-right: calc(50% - 50vw);
+}
+
+/* Hide the scrollbar in Chrome and Safari */
+.camps-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* One camp card: 450px, charcoal, blue top edge */
+.camps-card {
+    flex: 0 0 450px;
+    display: flex;
+    flex-direction: column;
+    min-height: 592px;
+    background: var(--camps-charcoal);
+    border-top: 3px solid var(--wp--preset--color--bright-blue);
+    scroll-snap-align: start;
+}
+
+/* Card photo: fixed height, cropped to fill */
+.camps-card > img {
+    display: block;
+    width: 100%;
+    height: 253px;
+    object-fit: cover;
+}
+
+/* Card text: pushes the Register button to the bottom */
+.camps-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+}
+
+/* Camp name */
+.camps-card-title {
+    margin: 0;
+    font-family: var(--camps-serif);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    text-transform: uppercase;
+}
+
+/* Age, dates and times */
+.camps-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--camps-sans);
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+/* Register button: full width of the card body */
+.camps-card-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.375rem;
+    background: var(--camps-off-white);
+    border: 2px solid var(--camps-off-white);
+    color: var(--camps-charcoal);
+    font-family: var(--camps-serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.camps-card-button:hover {
+    background: var(--camps-charcoal);
+    color: var(--camps-off-white);
+}
+
+/* Row under the cards: dots on the left, arrows on the right */
+.camps-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Dots: one button per camp */
+.camps-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Each dot: small off-white circle */
+.camps-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--camps-off-white);
+    cursor: pointer;
+    transition: width 0.3s ease;
+}
+
+/* Active dot: wider pill, so it's shown by shape, not colour */
+.camps-dot[aria-current="true"] {
+    width: 1.5rem;
+}
+
+.camps-dot:focus-visible {
+    outline: 2px solid var(--wp--preset--color--bright-blue);
+    outline-offset: 3px;
+}
+
+/* Arrow buttons */
+.camps-arrows {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Round outlined arrow, icon centred */
+.camps-arrows button {
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 2px solid var(--camps-off-white);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.camps-arrows img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* ---------- Directors ---------- */
+
+/* Charcoal section; relative so the pattern can sit on its left edge */
+.camps-directors {
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 4rem;
+    color: var(--camps-off-white);
+    background: var(--camps-charcoal);
+}
+
+/* Vertical pattern down the left edge */
+.camps-pattern-vertical {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 105px;
+    background-repeat: repeat-y;
+    background-size: 105px auto;
+    pointer-events: none;
+}
+
+/* "Directors" label and "Camp Directors" heading */
+.camps-section-head {
+    margin-bottom: 3rem;
+    padding-left: var(--camps-photo-inset);
+}
+
+/* Smaller heading for Directors and FAQ */
+.camps-heading-md {
+    margin: 1rem 0 0;
+    font-family: var(--camps-serif);
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    text-transform: uppercase;
+}
+
+/* One director row: 453px photo and text side by side */
+.camps-director {
+    display: grid;
+    grid-template-columns: 453px 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+/* Talia's row: text on the left, photo on the right */
+.camps-director--reverse {
+    grid-template-columns: 1fr 453px;
+}
+
+/* Lines Talia's text up with Carter's photo */
+.camps-director--reverse .camps-director-text {
+    padding-left: var(--camps-photo-inset);
+}
+
+/* Both photos fill their column, starting at the left edge */
+.camps-director-photo {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    justify-self: stretch;
+    object-fit: cover;
+}
+
+/* Director name */
+.camps-director-name {
+    margin: 0;
+    font-family: var(--camps-serif);
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    text-transform: uppercase;
+}
+
+/* Blue line under the name, closer to it than the section line */
+.camps-director-text .camps-line {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Bio text */
+.camps-director-text p {
+    margin: 0;
+    font-family: var(--camps-sans);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* ---------- FAQ ---------- */
+
+/* Red fading to charcoal; bottom padding leaves room for the pattern strip */
+.camps-faq {
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 4rem calc(91px + 5rem);
+    color: var(--camps-off-white);
+    background: linear-gradient(180deg, var(--camps-red) 0%, var(--camps-charcoal) 100%);
+}
+
+/* Two columns, 1152px max, centred */
+.camps-faq-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1152px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* Intro paragraph under the heading */
+.camps-faq-intro {
+    margin: 1.5rem 0 0;
+    font-family: var(--camps-sans);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* "Still have questions?" block */
+.camps-faq-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.camps-faq-contact-title {
+    margin: 0;
+    font-family: var(--camps-serif);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    text-transform: uppercase;
+}
+
+.camps-faq-contact p {
+    margin: 0;
+    font-family: var(--camps-sans);
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+/* Contact button: off-white, swaps to charcoal on hover */
+.camps-faq-button {
+    align-self: flex-start;
+    display: inline-flex;
+    padding: 0.75rem 1.5rem;
+    background: var(--camps-off-white);
+    border: 2px solid var(--camps-off-white);
+    color: var(--camps-charcoal);
+    font-family: var(--camps-serif);
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.camps-faq-button:hover {
+    background: var(--camps-charcoal);
+    color: var(--camps-off-white);
+}
+
+/* Accordion: stacked rows with 16px gaps */
+.camps-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* One row: charcoal with a faint border */
+.camps-faq-item {
+    background: var(--camps-charcoal);
+    border: 1px solid rgba(252, 250, 242, 0.25);
+}
+
+.camps-faq-question {
+    margin: 0;
+}
+
+/* Whole row is the click target, at least 72px tall */
+.camps-faq-question button {
+    width: 100%;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: 0;
+    color: var(--camps-off-white);
+    font-family: var(--camps-sans);
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    text-align: left;
+    cursor: pointer;
+}
+
+.camps-faq-question button:hover {
+    background: #444444;
+}
+
+.camps-faq-question button:focus-visible {
+    outline: 2px solid var(--camps-off-white);
+    outline-offset: 3px;
+}
+
+/* Chevron: 32px, turns upside down when the row is open */
+.camps-faq-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease;
+}
+
+.camps-faq-icon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.camps-faq-question button[aria-expanded="true"] .camps-faq-icon {
+    transform: rotate(180deg);
+}
+
+/* Answer panel: animates from closed (0fr) to open (1fr) */
+.camps-faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    padding: 0 1.5rem;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.camps-faq-item.is-open .camps-faq-answer {
+    grid-template-rows: 1fr;
+}
+
+/* Clips the text while closed */
+.camps-faq-answer-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.camps-faq-answer-inner p {
+    margin: 0;
+    padding-bottom: 1.25rem;
+    font-family: var(--camps-sans);
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+/* Pattern strip along the bottom edge */
+.camps-pattern-horizontal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 91px;
+    background-repeat: repeat-x;
+    background-size: auto 91px;
+    pointer-events: none;
+}
+
+/* ---------- Responsive ---------- */
+
+/* Tablets and phones: FAQ columns stack */
+@media (max-width: 900px) {
+    .camps-faq-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Phones: director rows stack and the side pattern is hidden */
+@media (max-width: 768px) {
+    .camps-director,
+    .camps-director--reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .camps-section-head,
+    .camps-director--reverse .camps-director-text {
+        padding-left: 0;
+    }
+
+    .camps-pattern-vertical {
+        display: none;
+    }
+}
+
+/* Skip the open/close animation for users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+    .camps-faq-answer,
+    .camps-faq-icon,
+    .camps-dot {
+        transition: none;
+    }
+}
+
+
+
 /* ===== TABLETS: STACK THE LEADERSHIP CARDS ===== */
 
 /* Between 768px and 1023px the two-column cards leave the text only about
    200px wide, so the Director and Founders cards stack into one column
    (phones already do this at 767px and below). */
 @media (max-width: 1023px) {
+
   .about-director,
   .about-founders {
     grid-template-columns: 1fr;
@@ -3177,7 +3949,8 @@ a.button.about-dancer-button {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   padding: var(--wp--preset--spacing--50) var(--wp--custom--padding-global);
   background:
-    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), /* The design's 20% black layer. */
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    /* The design's 20% black layer. */
     linear-gradient(180deg, #1c1b1a 0%, #2c0d13 55%, #6a111b 100%);
   color: var(--wp--preset--color--off-white);
 }
@@ -3212,7 +3985,8 @@ a.button.about-dancer-button {
   display: flex;
   gap: 2rem;
   margin: 0;
-  padding: 0 0 var(--wp--preset--spacing--20); /* Room for the scrollbar. */
+  padding: 0 0 var(--wp--preset--spacing--20);
+  /* Room for the scrollbar. */
   list-style: none;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -3222,7 +3996,8 @@ a.button.about-dancer-button {
 .dance-program-card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 min(450px, 85vw); /* 450px wide, but never wider than most of a phone screen. */
+  flex: 0 0 min(450px, 85vw);
+  /* 450px wide, but never wider than most of a phone screen. */
   scroll-snap-align: start;
   background: var(--wp--preset--color--charcoal);
   border-top: 3px solid var(--wp--preset--color--bright-blue);
@@ -3260,7 +4035,8 @@ a.button.about-dancer-button {
 
 .dance-program-tag {
   padding: 0.25rem;
-  background: #005a91; /* The design's blue. */
+  background: #005a91;
+  /* The design's blue. */
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 20px;
@@ -3392,7 +4168,8 @@ a.button.about-dancer-button {
 
 /* Full-width dark band, same gradient as the other dark sections. */
 .dance-why {
-  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  /* Breaks out of the page padding. */
   padding: 7rem var(--wp--custom--padding-global);
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -3489,7 +4266,8 @@ a.button.about-dancer-button {
 
 /* Buttons in cards sit at the bottom and stretch full width. */
 .dance-benefit .button {
-  margin-top: auto; /* Pushes the button to the bottom of the card. */
+  margin-top: auto;
+  /* Pushes the button to the bottom of the card. */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3504,7 +4282,7 @@ a.button.about-dancer-button {
 }
 
 /* Gives the button a little air above it when the card text is short. */
-.dance-benefit p + .button {
+.dance-benefit p+.button {
   margin-top: auto;
 }
 
@@ -3567,6 +4345,7 @@ a.button.about-dancer-button {
   .dance-why-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .dance-benefit--wide {
     grid-column: 1 / -1;
   }
@@ -3577,12 +4356,15 @@ a.button.about-dancer-button {
   .dance-why {
     padding-block: 4rem;
   }
+
   .dance-why-title {
     font-size: 2.25rem;
   }
+
   .dance-why-grid {
     grid-template-columns: 1fr;
   }
+
   .dance-why-actions {
     flex-direction: column;
   }
@@ -3592,7 +4374,8 @@ a.button.about-dancer-button {
 
 /* Full-width band, dark red fading to bright red (as in Figma). */
 .dance-instructors {
-  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  /* Breaks out of the page padding. */
   padding: 5rem var(--wp--custom--padding-global);
   background: linear-gradient(180deg, #520e16 0%, #d22630 100%);
   color: var(--wp--preset--color--off-white);
@@ -3677,7 +4460,8 @@ a.button.about-dancer-button {
   width: 100%;
   height: 400px;
   object-fit: cover;
-  object-position: center top; /* Keeps faces in frame when the photo is cropped. */
+  object-position: center top;
+  /* Keeps faces in frame when the photo is cropped. */
 }
 
 /* Dark block shown when an instructor has no photo yet. */
@@ -3706,6 +4490,7 @@ a.button.about-dancer-button {
   .dance-instructors-header {
     grid-template-columns: 1fr;
   }
+
   .dance-instructors-list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3716,12 +4501,15 @@ a.button.about-dancer-button {
   .dance-instructors {
     padding-block: 3rem;
   }
+
   .dance-instructors-title {
     font-size: 2.25rem;
   }
+
   .dance-instructors-list {
     grid-template-columns: 1fr;
   }
+
   .dance-instructor-photo {
     height: 320px;
   }
@@ -3731,7 +4519,8 @@ a.button.about-dancer-button {
 
 /* Full-width band, red fading down to near-black (as in Figma). */
 .dance-locations {
-  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  /* Breaks out of the page padding. */
   padding: 7rem var(--wp--custom--padding-global);
   background: linear-gradient(0deg, #171717 0%, #d22630 100%);
   color: var(--wp--preset--color--off-white);
@@ -3799,7 +4588,8 @@ a.button.about-dancer-button {
 }
 
 .dance-location-address {
-  font-style: normal; /* <address> is italic by default. */
+  font-style: normal;
+  /* <address> is italic by default. */
   font-size: 1.125rem;
   line-height: 1.55;
 }
@@ -3837,12 +4627,15 @@ a.button.about-dancer-button {
   .dance-locations {
     padding-block: 4rem;
   }
+
   .dance-locations-title {
     font-size: 2.25rem;
   }
+
   .dance-location-map {
     height: 300px;
   }
+
   .dance-location-name {
     font-size: 2rem;
   }
@@ -3852,7 +4645,8 @@ a.button.about-dancer-button {
 
 /* Full-width dark band under the banner (same gradient as the other dark sections). */
 .events-list {
-  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  /* Breaks out of the page padding. */
   padding: 3rem var(--wp--custom--padding-global) 7rem;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -3884,7 +4678,8 @@ a.button.about-dancer-button {
 .event-feature-media {
   position: relative;
   min-height: 420px;
-  background: #1c1b1a; /* Shows when the event has no photo yet. */
+  background: #1c1b1a;
+  /* Shows when the event has no photo yet. */
 }
 
 .event-feature-image {
@@ -3907,7 +4702,8 @@ a.button.about-dancer-button {
 /* The off-white date badge: "SAT / 23 / JAN 2027". */
 .event-badge {
   position: absolute;
-  z-index: 1; /* Above the darkening gradient. */
+  z-index: 1;
+  /* Above the darkening gradient. */
   top: 2rem;
   left: 2rem;
   display: flex;
@@ -4067,7 +4863,8 @@ a.button.about-dancer-button {
 .event-card-media {
   position: relative;
   aspect-ratio: 405 / 270;
-  background: #1c1b1a; /* Shows when the event has no photo yet. */
+  background: #1c1b1a;
+  /* Shows when the event has no photo yet. */
 }
 
 .event-card-image {
@@ -4082,7 +4879,8 @@ a.button.about-dancer-button {
   top: 0;
   right: 0;
   padding: 0.25rem 0.5rem;
-  background: #005a91; /* The design's blue. */
+  background: #005a91;
+  /* The design's blue. */
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 20px;
@@ -4156,12 +4954,15 @@ a.button.about-dancer-button {
   .event-feature {
     grid-template-columns: 1fr;
   }
+
   .event-feature-media {
     min-height: 320px;
   }
+
   .event-feature-body {
     padding: 2.5rem;
   }
+
   .events-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -4172,21 +4973,26 @@ a.button.about-dancer-button {
   .events-list {
     padding-bottom: 4rem;
   }
+
   .event-feature-body {
     padding: 1.5rem;
   }
+
   .event-feature-title {
     font-size: 2rem;
   }
+
   .event-badge {
     top: 1rem;
     left: 1rem;
   }
+
   .event-actions {
     flex-direction: column;
     align-items: stretch;
     gap: 1rem;
   }
+
   .events-grid {
     grid-template-columns: 1fr;
   }
@@ -4200,7 +5006,8 @@ a.button.about-dancer-button {
 
 /* Full-width dark band that holds the sidebar and the grid. */
 .shop-layout {
-  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Breaks out of the page padding. */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  /* Breaks out of the page padding. */
   padding: 4rem var(--wp--custom--padding-global);
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -4507,9 +5314,11 @@ a.button.about-dancer-button {
   align-items: center;
   box-sizing: border-box;
   min-height: 40rem;
-  margin-inline: calc(var(--wp--custom--padding-global) * -1); /* Pull out past the page padding */
+  margin-inline: calc(var(--wp--custom--padding-global) * -1);
+  /* Pull out past the page padding */
   margin-block-start: calc(var(--wp--preset--spacing--50) * -1);
-  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo */
+  background: var(--wp--preset--color--charcoal);
+  /* Shows if there's no photo */
   overflow: hidden;
 }
 
@@ -4532,7 +5341,8 @@ a.button.about-dancer-button {
 /* Blurred band across the middle that holds the text */
 .event-hero-panel {
   position: relative;
-  z-index: 1; /* Above the photo and the dark layer */
+  z-index: 1;
+  /* Above the photo and the dark layer */
   width: 100%;
   padding: 2rem var(--wp--custom--padding-global);
   box-sizing: border-box;
@@ -4604,10 +5414,12 @@ a.button.about-dancer-button {
   width: 4rem;
 }
 
-.event-countdown-item + .event-countdown-item {
+.event-countdown-item+.event-countdown-item {
   padding-left: 1rem;
-  border-left: 1px solid #fff; /* The dividing line */
-  width: 5rem; /* Wider to make room for the padding */
+  border-left: 1px solid #fff;
+  /* The dividing line */
+  width: 5rem;
+  /* Wider to make room for the padding */
 }
 
 .event-countdown-number {
@@ -4696,7 +5508,8 @@ a.button.about-dancer-button {
 
 .event-about-media {
   aspect-ratio: 600 / 640;
-  background: var(--wp--preset--color--charcoal); /* Shows if there's no photo */
+  background: var(--wp--preset--color--charcoal);
+  /* Shows if there's no photo */
   box-shadow: 10px 10px 6px -6px rgba(0, 0, 0, 0.2);
 }
 
@@ -4792,12 +5605,12 @@ a.button.about-dancer-button {
   }
 
   .event-countdown-item,
-  .event-countdown-item + .event-countdown-item {
+  .event-countdown-item+.event-countdown-item {
     width: auto;
     min-width: 3.25rem;
   }
 
-  .event-countdown-item + .event-countdown-item {
+  .event-countdown-item+.event-countdown-item {
     padding-left: 0.5rem;
   }
 
@@ -4819,7 +5632,7 @@ main.home {
 
 /* The editor leaves empty paragraphs around the banner. Their margins show
    as grey bars between sections, so hide them. */
-main.home > p:empty {
+main.home>p:empty {
   display: none;
 }
 
@@ -4888,12 +5701,10 @@ main.home > p:empty {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   padding: 3rem var(--wp--custom--padding-global);
   /* Dark wine at the top fading to the brand red at the bottom. */
-  background: linear-gradient(
-    180deg,
-    #2c0d12 14%,
-    #6a111b 41%,
-    var(--wp--preset--color--red) 69%
-  );
+  background: linear-gradient(180deg,
+      #2c0d12 14%,
+      #6a111b 41%,
+      var(--wp--preset--color--red) 69%);
   color: var(--wp--preset--color--off-white);
 }
 
@@ -4968,17 +5779,15 @@ main.home > p:empty {
 /* ----- 3. Program Registration ----- */
 
 .home-register {
-    /* EMBROIDERY: Sam adds the embroidery strip along the bottom edge of this
+  /* EMBROIDERY: Sam adds the embroidery strip along the bottom edge of this
      section. position: relative below and the 7rem bottom padding leave room for it. */
   position: relative;
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   padding: 7rem var(--wp--custom--padding-global);
   /* Brand red at the top, fading to dark wine (matches the end of the About band). */
-  background: linear-gradient(
-    180deg,
-    var(--wp--preset--color--red) 0%,
-    #2c0d13 78%
-  );
+  background: linear-gradient(180deg,
+      var(--wp--preset--color--red) 0%,
+      #2c0d13 78%);
   color: var(--wp--preset--color--off-white);
 }
 
@@ -5064,6 +5873,7 @@ main.home > p:empty {
     line-height: 1.2;
   }
 }
+
 /* ----- 4. Dance Festival ----- */
 
 .home-festival {
@@ -5072,11 +5882,9 @@ main.home > p:empty {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   padding: 3rem var(--wp--custom--padding-global);
   /* Dark wine at the top fading into the page's charcoal. */
-  background: linear-gradient(
-    180deg,
-    #2c0d13 0%,
-    var(--wp--preset--color--charcoal) 100%
-  );
+  background: linear-gradient(180deg,
+      #2c0d13 0%,
+      var(--wp--preset--color--charcoal) 100%);
   color: var(--wp--preset--color--off-white);
 }
 
@@ -5286,11 +6094,9 @@ main.home > p:empty {
   margin-inline: calc(var(--wp--custom--padding-global) * -1);
   padding: 3rem var(--wp--custom--padding-global);
   /* Charcoal at the top fading to the brand red at the bottom. */
-  background: linear-gradient(
-    180deg,
-    var(--wp--preset--color--charcoal) 25%,
-    var(--wp--preset--color--red) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--wp--preset--color--charcoal) 25%,
+      var(--wp--preset--color--red) 100%);
   color: var(--wp--preset--color--off-white);
 }
 
@@ -5764,7 +6570,8 @@ main.home > p:empty {
 
 .home-newsletter-email {
   flex: 1;
-  min-width: 0; /* Lets the box shrink on small screens instead of overflowing. */
+  min-width: 0;
+  /* Lets the box shrink on small screens instead of overflowing. */
   box-sizing: border-box;
   padding: 0.75rem 1rem;
   background: transparent;
