@@ -7123,3 +7123,16 @@ main.home>p:empty {
     margin-bottom: 2rem;
   }
 }
+
+/* ==========================================================================
+   PEOPLE PAGE: PHOTO
+   ========================================================================== */
+
+/* Keeps the person's photo inside the screen. The width="400" in the HTML
+   would otherwise push it past the edge on phones. height: auto keeps its
+   proportions, and display: block removes the small gap under images. */
+.person-photo {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}

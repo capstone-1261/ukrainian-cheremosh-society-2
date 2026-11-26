@@ -24,7 +24,28 @@ require get_template_directory() . '/inc/signup.php';
 
 // Editable homepage content (text, links and photos the client can change).
 require get_template_directory() . '/inc/homepage-fields.php';
+/**
+ * Find the My Account page by its template, not its slug.
+ *
+ * WooCommerce makes its own page with the slug "my-account", which can clash
+ * with ours. Our page uses the "Account" template (page-account.php), so we
+ * look for that first, and only fall back to the slug if none is found.
+ *
+ * @return WP_Post|null The account page, or null if it doesn't exist yet.
+ */
+function cheremosh_get_account_page() {
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'meta_key'       => '_wp_page_template',   // Where WordPress saves a page's template.
+			'meta_value'     => 'page-account.php',    // Our Account template.
+			'posts_per_page' => 1,
+		)
+	);
 
+	return $pages ? $pages[0] : get_page_by_path( 'my-account' );
+}
 /**
  * Tell WooCommerce this theme supports it (Sam).
  */

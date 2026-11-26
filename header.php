@@ -131,8 +131,7 @@
 			 * rather than printing a dead link if the page doesn't exist yet.
 			 */
 			if ( is_user_logged_in() ) {
-				$cheremosh_cta_page  = get_page_by_path( 'my-account' );
-				$cheremosh_cta_label = 'My Account';
+				$cheremosh_cta_page  = cheremosh_get_account_page();				$cheremosh_cta_label = 'My Account';
 			} else {
 				$cheremosh_cta_page  = get_page_by_path( 'log-in' );
 				$cheremosh_cta_label = 'Login';
