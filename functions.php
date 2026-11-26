@@ -158,6 +158,46 @@ function cheremosh_enqueue_scripts() {
 		);
 	}
 
+	// Camps page only: camps.js (carousel) and camps-faq.js (FAQ accordion).
+	// The Camps styles are in main.css.
+	if ( is_page( 'camps' ) ) {
+		wp_enqueue_script(
+			'cheremosh-camps',
+			get_theme_file_uri( 'assets/js/camps.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/camps.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+
+		wp_enqueue_script(
+			'cheremosh-camps-faq',
+			get_theme_file_uri( 'assets/js/camps-faq.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/camps-faq.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
+
+	// product-gallery.js: swaps the big photo when a small one is clicked.
+	// Only loaded on single product pages.
+	if ( function_exists( 'is_product' ) && is_product() ) {
+		wp_enqueue_script(
+			'cheremosh-product-gallery',
+			get_theme_file_uri( 'assets/js/product-gallery.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/product-gallery.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 
 	// Homepage only: the two sliders (shop row and supporter logos).
 	if ( is_front_page() ) {
