@@ -169,8 +169,7 @@ function cheremosh_handle_signup() {
 	do_action( 'wp_login', $email, get_userdata( $user_id ) );
 
 	// Send them to their account page, or the home page if it isn't made yet.
-	$account = get_page_by_path( 'my-account' );
-
+	$account = cheremosh_get_account_page();
 	wp_safe_redirect( $account ? get_permalink( $account ) : home_url( '/' ) );
     	exit;
 }
