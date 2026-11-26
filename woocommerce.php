@@ -172,8 +172,8 @@ get_header(); // Loads header.php (skip link, announcement bar, logo, main menu)
 	<?php else : ?>
 
 		<?php
-		// Single product pages: WooCommerce prints its own layout for now.
-		woocommerce_content();
+		// Single product pages: our own layout (template-parts/product-single.php).
+		get_template_part( 'template-parts/product-single' );
 		?>
 
 	<?php endif; ?>

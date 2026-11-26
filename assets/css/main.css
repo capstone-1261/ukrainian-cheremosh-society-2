@@ -6781,3 +6781,301 @@ main.home>p:empty {
     flex-basis: 11rem;
   }
 }
+
+
+
+/* ==========================================================================
+   SINGLE PRODUCT PAGE
+   Breadcrumbs on top, words and buttons on the left, photos on the right.
+   Markup: template-parts/product-single.php
+   The page keeps the site's normal dark background.
+   ========================================================================== */
+
+.product-page {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-block: 1rem 4rem;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* ----- Breadcrumbs ----- */
+.product-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 3rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.product-breadcrumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* The little ">" between the links. */
+.product-breadcrumbs li + li::before {
+  content: "\203A";
+  margin-right: 0.5rem;
+}
+
+/* The page you are on (last one) is bold. */
+.product-breadcrumbs [aria-current="page"] {
+  font-weight: 600;
+}
+
+/* ----- Two columns: words left, photos right ----- */
+.product-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.product-info {
+  flex: 0 1 514px;
+  min-width: 0;
+}
+
+.product-tagline {
+  margin: 0 0 1rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.product-title {
+  margin: 0 0 1.5rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 56px;
+  text-transform: uppercase;
+}
+
+.product-description {
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.product-description p {
+  margin: 0 0 1rem;
+}
+
+/* Price: big, in the heading font. WooCommerce wraps it in spans. */
+.product-price {
+  margin-top: 2rem;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 56px;
+}
+
+/* A sale shows the old price crossed out and the new one next to it. */
+.product-price del {
+  opacity: 0.5;
+  margin-right: 0.5rem;
+}
+
+.product-price ins {
+  text-decoration: none;
+}
+
+.product-stock {
+  margin: 0.5rem 0 2rem;
+  font-size: 1rem;
+}
+
+/* ----- Buttons ----- */
+.product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.product-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--off-white);
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.product-back:hover {
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+}
+
+/* WooCommerce's Add to cart form: quantity box + button on one row. */
+.product-actions form.cart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+}
+
+.product-actions .quantity input {
+  width: 4.5rem;
+  padding: 0.75rem 0.5rem;
+  border: 1.5px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+  text-align: center;
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 1rem;
+}
+
+/* Size / colour pickers for products with options. */
+.product-actions table.variations {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 0;
+}
+
+.product-actions table.variations th,
+.product-actions table.variations td {
+  padding: 0.25rem 0;
+  border: 0;
+  text-align: left;
+}
+
+.product-actions table.variations select {
+  padding: 0.5rem;
+  border: 1.5px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* The Add to cart button. WooCommerce paints it purple, so this selector is
+   long on purpose: it has to be more specific than WooCommerce's. */
+.product-actions button.single_add_to_cart_button.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid var(--wp--preset--color--off-white);
+  border-radius: 0;
+  background: var(--wp--preset--color--off-white);
+  color: var(--wp--preset--color--charcoal);
+  font-family: var(--wp--preset--font-family--body);
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.product-actions button.single_add_to_cart_button.button:hover {
+  background: transparent;
+  color: var(--wp--preset--color--off-white);
+}
+
+/* A little cart icon in front of the words. */
+.product-actions button.single_add_to_cart_button.button::before {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM1 2v2h2l3.6 7.6-1.4 2.4A2 2 0 0 0 7 17h12v-2H7.4l1.1-2h7.5a2 2 0 0 0 1.7-1l3.6-6.5A1 1 0 0 0 20.4 4H5.2l-.9-2H1zm16 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM1 2v2h2l3.6 7.6-1.4 2.4A2 2 0 0 0 7 17h12v-2H7.4l1.1-2h7.5a2 2 0 0 0 1.7-1l3.6-6.5A1 1 0 0 0 20.4 4H5.2l-.9-2H1zm16 16a2 2 0 1 0 0 4 2 2 0 0 0 0-4z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.product-back:focus-visible,
+.product-actions button.single_add_to_cart_button.button:focus-visible,
+.product-thumb:focus-visible {
+  outline: 2px solid var(--wp--preset--color--bright-blue);
+  outline-offset: 2px;
+}
+
+/* ----- Photos ----- */
+.product-gallery {
+  flex: 0 0 380px;
+  max-width: 100%;
+}
+
+/* Grey box while the photo loads, and for products with no photo. */
+.product-main-photo {
+  aspect-ratio: 380 / 405;
+  background: #d9d9d9;
+}
+
+.product-main-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-thumb {
+  display: block;
+  width: 79px;
+  height: 84px;
+  padding: 0;
+  border: 0;
+  background: #d9d9d9;
+  cursor: pointer;
+}
+
+.product-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tablet and phone: photos go on top, words underneath. */
+@media (max-width: 1023px) {
+  .product-layout {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 2.5rem;
+  }
+
+  .product-info {
+    flex-basis: auto;
+  }
+
+  .product-gallery {
+    flex-basis: auto;
+    width: 100%;
+    max-width: 380px;
+  }
+}
+
+@media (max-width: 599px) {
+  .product-title,
+  .product-price {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .product-breadcrumbs ol {
+    margin-bottom: 2rem;
+  }
+}
