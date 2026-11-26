@@ -186,13 +186,6 @@ function cheremosh_enqueue_scripts() {
 	// Camps page only: camps.js (carousel) and camps-faq.js (FAQ accordion).
 	// The Camps styles are in main.css and camps.css.
 	if ( is_page( 'camps' ) ) {
-		wp_enqueue_style(
-			'cheremosh-camps',
-			get_theme_file_uri( 'assets/css/camps.css' ),
-			array( 'cheremosh-main' ),
-			cheremosh_asset_version( 'assets/css/camps.css' )
-		);
-
 		wp_enqueue_script(
 			'cheremosh-camps',
 			get_theme_file_uri( 'assets/js/camps.js' ),
@@ -216,15 +209,21 @@ function cheremosh_enqueue_scripts() {
 		);
 	}
 
-	// Camp Registration page only: its own stylesheet.
+	// Camp Registration success page only: its own stylesheet .
+		// Camp Registration page only: success pop-up (styles and script).
 	if ( is_page( 'camp-registration' ) ) {
-		wp_enqueue_style(
-			'cheremosh-camp-registration',
-			get_theme_file_uri( 'assets/css/camp-registration.css' ),
-			array( 'cheremosh-main' ),
-			cheremosh_asset_version( 'assets/css/camp-registration.css' )
+		wp_enqueue_script(
+			'cheremosh-camp-modal',
+			get_theme_file_uri( 'assets/js/camp-registration-modal.js' ),
+			array(),
+			cheremosh_asset_version( 'assets/js/camp-registration-modal.js' ),
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
 		);
 	}
+
 
 	// product-gallery.js: swaps the big photo when a small one is clicked.
 	// Only loaded on single product pages.
