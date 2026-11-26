@@ -3956,6 +3956,702 @@ a.button.about-dancer-button {
 
 
 
+
+/* ==========================================================================
+   Camp Registration page (page-camp-registration.php)
+   Form is Fluent Forms (ID 6). Fluent's default class names are used.
+   ========================================================================== */
+
+/* Charcoal section, edge to edge (cancels the page padding) */
+.camp-reg {
+    position: relative;
+    overflow: hidden;
+    margin-inline: calc(var(--wp--custom--padding-global) * -1);
+    padding:37px 64px 112px 64px;
+    background: #2c2c2c;
+    color: #fcfaf2;
+}
+
+/* Ribbon: same size and position as Figma (845 x 538, 677px from left, 560px from top) */
+.camp-reg-ribbon {
+    position: absolute;
+    top: 560px;
+    left: calc(50% + 37px);
+    width: 845.5px;
+    height: 538px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.camp-reg-ribbon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 768px column, centred */
+.camp-reg-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Title block */
+.camp-reg-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.camp-reg-tagline {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+.camp-reg-title {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+    text-transform: uppercase;
+}
+
+/* Short blue line under the heading */
+.camp-reg-line {
+    display: block;
+    width: 70px;
+    height: 3px;
+    margin-top: 8px;
+    background: #009eff;
+}
+
+.camp-reg-intro {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+/* ---------- Fluent form ---------- */
+
+.camp-reg-fluent {
+    width: 100%;
+}
+
+/* Stack the fields with 24px between them */
+.camp-reg-fluent form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Two fields side by side: First name and Last name */
+.camp-reg-fluent .ff-t-container {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.camp-reg-fluent .ff-t-cell {
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove any indent Fluent adds inside the field wrappers, so inputs
+   line up under their labels */
+.camp-reg-fluent .ff-el-group,
+.camp-reg-fluent .ff-el-input--label,
+.camp-reg-fluent .ff-el-input--content {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Gap between a label and its input */
+.camp-reg-fluent .ff-el-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Field labels: serif, uppercase, 20px */
+.camp-reg-fluent .ff-el-input--label label {
+    display: block;
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #fcfaf2;
+}
+
+/* Hide Fluent's red asterisks: "(required)" is already in the label text */
+.camp-reg-fluent .ff-el-is-required .ff-el-input--label label::after,
+.camp-reg-fluent .ff-el-is-required .ff-el-input--label label::before {
+    content: none;
+    display: none;
+}
+
+/* Inputs, dropdown and text area share one look */
+.camp-reg-fluent .ff-el-form-control {
+    width: 100%;
+    box-sizing: border-box;
+    height: 48px;
+    margin: 0;
+    padding: 12px;
+    background: transparent;
+    color: #fcfaf2;
+    border: 1.5px solid #fcfaf2;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.camp-reg-fluent textarea.ff-el-form-control {
+    height: 180px;
+    resize: vertical;
+}
+
+.camp-reg-fluent .ff-el-form-control::placeholder {
+    color: rgba(252, 250, 242, 0.75);
+    opacity: 1;
+}
+
+/* Dropdown: custom arrow in off-white, like the design */
+.camp-reg-fluent select.ff-el-form-control {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fcfaf2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 24px 24px;
+}
+
+/* Dropdown options need their own colours */
+.camp-reg-fluent select.ff-el-form-control option {
+    background: #2c2c2c;
+    color: #fcfaf2;
+}
+
+/* Keyboard focus ring */
+.camp-reg-fluent .ff-el-form-control:focus-visible,
+.camp-reg-fluent .ff-el-form-check input:focus-visible,
+.camp-reg-fluent a:focus-visible {
+    outline: 2px solid #fcfaf2;
+    outline-offset: 3px;
+}
+
+/* Terms checkbox row */
+.camp-reg-fluent .ff-el-form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+/* Outlined 25px box, not the browser default */
+.camp-reg-fluent .ff-el-form-check input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    flex-shrink: 0;
+    border: 2px solid #fcfaf2;
+    border-radius: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.camp-reg-fluent .ff-el-form-check input[type="checkbox"]:checked::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #fcfaf2;
+}
+
+.camp-reg-fluent .ff-el-form-check label {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fcfaf2;
+    cursor: pointer;
+}
+
+.camp-reg-fluent .ff-el-form-check a {
+    color: #fcfaf2;
+    text-decoration: underline;
+}
+
+/* Error state: thicker red border and a red bar on the message */
+.camp-reg-fluent .ff-el-is-error .ff-el-form-control {
+    border: 2px solid #d22630;
+}
+
+.camp-reg-fluent .ff-el-is-error .error {
+    margin: 0;
+    padding-left: 8px;
+    border-left: 4px solid #d22630;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fcfaf2;
+}
+
+/* Summary box Fluent shows at the top when there are errors */
+.camp-reg-fluent .ff-errors {
+    padding: 16px 20px;
+    border: 2px solid #d22630;
+    background: rgba(210, 38, 48, 0.15);
+    color: #fcfaf2;
+}
+
+/* Submit button: filled off-white, fills charcoal on hover */
+.camp-reg-fluent button.ff-btn-submit,
+.camp-reg-fluent .ff-btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 12px 24px;
+    background: #fcfaf2;
+    color: #2c2c2c;
+    border: 2px solid #fcfaf2;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: "Cormorant Garamond", serif !important;
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.camp-reg-fluent button.ff-btn-submit:hover,
+.camp-reg-fluent .ff-btn-submit:hover {
+    background: #2c2c2c;
+    color: #fcfaf2;
+}
+
+.camp-reg-fluent button.ff-btn-submit:focus-visible,
+.camp-reg-fluent .ff-btn-submit:focus-visible {
+    outline: 2px solid #fcfaf2;
+    outline-offset: 3px;
+}
+
+/* ---------- Back to home ---------- */
+
+/* ==========================================================================
+   Camp Registration: Back to home and Submit buttons, to match Figma
+   Added last with higher specificity so it overrides theme link styles.
+   ========================================================================== */
+
+.camp-reg .camp-reg-inner a.camp-reg-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 52px;
+    margin: 0;
+    padding: 12px 24px;
+    background: #2c2c2c;
+    color: #fcfaf2;
+    border: 2px solid #fcfaf2;
+    border-radius: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.camp-reg .camp-reg-inner a.camp-reg-back:hover {
+    background: #fcfaf2;
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+.camp-reg .camp-reg-inner a.camp-reg-back:focus-visible {
+    outline: 2px solid #fcfaf2;
+    outline-offset: 3px;
+}
+
+/* Submit button, same treatment, in case the Fluent markup overrides it */
+.camp-reg .camp-reg-fluent form button.ff-btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 12px 24px;
+    background: #fcfaf2;
+    color: #2c2c2c;
+    border: 2px solid #fcfaf2;
+    border-radius: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.camp-reg .camp-reg-fluent form button.ff-btn-submit:hover {
+    background: #2c2c2c;
+    color: #fcfaf2;
+}
+/* Terms checkbox: space between the box and "I accept the..." */
+.camp-reg .camp-reg-fluent .ff-el-form-check label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.camp-reg .camp-reg-fluent .ff-el-form-check input[type="checkbox"] {
+    margin: 0 12px 0 0;
+    flex-shrink: 0;
+}
+
+
+/* Inputs while typing: keep the Figma look (transparent, off-white border) */
+.camp-reg .camp-reg-fluent .ff-el-form-control:focus,
+.camp-reg .camp-reg-fluent .ff-el-form-control:focus-visible {
+    background: transparent;
+    color: #fcfaf2;
+    border: 1.5px solid #fcfaf2;
+    box-shadow: none;
+    outline: none;
+}
+
+/* Keyboard users still get a visible ring */
+.camp-reg .camp-reg-fluent .ff-el-form-control:focus-visible {
+    outline: 2px solid #fcfaf2;
+    outline-offset: 3px;
+}
+
+/* Browser autofill would otherwise turn the field white */
+.camp-reg .camp-reg-fluent .ff-el-form-control:-webkit-autofill,
+.camp-reg .camp-reg-fluent .ff-el-form-control:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #2c2c2c inset;
+    -webkit-text-fill-color: #fcfaf2;
+    caret-color: #fcfaf2;
+}
+
+/* Error state stays red, even while the field is focused */
+.camp-reg .camp-reg-fluent .ff-el-is-error .ff-el-form-control {
+    border: 2px solid #d22630;
+}
+
+/* No rounded corners on any field, button or checkbox */
+.camp-reg .camp-reg-fluent input,
+.camp-reg .camp-reg-fluent select,
+.camp-reg .camp-reg-fluent textarea,
+.camp-reg .camp-reg-fluent button,
+.camp-reg .camp-reg-fluent .ff-el-form-control,
+.camp-reg .camp-reg-fluent .ff-btn-submit,
+.camp-reg .camp-reg-back {
+    border-radius: 0 !important;
+}
+/* Focus: one thicker border instead of an outline, so there are no double borders */
+.camp-reg .camp-reg-fluent .ff-el-form-control:focus,
+.camp-reg .camp-reg-fluent .ff-el-form-control:focus-visible {
+    outline: none;
+    border: 2px solid #fcfaf2;
+}
+/* ---------- Tablets and phones ---------- */
+
+@media (max-width: 900px) {
+    .camp-reg {
+        padding: 64px 24px;
+    }
+
+    .camp-reg-ribbon {
+        display: none;
+    }
+
+    .camp-reg-title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .camp-reg-fluent .ff-t-container {
+        flex-direction: column;
+    }
+}
+
+/* Phones and tablets: First name and Last name stack, each full width */
+@media (max-width: 900px) {
+    .camp-reg .camp-reg-fluent .ff-t-container {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .camp-reg .camp-reg-fluent .ff-t-cell {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .camp-reg .camp-reg-fluent .ff-el-form-control {
+        width: 100% !important;
+    }
+}
+
+
+/* Phones: show a smaller ribbon along the bottom, below the buttons */
+@media (max-width: 900px) {
+    .camp-reg {
+        padding-bottom: 160px;
+    }
+
+    .camp-reg-ribbon {
+        display: block;
+        top: auto;
+        bottom: 0;
+        left: auto;
+        right: -15%;
+        width: 75%;
+        height: auto;
+    }
+
+    .camp-reg-ribbon img {
+        height: auto;
+    }
+}
+
+
+/* Success pop-up for the Camp Registration page (Figma node 14454:34986).
+   Card: 852 x 537 (24px top/bottom, 48px sides padding).
+   Inner frame: 756 x 489. Content padding: 64px on all sides. */
+
+.camp-modal[hidden] {
+	display: none;
+}
+
+.camp-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	box-sizing: border-box;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.camp-modal-box {
+	position: relative;
+	box-sizing: border-box;
+	width: 852px;
+	max-width: 100%;
+	min-height: 537px;
+	padding: 24px 48px;
+	overflow: hidden;
+	background-color: #2c2c2c;
+	background-image: linear-gradient(rgba(252, 250, 242, 0.15), rgba(252, 250, 242, 0.15));
+	color: #fcfaf2;
+}
+
+/* Decorative pattern on the left edge (76.73px wide in Figma). */
+.camp-modal-pattern {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 77px;
+	pointer-events: none;
+}
+
+.camp-modal-pattern img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+}
+
+/* 32 x 32 close icon, 16px inside the 756 x 489 inner frame. */
+.camp-modal-close {
+	position: absolute;
+	top: 40px;
+	right: 64px;
+	z-index: 1;
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	color: #fcfaf2;
+	cursor: pointer;
+}
+
+.camp-modal-close svg {
+	width: 24px;
+	height: 24px;
+}
+
+/* Inner 756 x 489 frame with 64px padding. */
+.camp-modal-content {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 32px;
+	width: 756px;
+	max-width: 100%;
+	min-height: 489px;
+	padding: 64px;
+}
+
+.camp-modal-tagline {
+	margin: 0;
+	font-family: "Cormorant Garamond", serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 1.5;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.camp-modal-title {
+	margin: 0;
+	font-family: "Cormorant Garamond", serif;
+	font-weight: 700;
+	font-size: 56px;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+/* Blue divider from the design (70px x 3px). */
+.camp-modal-line {
+	display: block;
+	width: 70px;
+	height: 3px;
+	margin: -8px 0;
+	background-color: #009eff;
+}
+
+.camp-modal-text {
+	margin: 0;
+	font-family: "Inter", sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+}
+
+.camp-modal-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px 24px;
+	border: 2px solid #fcfaf2;
+	background-color: #fcfaf2;
+	color: #2c2c2c;
+	font-family: "Cormorant Garamond", serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 1.5;
+	text-transform: uppercase;
+	text-decoration: none;
+	margin: 0 auto;
+}
+
+.camp-modal-button:hover {
+	background-color: transparent;
+	color: #fcfaf2;
+}
+
+.camp-modal-close:focus-visible,
+.camp-modal-button:focus-visible {
+	outline: 2px solid #009eff;
+	outline-offset: 3px;
+}
+
+/* Stops the page scrolling behind the open pop-up. */
+body.camp-modal-open {
+	overflow: hidden;
+}
+
+@media (max-width: 900px) {
+	.camp-modal-box {
+		padding: 16px 24px;
+	}
+
+	.camp-modal-content {
+		padding: 48px 32px;
+	}
+
+	.camp-modal-title {
+		font-size: 40px;
+	}
+
+	.camp-modal-close {
+		top: 24px;
+		right: 24px;
+	}
+}
+
+@media (max-width: 600px) {
+	.camp-modal-content {
+		padding: 48px 24px;
+	}
+
+	.camp-modal-pattern {
+		width: 48px;
+	}
+
+	.camp-modal-title {
+		font-size: 30px;
+	}
+
+	.camp-modal-text {
+		font-size: 16px;
+	}
+
+	.camp-modal-tagline {
+		white-space: normal;
+	}
+}
+
+
 /* ===== TABLETS: STACK THE LEADERSHIP CARDS ===== */
 
 /* Between 768px and 1023px the two-column cards leave the text only about
@@ -3974,6 +4670,11 @@ a.button.about-dancer-button {
     margin-inline: auto;
   }
 }
+
+
+
+
+
 
 
 
@@ -7445,4 +8146,8 @@ main.home>p:empty {
   .press-kit-list {
     grid-template-columns: 1fr 1fr;
   }
+}
+/* Back to home sits 24px below Submit (Figma), not the 48px section gap. */
+.camp-reg .camp-reg-inner a.camp-reg-back {
+    margin-top: -24px;
 }
