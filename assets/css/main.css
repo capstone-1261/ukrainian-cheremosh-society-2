@@ -7136,3 +7136,67 @@ main.home>p:empty {
 	max-width: 100%;
 	height: auto;
 }
+
+/* ==========================================================================
+   DANCE COMPANY PAGE
+   The banner, Artistic Director and audition card reuse the About page's
+   classes. Only the "Praise for Cheremosh" quotes need their own styles.
+   ========================================================================== */
+
+/* Quotes band: sits on the page background, centred with a max width. */
+.company-quotes {
+  padding-block: var(--wp--preset--spacing--60);
+}
+
+.company-quotes-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.company-quotes-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Phones: one quote per row. */
+.company-quotes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wp--preset--spacing--40);
+}
+
+/* One quote: dark card with a red line down the left, like the About pull quote. */
+.company-quote {
+  margin: 0;
+  padding: 2rem;
+  background: #2c2c2c;
+  border-inline-start: 3px solid #d22630;
+}
+
+.company-quote p {
+  margin: 0;
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.company-quote cite {
+  display: block;
+  margin-block-start: var(--wp--preset--spacing--30);
+  font-size: 0.875rem;
+  font-style: normal;
+}
+
+/* Desktop: three quotes side by side. */
+@media (min-width: 1024px) {
+  .company-quotes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* The audition section has just one card, so centre it instead of
+   leaving an empty second column. */
+.company-auditions .about-join-press-inner {
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
+}
