@@ -126,12 +126,15 @@
 			 * Logged out: "Login", pointing at the Log In page.
 			 * Logged in:  "My Account", pointing at the account page.
 			 *
-			 * Both pages are looked up by slug so this keeps working if either
-			 * is renamed in the editor, and each falls back to the home page
-			 * rather than printing a dead link if the page doesn't exist yet.
+			 * The Log In page is looked up by slug. The account page is found by
+			 * its template (see cheremosh_get_account_page() in functions.php), so
+			 * WooCommerce's own "my-account" page can't clash with ours. Each falls
+			 * back to the home page rather than printing a dead link if the page
+			 * doesn't exist yet.
 			 */
 			if ( is_user_logged_in() ) {
-				$cheremosh_cta_page  = cheremosh_get_account_page();				$cheremosh_cta_label = 'My Account';
+				$cheremosh_cta_page  = cheremosh_get_account_page();
+				$cheremosh_cta_label = 'My Account';
 			} else {
 				$cheremosh_cta_page  = get_page_by_path( 'log-in' );
 				$cheremosh_cta_label = 'Login';
