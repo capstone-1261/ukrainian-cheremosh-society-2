@@ -1,8 +1,8 @@
 <?php
 /**
- * Dance Company page template
+ * Cheremosh Company page template
  *
- * WordPress uses this file for the page with the slug "dance-company"
+ * WordPress uses this file for the page with the slug "cheremosh-company"
  * (page-{slug}.php). It is the public page for the Cheremosh Ukrainian
  * Dance Company: a banner, the Artistic Director, three press quotes,
  * and a card for auditions.
