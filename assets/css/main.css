@@ -115,6 +115,7 @@ main>article {
 
 .site-header {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -251,6 +252,10 @@ main>article {
     color 0.3s ease,
     transform 0.3s ease-out;
 }
+.main-navigation .menu-more>a {
+  pointer-events: none;
+  cursor: default;
+}
 
 .main-navigation a:hover {
   text-decoration: underline;
@@ -302,9 +307,9 @@ main>article {
   flex: 0 0 auto;
 }
 
-.main-navigation .sub-menu a {
-  white-space: nowrap;
-}
+ .main-navigation .sub-menu a {
+    white-space: normal;
+  }
 
 .main-navigation li:hover>.sub-menu,
 .main-navigation li:focus-within>.sub-menu {
@@ -390,6 +395,7 @@ main>article {
 .cheremosh-hero .wp-block-buttons {
   margin-top: var(--wp--preset--spacing--30);
 }
+
 
 /* --------------------------------------------------------------------------
    Pause/Play button — only appears when the hero uses a video.
@@ -801,6 +807,9 @@ main>article {
     margin-left: auto;
     /* Pushes it over to sit beside the Register button. */
   }
+   .site-header {
+    position: relative;
+  }
 
   /*
    * The menu is hidden until opened, and sits on its own full-width row
@@ -809,13 +818,26 @@ main>article {
    * order: 1 pushes it last in the flex row (everything else defaults to 0),
    * so the top row stays logo | hamburger | Register and the menu drops below.
    */
-  .main-navigation {
+    .main-navigation {
+       overflow-x: hidden;
     display: none;
-    order: 1;
-    width: 100%;
+    position: absolute;
+    top: 100%;
+    right: var(--wp--custom--padding-global);
+    z-index: 100;
+    width: 174px;
+    max-height: 482px;
     margin-left: 0;
+    padding: 1rem;
+    box-sizing: border-box;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    background: var(--wp--preset--color--charcoal);
+    box-shadow: var(--wp--preset--shadow--large);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--wp--preset--color--off-white) transparent;
   }
 
   /* mobile-menu.js adds .is-open when the button is pressed. */
@@ -823,40 +845,62 @@ main>article {
     display: flex;
   }
 
-  /* Links stack instead of sitting in a row. */
+  /* Links stack in a centred column with even spacing. */
   .main-navigation ul {
     flex-direction: column;
-    gap: 0;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    width: 100%;
   }
 
-  /* Taller links so they're easy to hit with a thumb. */
+  .main-navigation li {
+    width: 100%;
+  }
+
+  /* Smaller links than desktop, so long names wrap inside the panel. */
   .main-navigation a {
-    padding-block: 0.75rem;
+    padding-block: 0.25rem;
+    font-size: 0.9375rem;
   }
 
+  /* Login: full-width red bar at the bottom of the panel. */
   .main-navigation>.header-cta {
-    display: inline-block;
-    width: fit-content;
+    display: block;
+    width: 100%;
     margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    text-align: center;
   }
 
   /*
    * Dropdowns can't rely on hover on a touchscreen, so sub-menus are
-   * always visible, indented under their parent rather than floating.
+   * always visible and listed in the same centred column as the rest.
    */
   .main-navigation .sub-menu {
     display: flex;
     position: static;
+    width: 100%;
+    max-width: none;
     min-width: 0;
-    padding: 0 0 0 var(--wp--preset--spacing--30);
+    padding: 0;
+    gap: 1rem;
     box-shadow: none;
     flex-direction: column;
+    align-items: center;
     flex-wrap: nowrap;
   }
 
-  /* The ▾ arrow means nothing here, since the sub-menu is already open. */
+  /* Hide the ▾ arrow completely (content:"" alone still draws it). */
   .main-navigation .menu-item-has-children>a::after {
-    content: "";
+    display: none;
+  }
+
+  /* Menu items given the "menu-more" CSS class in Appearance > Menus
+     are hidden on mobile, so their children show as a flat list. */
+  .main-navigation .menu-more>a {
+    display: none;
   }
 
   /* Stops the page scrolling behind an open menu.
