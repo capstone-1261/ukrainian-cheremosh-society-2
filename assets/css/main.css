@@ -7123,3 +7123,238 @@ main.home>p:empty {
     margin-bottom: 2rem;
   }
 }
+
+/* ==========================================================================
+   PEOPLE PAGE: PHOTO
+   ========================================================================== */
+
+/* Keeps the person's photo inside the screen. The width="400" in the HTML
+   would otherwise push it past the edge on phones. height: auto keeps its
+   proportions, and display: block removes the small gap under images. */
+.person-photo {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* ==========================================================================
+   DANCE COMPANY PAGE
+   The banner, Artistic Director and audition card reuse the About page's
+   classes. Only the "Praise for Cheremosh" quotes need their own styles.
+   ========================================================================== */
+
+/* Quotes band: sits on the page background, centred with a max width. */
+.company-quotes {
+  padding-block: var(--wp--preset--spacing--60);
+}
+
+.company-quotes-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.company-quotes-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Phones: one quote per row. */
+.company-quotes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wp--preset--spacing--40);
+}
+
+/* One quote: dark card with a red line down the left, like the About pull quote. */
+.company-quote {
+  margin: 0;
+  padding: 2rem;
+  background: #2c2c2c;
+  border-inline-start: 3px solid #d22630;
+}
+
+.company-quote p {
+  margin: 0;
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.company-quote cite {
+  display: block;
+  margin-block-start: var(--wp--preset--spacing--30);
+  font-size: 0.875rem;
+  font-style: normal;
+}
+
+/* Desktop: three quotes side by side. */
+@media (min-width: 1024px) {
+  .company-quotes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* The audition section has just one card, so centre it instead of
+   leaving an empty second column. */
+.company-auditions .about-join-press-inner {
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
+}
+
+/* ==========================================================================
+   MEMBERSHIPS PAGE
+   The banner reuses the About page's .about-hero. Everything below is new.
+   ========================================================================== */
+
+/* Shared: each section is centred with a max width and even spacing. */
+.memberships-includes,
+.memberships-which,
+.memberships-tiers,
+.memberships-renewal {
+  padding-block: var(--wp--preset--spacing--50);
+}
+
+.memberships-inner {
+  max-width: 1280px;
+  margin-inline: auto;
+}
+
+.memberships-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* ----- 1. What your membership includes: three cards ----- */
+
+/* Phones: one card per row. */
+.memberships-includes-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wp--preset--spacing--40);
+  margin: var(--wp--preset--spacing--40) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* One card: dark box with a blue line along the top, like the About cards. */
+.memberships-include {
+  padding: 2rem;
+  background: #2c2c2c;
+  border-block-start: 3px solid var(--wp--preset--color--bright-blue);
+}
+
+.memberships-include-title {
+  margin: 0 0 var(--wp--preset--spacing--20);
+  text-transform: uppercase;
+}
+
+.memberships-include p {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* ----- 2. Which membership do you need: two cards ----- */
+
+.memberships-which-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--wp--preset--spacing--40);
+}
+
+.memberships-which-card {
+  padding: 2rem;
+  background: #2c2c2c;
+  border-inline-start: 3px solid #d22630;
+}
+
+.memberships-which-label {
+  margin: 0;
+  font-family: var(--wp--preset--font-family--heading);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.memberships-which-name {
+  margin: var(--wp--preset--spacing--20) 0 0;
+  text-transform: uppercase;
+}
+
+/* The big price: "$50" large, "/year" small beside it. */
+.memberships-which-price {
+  margin: var(--wp--preset--spacing--20) 0;
+  font-family: var(--wp--preset--font-family--heading);
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.memberships-which-price span {
+  font-size: 1.25rem;
+}
+
+.memberships-which-card p:not([class]) {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* ----- 3. All membership tiers: a table ----- */
+
+/* On narrow screens the table scrolls sideways inside its own box
+   instead of pushing the whole page wider. */
+.memberships-table-wrap {
+  overflow-x: auto;
+}
+
+.memberships-table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.memberships-table th,
+.memberships-table td {
+  padding: 1rem 1.25rem;
+  border-block-end: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.125rem;
+  line-height: 1.4;
+  text-align: start;
+  vertical-align: top;
+}
+
+/* Header row: dark bar with a red line under it. */
+.memberships-table thead th {
+  background: #2c2c2c;
+  border-block-end: 3px solid #d22630;
+  font-family: var(--wp--preset--font-family--heading);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* The tier name in each row. */
+.memberships-table tbody th {
+  font-weight: 700;
+}
+
+/* ----- 4. Renewal and cancellation ----- */
+
+.memberships-renewal-text {
+  max-width: 48rem;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+/* ----- Desktop ----- */
+@media (min-width: 1024px) {
+  /* Three cards side by side. */
+  .memberships-includes-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Two cards side by side. */
+  .memberships-which-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

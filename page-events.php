@@ -31,9 +31,8 @@ $events_today = current_time( 'Y-m-d' );
 
 // The "RSVP Now" button: logged-in people go to the event page, everyone else
 // goes to the Login page first (the design shows RSVP only needing a login).
-$events_login_url = home_url( '/login/' );
+$events_login_url = home_url( '/log-in/' );
 ?>
-
 <main id="main-content"> <!-- The skip link in header.php jumps here. -->
 
 	<!--

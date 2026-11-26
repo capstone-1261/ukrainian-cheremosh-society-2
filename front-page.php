@@ -55,7 +55,7 @@ $home_cards = array(
 		'title'      => 'Boisterous, Bold, and Proudly Ukrainian',
 		'text'       => 'Founded by Chester and Luba Kuc and named after the Cheremosh River in Ukraine, the company brings the river’s energy and spirit to every performance.',
 		'btn_label'  => 'Meet the company',
-		'btn_url'    => home_url( '/dance-company/' ),
+		'btn_url'    => home_url( '/dance-with-us/cheremosh-company/' ),
 	),
 	array(
 		'prefix'     => 'school',

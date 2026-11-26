@@ -21,12 +21,34 @@ require get_template_directory() . '/inc/login.php';
 // Handles sign-up form submissions from page-signup.php.
 require get_template_directory() . '/inc/signup.php';
 
-
 // Editable homepage content (text, links and photos the client can change).
 require get_template_directory() . '/inc/homepage-fields.php';
 
 // Camps page fields (ACF Free): editable text and images for page-camps.php.
 require get_template_directory() . '/inc/camps-fields.php';
+
+/**
+ * Find the My Account page by its template, not its slug.
+ *
+ * WooCommerce makes its own page with the slug "my-account", which can clash
+ * with ours. Our page uses the "Account" template (page-account.php), so we
+ * look for that first, and only fall back to the slug if none is found.
+ *
+ * @return WP_Post|null The account page, or null if it doesn't exist yet.
+ */
+function cheremosh_get_account_page() {
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'meta_key'       => '_wp_page_template',   // Where WordPress saves a page's template.
+			'meta_value'     => 'page-account.php',    // Our Account template.
+			'posts_per_page' => 1,
+		)
+	);
+
+	return $pages ? $pages[0] : get_page_by_path( 'my-account' );
+}
 
 /**
  * Tell WooCommerce this theme supports it (Sam).
@@ -162,8 +184,15 @@ function cheremosh_enqueue_scripts() {
 	}
 
 	// Camps page only: camps.js (carousel) and camps-faq.js (FAQ accordion).
-	// The Camps styles are in main.css.
+	// The Camps styles are in main.css and camps.css.
 	if ( is_page( 'camps' ) ) {
+		wp_enqueue_style(
+			'cheremosh-camps',
+			get_theme_file_uri( 'assets/css/camps.css' ),
+			array( 'cheremosh-main' ),
+			cheremosh_asset_version( 'assets/css/camps.css' )
+		);
+
 		wp_enqueue_script(
 			'cheremosh-camps',
 			get_theme_file_uri( 'assets/js/camps.js' ),
@@ -184,6 +213,16 @@ function cheremosh_enqueue_scripts() {
 				'strategy'  => 'defer',
 				'in_footer' => true,
 			)
+		);
+	}
+
+	// Camp Registration page only: its own stylesheet.
+	if ( is_page( 'camp-registration' ) ) {
+		wp_enqueue_style(
+			'cheremosh-camp-registration',
+			get_theme_file_uri( 'assets/css/camp-registration.css' ),
+			array( 'cheremosh-main' ),
+			cheremosh_asset_version( 'assets/css/camp-registration.css' )
 		);
 	}
 
