@@ -158,21 +158,6 @@ function cheremosh_enqueue_scripts() {
 		);
 	}
 
-	// product-gallery.js: swaps the big photo when a small one is clicked.
-	// Only loaded on single product pages.
-	if ( function_exists( 'is_product' ) && is_product() ) {
-		wp_enqueue_script(
-			'cheremosh-product-gallery',
-			get_theme_file_uri( 'assets/js/product-gallery.js' ),
-			array(),
-			cheremosh_asset_version( 'assets/js/product-gallery.js' ),
-			array(
-				'strategy'  => 'defer',
-				'in_footer' => true,
-			)
-		);
-	}
-
 
 	// Homepage only: the two sliders (shop row and supporter logos).
 	if ( is_front_page() ) {
