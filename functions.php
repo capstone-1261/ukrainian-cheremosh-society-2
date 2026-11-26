@@ -21,9 +21,12 @@ require get_template_directory() . '/inc/login.php';
 // Handles sign-up form submissions from page-signup.php.
 require get_template_directory() . '/inc/signup.php';
 
-
 // Editable homepage content (text, links and photos the client can change).
 require get_template_directory() . '/inc/homepage-fields.php';
+
+// Camps page fields (ACF Free): editable text and images for page-camps.php.
+require get_template_directory() . '/inc/camps-fields.php';
+
 /**
  * Find the My Account page by its template, not its slug.
  *
@@ -46,6 +49,7 @@ function cheremosh_get_account_page() {
 
 	return $pages ? $pages[0] : get_page_by_path( 'my-account' );
 }
+
 /**
  * Tell WooCommerce this theme supports it (Sam).
  */
@@ -180,8 +184,15 @@ function cheremosh_enqueue_scripts() {
 	}
 
 	// Camps page only: camps.js (carousel) and camps-faq.js (FAQ accordion).
-	// The Camps styles are in main.css.
+	// The Camps styles are in main.css and camps.css.
 	if ( is_page( 'camps' ) ) {
+		wp_enqueue_style(
+			'cheremosh-camps',
+			get_theme_file_uri( 'assets/css/camps.css' ),
+			array( 'cheremosh-main' ),
+			cheremosh_asset_version( 'assets/css/camps.css' )
+		);
+
 		wp_enqueue_script(
 			'cheremosh-camps',
 			get_theme_file_uri( 'assets/js/camps.js' ),
@@ -202,6 +213,16 @@ function cheremosh_enqueue_scripts() {
 				'strategy'  => 'defer',
 				'in_footer' => true,
 			)
+		);
+	}
+
+	// Camp Registration page only: its own stylesheet.
+	if ( is_page( 'camp-registration' ) ) {
+		wp_enqueue_style(
+			'cheremosh-camp-registration',
+			get_theme_file_uri( 'assets/css/camp-registration.css' ),
+			array( 'cheremosh-main' ),
+			cheremosh_asset_version( 'assets/css/camp-registration.css' )
 		);
 	}
 
