@@ -25,6 +25,9 @@ require get_template_directory() . '/inc/signup.php';
 // Editable homepage content (text, links and photos the client can change).
 require get_template_directory() . '/inc/homepage-fields.php';
 
+// Camps page fields (ACF Free): editable text and images for page-camps.php.
+require get_template_directory() . '/inc/camps-fields.php';
+
 /**
  * Tell WooCommerce this theme supports it (Sam).
  */
