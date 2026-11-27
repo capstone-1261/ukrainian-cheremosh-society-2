@@ -5643,10 +5643,11 @@ body.camp-modal-open {
 .event-card-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1.5rem;
+  gap: var(--wp--preset--spacing--10);
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.43;
+  align-items: center;
 }
 
 .event-card-title {
@@ -5655,12 +5656,23 @@ body.camp-modal-open {
   font-size: 1.5rem;
   line-height: 1.33;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .event-card-text {
   margin: 0;
   font-size: 1.125rem;
   line-height: 1.55;
+}
+
+.event-card-icon {
+    flex-shrink: 0;
+    box-sizing: content-box;
+    width: 1rem;
+    height: 1rem;
+    padding: 0.5rem;
+    background: var(--wp--preset--color--off-white);
+    border-radius: 50%;
 }
 
 /* "View Event": outlined, full width, pinned to the bottom of the card. */

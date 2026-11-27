@@ -29,6 +29,9 @@ get_header(); // Loads header.php (skip link, announcement bar, logo, main menu)
 // Folder where the starter photos live. They show until the client uploads their own.
 $home_images = get_theme_file_uri( 'assets/images/home/' );
 
+// get_template_directory_uri() = the URL of this theme's folder.
+$icons = get_template_directory_uri() . '/assets/icons/';
+
 /**
  * Works out the alt text (the description screen readers read) for a photo.
  * Our starter photos get the description written here. A photo the client
@@ -432,9 +435,15 @@ for ( $i = 1; $i <= 8; $i++ ) {
 						<div class="event-card-body">
 							<p class="event-card-meta">
 								<?php if ( $ev_date ) : ?>
+									<span class="event-card-meta-item">
+										<img class="event-card-icon" src="<?php echo esc_url( $icons . 'calendar.svg' ); ?>" alt="" width="24" height="24">
+									</span>
 									<span><?php echo esc_html( $ev_date->format( 'D d M Y' ) ); ?></span>
 								<?php endif; ?>
 								<?php if ( $ev_place ) : ?>
+									<span class="event-card-meta-item">
+										<img class="event-card-icon" src="<?php echo esc_url( $icons . 'event-location.svg' ); ?>" alt="" width="24" height="24">
+									</span>
 									<span><?php echo esc_html( $ev_place ); ?></span>
 								<?php endif; ?>
 							</p>
