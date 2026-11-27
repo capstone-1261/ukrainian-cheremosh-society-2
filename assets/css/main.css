@@ -5656,6 +5656,7 @@ body.camp-modal-open {
   font-size: 1.5rem;
   line-height: 1.33;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .event-card-text {
