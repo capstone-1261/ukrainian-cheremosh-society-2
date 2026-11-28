@@ -363,7 +363,7 @@ get_header(); // Loads header.php (skip link, announcement bar, menu).
 					<p>Company auditions are held every spring and fall. If you’re ready to train with one of Canada’s leading Ukrainian dance companies, we want to see you dance.</p>
 					<p class="about-card-small">Not ready yet? Join our newsletter to hear when the next auditions open.</p>
 					<!-- TODO: point this at the real Auditions page once the client says where it lives. -->
-					<a class="button about-card-button about-card-button--filled" href="#">Register for Auditions</a>
+					<a class="button about-card-button about-card-button--filled" href="/auditions/">Register for Auditions</a>
 				</div>
 			</article>
 

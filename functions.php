@@ -27,6 +27,9 @@ require get_template_directory() . '/inc/homepage-fields.php';
 // Camps page fields (ACF Free): editable text and images for page-camps.php.
 require get_template_directory() . '/inc/camps-fields.php';
 
+
+// Festival video tutorial links (ACF Free): editable links for the tutorials page.
+require get_template_directory() . '/inc/festival-videos-fields.php';
 /**
  * Find the My Account page by its template, not its slug.
  *
