@@ -147,7 +147,7 @@ get_header(); // Loads header.php (skip link, announcement bar, logo, main menu)
 					<h2 class="about-card-title">Audition for the Company</h2>
 					<p>Company auditions take place each June and September at the Mykola Kanevets Rehearsal Hall (Beverly Studio, 4005 115 Avenue NW, Edmonton).</p>
 					<!-- TODO: point this at the real Auditions page once the client says where it lives. -->
-					<a class="button about-card-button about-card-button--filled" href="#">View Audition Dates &amp; Register</a>
+					<a class="button about-card-button about-card-button--filled" href="/auditions/">View Audition Dates &amp; Register</a>
 				</div>
 			</article>
 		</div>
